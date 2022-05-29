@@ -14,7 +14,7 @@
   <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Main%20technologies&message=React%2FNext.js%2FTypeScript&style=for-the-badge&color=f062c0&labelColor=06092b">
 </p>
 
-## <i>This project is still under development so I haven't created a detailed README</i>
+## <i>This project is still under development so I haven't created a detailed README yet</i>
 
 <!-- <h2 id="techonologies" name="technologies">
   :rocket: Used Technologies
