@@ -1,5 +1,6 @@
 import * as S from './Button.styles';
 
+// you should have a figma before doint that
 type ButtonProps = {
   children: React.ReactNode;
 };
