@@ -42,7 +42,7 @@ const wrapperModifiers = {
 
     success: (theme: DefaultTheme) =>
       wrapperColorRelatedStyles({
-        color: theme.colors.primary.accent1,
+        color: theme.colors.white,
         backgroundColor: theme.colors.success.default,
         borderColor: theme.colors.success.default,
         hoverBackgroundColor: theme.colors.success.darker
@@ -50,7 +50,7 @@ const wrapperModifiers = {
 
     danger: (theme: DefaultTheme) =>
       wrapperColorRelatedStyles({
-        color: theme.colors.primary.accent1,
+        color: theme.colors.white,
         backgroundColor: theme.colors.error.default,
         borderColor: theme.colors.error.default,
         hoverBackgroundColor: theme.colors.error.darker
