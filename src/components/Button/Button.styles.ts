@@ -55,13 +55,17 @@ const wrapperModifiers = {
         borderColor: theme.colors.error.default,
         hoverBackgroundColor: theme.colors.error.darker
       })
-  }
+  },
+
+  fullWidth: () => css`
+    width: 100%;
+  `
 };
 
-type WrapperProps = Pick<ButtonProps, 'color' | 'size'>;
+type WrapperProps = Pick<ButtonProps, 'color' | 'size' | 'fullWidth'>;
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, color }) => css`
+  ${({ theme, color, fullWidth }) => css`
     cursor: pointer;
     outline: none;
     background-color: ${theme.colors.success.default};
@@ -72,5 +76,6 @@ export const Wrapper = styled.button<WrapperProps>`
     transition: ${theme.transitions.default};
 
     ${wrapperModifiers.colors[color!](theme)}
+    ${fullWidth && wrapperModifiers.fullWidth()}
   `}
 `;

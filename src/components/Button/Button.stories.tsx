@@ -13,7 +13,8 @@ export default {
   args: {
     children: 'New task',
     color: 'primary',
-    size: 'medium'
+    size: 'medium',
+    fullWidth: false
   }
 } as ComponentMeta<typeof Button>;
 
