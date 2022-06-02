@@ -11,7 +11,9 @@ export default {
   },
 
   args: {
-    children: 'New task'
+    children: 'New task',
+    color: 'primary',
+    size: 'medium'
   }
 } as ComponentMeta<typeof Button>;
 

@@ -1,13 +1,18 @@
 import * as S from './Button.styles';
 
-// you should have a figma before doint that
-type ButtonProps = {
-  children: React.ReactNode;
+export type ButtonProps = {
+  children?: React.ReactNode;
+  color?: 'primary' | 'secondary' | 'success' | 'danger';
+  size?: 'medium' | 'large';
 };
 
 /**
  * Button component
  */
-export default function Button({ children }: ButtonProps) {
-  return <S.Wrapper>{children}</S.Wrapper>;
+export default function Button({ children, color = 'primary', size = 'medium' }: ButtonProps) {
+  return (
+    <S.Wrapper color={color} size={size}>
+      {children}
+    </S.Wrapper>
+  );
 }
