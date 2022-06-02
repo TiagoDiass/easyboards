@@ -1,6 +1,7 @@
 import Button from './Button';
 import { renderWithTheme } from 'utils/test-utils';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import theme from 'styles/theme';
 
 const getButton = () => screen.getByRole('button', { name: 'Add new task' });
@@ -52,5 +53,26 @@ describe('Component: Button', () => {
     renderWithTheme(<Button fullWidth>Add new task</Button>);
 
     expect(getButton()).toHaveStyleRule('width', '100%');
+  });
+
+  it('should not call onClick prop and have aria-disabled when button is disabled', async () => {
+    const onClickMock = jest.fn();
+
+    renderWithTheme(
+      <Button onClick={onClickMock} disabled>
+        Add new task
+      </Button>
+    );
+
+    const button = getButton();
+
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('aria-disabled', 'true');
+
+    userEvent.click(button);
+
+    await waitFor(() => {
+      expect(onClickMock).not.toHaveBeenCalled();
+    });
   });
 });

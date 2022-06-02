@@ -16,9 +16,14 @@ const wrapperColorRelatedStyles = ({
   background-color: ${backgroundColor};
   border-color: ${borderColor};
 
-  &:hover,
+  &:hover:not(:disabled),
   &:focus {
     background-color: ${hoverBackgroundColor};
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `;
 

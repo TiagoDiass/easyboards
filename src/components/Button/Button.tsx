@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from 'react';
 import * as S from './Button.styles';
 
 export type ButtonProps = {
@@ -5,7 +6,8 @@ export type ButtonProps = {
   color?: 'primary' | 'secondary' | 'success' | 'danger';
   size?: 'medium' | 'large';
   fullWidth?: boolean;
-};
+  disabled?: boolean;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * Button component
@@ -14,10 +16,19 @@ export default function Button({
   children,
   color = 'primary',
   size = 'medium',
-  fullWidth = false
+  fullWidth = false,
+  disabled = false,
+  ...props
 }: ButtonProps) {
   return (
-    <S.Wrapper color={color} size={size} fullWidth={fullWidth}>
+    <S.Wrapper
+      color={color}
+      size={size}
+      fullWidth={fullWidth}
+      disabled={disabled}
+      aria-disabled={disabled}
+      {...props}
+    >
       <span>{children}</span>
     </S.Wrapper>
   );
