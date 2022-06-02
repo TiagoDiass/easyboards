@@ -64,23 +64,33 @@ const wrapperModifiers = {
 
   fullWidth: () => css`
     width: 100%;
+  `,
+
+  medium: (theme: DefaultTheme) => css`
+    height: 4rem;
+    font-size: ${theme.font.sizes.small};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
+  `,
+
+  large: (theme: DefaultTheme) => css`
+    height: 5rem;
+    font-size: ${theme.font.sizes.medium};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `
 };
 
 type WrapperProps = Pick<ButtonProps, 'color' | 'size' | 'fullWidth'>;
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, color, fullWidth }) => css`
+  ${({ theme, color, size, fullWidth }) => css`
     cursor: pointer;
     outline: none;
-    background-color: ${theme.colors.success.default};
-    color: ${theme.colors.white};
     border: 1px solid transparent;
     border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
     transition: ${theme.transitions.default};
 
     ${wrapperModifiers.colors[color!](theme)}
+    ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth()}
   `}
 `;

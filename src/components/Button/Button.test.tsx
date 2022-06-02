@@ -75,4 +75,24 @@ describe('Component: Button', () => {
       expect(onClickMock).not.toHaveBeenCalled();
     });
   });
+
+  it('should render correctly with medium size', () => {
+    renderWithTheme(<Button size='medium'>Add new task</Button>);
+
+    expect(getButton()).toHaveStyle({
+      height: '4rem',
+      'font-size': `${theme.font.sizes.small}`,
+      padding: `${theme.spacings.xxsmall} ${theme.spacings.medium}`
+    });
+  });
+
+  it('should render correctly with large size', () => {
+    renderWithTheme(<Button size='large'>Add new task</Button>);
+
+    expect(getButton()).toHaveStyle({
+      height: '5rem',
+      'font-size': `${theme.font.sizes.medium}`,
+      padding: `${theme.spacings.xxsmall} ${theme.spacings.xlarge}`
+    });
+  });
 });
