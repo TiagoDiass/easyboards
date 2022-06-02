@@ -1,53 +1,60 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 import { ButtonProps } from './Button';
 
-// 'primary' | 'secondary' | 'success' | 'danger'
+const wrapperColorRelatedStyles = ({
+  color,
+  backgroundColor,
+  borderColor,
+  hoverBackgroundColor
+}: {
+  color: string;
+  backgroundColor: string;
+  borderColor: string;
+  hoverBackgroundColor: string;
+}) => css`
+  color: ${color};
+  background-color: ${backgroundColor};
+  border-color: ${borderColor};
+
+  &:hover,
+  &:focus {
+    background-color: ${hoverBackgroundColor};
+  }
+`;
 
 const wrapperModifiers = {
   colors: {
-    primary: (theme: DefaultTheme) => css`
-      color: ${theme.colors.secondary.accent1};
-      background-color: ${theme.colors.primary.accent1};
-      border-color: ${theme.colors.primary.accent2};
+    primary: (theme: DefaultTheme) =>
+      wrapperColorRelatedStyles({
+        color: theme.colors.secondary.accent1,
+        backgroundColor: theme.colors.primary.accent1,
+        borderColor: theme.colors.primary.accent2,
+        hoverBackgroundColor: theme.colors.primary.accent2
+      }),
 
-      &:hover,
-      &:focus {
-        background-color: ${theme.colors.primary.accent2};
-      }
-    `,
+    secondary: (theme: DefaultTheme) =>
+      wrapperColorRelatedStyles({
+        color: theme.colors.primary.accent1,
+        backgroundColor: theme.colors.secondary.accent1,
+        borderColor: theme.colors.secondary.accent3,
+        hoverBackgroundColor: theme.colors.secondary.accent3
+      }),
 
-    secondary: (theme: DefaultTheme) => css`
-      color: ${theme.colors.primary.accent1};
-      background-color: ${theme.colors.secondary.accent2};
-      border-color: ${theme.colors.secondary.accent3};
+    success: (theme: DefaultTheme) =>
+      wrapperColorRelatedStyles({
+        color: theme.colors.primary.accent1,
+        backgroundColor: theme.colors.success.default,
+        borderColor: theme.colors.success.default,
+        hoverBackgroundColor: theme.colors.success.darker
+      }),
 
-      &:hover,
-      &:focus {
-        background-color: ${theme.colors.secondary.accent3};
-      }
-    `,
-
-    success: (theme: DefaultTheme) => css`
-      color: ${theme.colors.primary.accent1};
-      background-color: ${theme.colors.success.default};
-      border-color: ${theme.colors.success.default};
-
-      &:hover,
-      &:focus {
-        background-color: ${theme.colors.success.darker};
-      }
-    `,
-
-    danger: (theme: DefaultTheme) => css`
-      color: ${theme.colors.primary.accent1};
-      background-color: ${theme.colors.error.default};
-      border-color: ${theme.colors.error.default};
-
-      &:hover,
-      &:focus {
-        background-color: ${theme.colors.error.darker};
-      }
-    `
+    danger: (theme: DefaultTheme) =>
+      wrapperColorRelatedStyles({
+        color: theme.colors.primary.accent1,
+        backgroundColor: theme.colors.error.default,
+        borderColor: theme.colors.error.default,
+        hoverBackgroundColor: theme.colors.error.darker
+      })
   }
 };
 
