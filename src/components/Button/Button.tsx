@@ -1,11 +1,14 @@
 import { ButtonHTMLAttributes } from 'react';
 import * as S from './Button.styles';
 
+export type ButtonColors = 'primary' | 'secondary' | 'success' | 'danger';
+
 export type ButtonProps = {
   children?: React.ReactNode;
-  color?: 'primary' | 'secondary' | 'success' | 'danger';
+  color?: ButtonColors;
   size?: 'medium' | 'large';
   fullWidth?: boolean;
+  outline?: boolean;
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -18,6 +21,7 @@ export default function Button({
   size = 'medium',
   fullWidth = false,
   disabled = false,
+  outline = false,
   ...props
 }: ButtonProps) {
   return (
@@ -25,6 +29,7 @@ export default function Button({
       color={color}
       size={size}
       fullWidth={fullWidth}
+      outline={outline}
       disabled={disabled}
       aria-disabled={disabled}
       {...props}

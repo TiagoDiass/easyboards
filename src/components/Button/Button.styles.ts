@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components';
-import { ButtonProps } from './Button';
+import { ButtonColors, ButtonProps } from './Button';
 
 const wrapperColorRelatedStyles = ({
   color,
@@ -76,21 +76,61 @@ const wrapperModifiers = {
     height: 5rem;
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
-  `
+  `,
+
+  outline: (theme: DefaultTheme, color: ButtonColors) => {
+    const colors: {
+      [key in ButtonColors]: {
+        initialColor: string;
+        textColorOnButtonHover: string;
+      };
+    } = {
+      primary: {
+        initialColor: theme.colors.primary.accent2,
+        textColorOnButtonHover: theme.colors.secondary.accent1
+      },
+      secondary: {
+        initialColor: theme.colors.secondary.accent3,
+        textColorOnButtonHover: theme.colors.primary.accent1
+      },
+      success: {
+        initialColor: theme.colors.success.default,
+        textColorOnButtonHover: theme.colors.white
+      },
+      danger: {
+        initialColor: theme.colors.error.default,
+        textColorOnButtonHover: theme.colors.white
+      }
+    };
+
+    const currentColor = colors[color];
+
+    return css`
+      background: transparent;
+      border-color: ${currentColor.initialColor};
+      color: ${currentColor.initialColor};
+
+      &:hover {
+        background-color: ${currentColor.initialColor};
+        color: ${currentColor.textColorOnButtonHover};
+      }
+    `;
+  }
 };
 
-type WrapperProps = Pick<ButtonProps, 'color' | 'size' | 'fullWidth'>;
+type WrapperProps = Pick<ButtonProps, 'color' | 'size' | 'fullWidth' | 'outline'>;
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, color, size, fullWidth }) => css`
+  ${({ theme, color, size, fullWidth, outline }) => css`
     cursor: pointer;
     outline: none;
     border: 1px solid transparent;
     border-radius: ${theme.border.radius};
-    transition: ${theme.transitions.default};
+    transition: all ${theme.transitions.default};
 
     ${wrapperModifiers.colors[color!](theme)}
     ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth()}
+    ${outline && wrapperModifiers.outline(theme, color!)}
   `}
 `;

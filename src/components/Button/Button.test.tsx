@@ -9,43 +9,125 @@ const getButton = () => screen.getByRole('button', { name: 'Add new task' });
 describe('Component: Button', () => {
   it.todo('should render correctly');
 
-  it('should render correctly with primary color', () => {
-    renderWithTheme(<Button color='primary'>Add new task</Button>);
+  describe('Colors', () => {
+    it('should render correctly with primary color', () => {
+      renderWithTheme(<Button color='primary'>Add new task</Button>);
 
-    expect(getButton()).toHaveStyle({
-      color: theme.colors.secondary.accent1,
-      'background-color': theme.colors.primary.accent1,
-      'border-color': theme.colors.primary.accent2
+      expect(getButton()).toHaveStyle({
+        color: theme.colors.secondary.accent1,
+        'background-color': theme.colors.primary.accent1,
+        'border-color': theme.colors.primary.accent2
+      });
+    });
+
+    it('should render correctly with secondary color', () => {
+      renderWithTheme(<Button color='secondary'>Add new task</Button>);
+
+      expect(getButton()).toHaveStyle({
+        color: theme.colors.primary.accent1,
+        'background-color': theme.colors.secondary.accent1,
+        'border-color': theme.colors.secondary.accent3
+      });
+    });
+
+    it('should render correctly with success color', () => {
+      renderWithTheme(<Button color='success'>Add new task</Button>);
+
+      expect(getButton()).toHaveStyle({
+        color: theme.colors.white,
+        'background-color': theme.colors.success.default,
+        'border-color': theme.colors.success.default
+      });
+    });
+
+    it('should render correctly with danger color', () => {
+      renderWithTheme(<Button color='danger'>Add new task</Button>);
+
+      expect(getButton()).toHaveStyle({
+        color: theme.colors.white,
+        'background-color': theme.colors.error.default,
+        'border-color': theme.colors.error.default
+      });
     });
   });
 
-  it('should render correctly with secondary color', () => {
-    renderWithTheme(<Button color='secondary'>Add new task</Button>);
+  describe('Outline colors', () => {
+    it('should render correctly with primary color when button is outline', () => {
+      renderWithTheme(
+        <Button outline color='primary'>
+          Add new task
+        </Button>
+      );
 
-    expect(getButton()).toHaveStyle({
-      color: theme.colors.primary.accent1,
-      'background-color': theme.colors.secondary.accent1,
-      'border-color': theme.colors.secondary.accent3
+      expect(getButton()).toHaveStyle({
+        'background-color': 'transparent',
+        color: theme.colors.primary.accent2,
+        'border-color': theme.colors.primary.accent2
+      });
+    });
+
+    it('should render correctly with secondary color when button is outline', () => {
+      renderWithTheme(
+        <Button outline color='secondary'>
+          Add new task
+        </Button>
+      );
+
+      expect(getButton()).toHaveStyle({
+        'background-color': 'transparent',
+        color: theme.colors.secondary.accent3,
+        'border-color': theme.colors.secondary.accent3
+      });
+    });
+
+    it('should render correctly with success color when button is outline', () => {
+      renderWithTheme(
+        <Button outline color='success'>
+          Add new task
+        </Button>
+      );
+
+      expect(getButton()).toHaveStyle({
+        'background-color': 'transparent',
+        color: theme.colors.success.default,
+        'border-color': theme.colors.success.default
+      });
+    });
+
+    it('should render correctly with danger color when button is outline', () => {
+      renderWithTheme(
+        <Button outline color='danger'>
+          Add new task
+        </Button>
+      );
+
+      expect(getButton()).toHaveStyle({
+        'background-color': 'transparent',
+        color: theme.colors.error.default,
+        'border-color': theme.colors.error.default
+      });
     });
   });
 
-  it('should render correctly with success color', () => {
-    renderWithTheme(<Button color='success'>Add new task</Button>);
+  describe('Sizes', () => {
+    it('should render correctly with medium size', () => {
+      renderWithTheme(<Button size='medium'>Add new task</Button>);
 
-    expect(getButton()).toHaveStyle({
-      color: theme.colors.white,
-      'background-color': theme.colors.success.default,
-      'border-color': theme.colors.success.default
+      expect(getButton()).toHaveStyle({
+        height: '4rem',
+        'font-size': `${theme.font.sizes.small}`,
+        padding: `${theme.spacings.xxsmall} ${theme.spacings.medium}`
+      });
     });
-  });
 
-  it('should render correctly with danger color', () => {
-    renderWithTheme(<Button color='danger'>Add new task</Button>);
+    it('should render correctly with large size', () => {
+      renderWithTheme(<Button size='large'>Add new task</Button>);
 
-    expect(getButton()).toHaveStyle({
-      color: theme.colors.white,
-      'background-color': theme.colors.error.default,
-      'border-color': theme.colors.error.default
+      expect(getButton()).toHaveStyle({
+        height: '5rem',
+        'font-size': `${theme.font.sizes.medium}`,
+        padding: `${theme.spacings.xxsmall} ${theme.spacings.xlarge}`
+      });
     });
   });
 
@@ -73,26 +155,6 @@ describe('Component: Button', () => {
 
     await waitFor(() => {
       expect(onClickMock).not.toHaveBeenCalled();
-    });
-  });
-
-  it('should render correctly with medium size', () => {
-    renderWithTheme(<Button size='medium'>Add new task</Button>);
-
-    expect(getButton()).toHaveStyle({
-      height: '4rem',
-      'font-size': `${theme.font.sizes.small}`,
-      padding: `${theme.spacings.xxsmall} ${theme.spacings.medium}`
-    });
-  });
-
-  it('should render correctly with large size', () => {
-    renderWithTheme(<Button size='large'>Add new task</Button>);
-
-    expect(getButton()).toHaveStyle({
-      height: '5rem',
-      'font-size': `${theme.font.sizes.medium}`,
-      padding: `${theme.spacings.xxsmall} ${theme.spacings.xlarge}`
     });
   });
 });
