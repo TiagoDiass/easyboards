@@ -110,7 +110,7 @@ const wrapperModifiers = {
       border-color: ${currentColor.initialColor};
       color: ${currentColor.initialColor};
 
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: ${currentColor.initialColor};
         color: ${currentColor.textColorOnButtonHover};
       }

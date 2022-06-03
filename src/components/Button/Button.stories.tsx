@@ -20,7 +20,8 @@ export default {
     color: 'primary',
     size: 'medium',
     fullWidth: false,
-    outline: false
+    outline: false,
+    disabled: false
   }
 } as ComponentMeta<typeof Button>;
 
