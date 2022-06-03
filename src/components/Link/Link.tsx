@@ -1,13 +1,17 @@
 import * as S from './Link.styles';
 
+export type LinkProps = {
+  children?: React.ReactNode;
+  href: string;
+};
+
 /**
- * Component that will __________
+ * Link component
  */
-export default function Link() {
+export default function Link({ children, href }: LinkProps) {
   return (
-    <S.Wrapper>
-      <h1>Link</h1>
+    <S.Wrapper href={href}>
+      <a>{children}</a>
     </S.Wrapper>
   );
 }
-

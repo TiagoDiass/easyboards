@@ -3,6 +3,6 @@ import { renderWithTheme } from 'utils/test-utils';
 
 describe('Component: Link', () => {
   it('should render correctly', () => {
-    renderWithTheme(<Link />);
+    renderWithTheme(<Link href='anything' />);
   });
 });
