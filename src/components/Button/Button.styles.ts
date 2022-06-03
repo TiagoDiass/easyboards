@@ -115,13 +115,25 @@ const wrapperModifiers = {
         color: ${currentColor.textColorOnButtonHover};
       }
     `;
-  }
+  },
+
+  withIcon: (theme: DefaultTheme) => css`
+    svg {
+      width: 1.6rem;
+
+      & + span {
+        margin-left: ${theme.spacings.xxsmall};
+      }
+    }
+  `
 };
 
-type WrapperProps = Pick<ButtonProps, 'color' | 'size' | 'fullWidth' | 'outline'>;
+type WrapperProps = {
+  hasIcon: boolean;
+} & Pick<ButtonProps, 'color' | 'size' | 'fullWidth' | 'outline'>;
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, color, size, fullWidth, outline }) => css`
+  ${({ theme, color, size, fullWidth, outline, hasIcon }) => css`
     cursor: pointer;
     outline: none;
     border: 1px solid transparent;
@@ -132,5 +144,6 @@ export const Wrapper = styled.button<WrapperProps>`
     ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth()}
     ${outline && wrapperModifiers.outline(theme, color!)}
+    ${!!hasIcon && wrapperModifiers.withIcon(theme)};
   `}
 `;

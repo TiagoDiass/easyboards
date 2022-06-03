@@ -1,6 +1,7 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import styled from 'styled-components';
 import Button from './Button';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { AddShoppingCart } from 'styled-icons/material-outlined';
+import styled from 'styled-components';
 
 export default {
   title: 'Button',
@@ -8,6 +9,9 @@ export default {
   argTypes: {
     children: {
       type: 'string'
+    },
+    icon: {
+      type: 'symbol'
     }
   },
 
@@ -15,7 +19,8 @@ export default {
     children: 'New task',
     color: 'primary',
     size: 'medium',
-    fullWidth: false
+    fullWidth: false,
+    outline: false
   }
 } as ComponentMeta<typeof Button>;
 
@@ -60,4 +65,12 @@ Outline.argTypes = {
   color: {
     type: 'symbol' // user cannot change the color prop on this story
   }
+};
+
+export const WithIcon: ComponentStory<typeof Button> = (args) => (
+  <Button {...args} icon={<AddShoppingCart />} />
+);
+
+WithIcon.args = {
+  children: 'Buy now'
 };

@@ -2,6 +2,7 @@ import Button from './Button';
 import { renderWithTheme } from 'utils/test-utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { AddShoppingCart } from 'styled-icons/material-outlined';
 import theme from 'styles/theme';
 
 const getButton = () => screen.getByRole('button', { name: 'Add new task' });
@@ -156,5 +157,12 @@ describe('Component: Button', () => {
     await waitFor(() => {
       expect(onClickMock).not.toHaveBeenCalled();
     });
+  });
+
+  it('should render with an icon when specified', () => {
+    renderWithTheme(<Button icon={<AddShoppingCart data-testid='icon' />}>Add new task</Button>);
+
+    expect(getButton()).toBeInTheDocument();
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
 });

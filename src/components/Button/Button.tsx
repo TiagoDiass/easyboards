@@ -9,6 +9,7 @@ export type ButtonProps = {
   size?: 'medium' | 'large';
   fullWidth?: boolean;
   outline?: boolean;
+  icon?: React.ReactNode;
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -20,8 +21,9 @@ export default function Button({
   color = 'primary',
   size = 'medium',
   fullWidth = false,
-  disabled = false,
   outline = false,
+  icon,
+  disabled = false,
   ...props
 }: ButtonProps) {
   return (
@@ -30,10 +32,12 @@ export default function Button({
       size={size}
       fullWidth={fullWidth}
       outline={outline}
+      hasIcon={!!icon}
       disabled={disabled}
       aria-disabled={disabled}
       {...props}
     >
+      {!!icon && icon}
       <span>{children}</span>
     </S.Wrapper>
   );
