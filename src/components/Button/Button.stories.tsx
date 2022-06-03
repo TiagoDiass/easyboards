@@ -21,6 +21,7 @@ export default {
     size: 'medium',
     fullWidth: false,
     outline: false,
+    minimal: false,
     disabled: false
   }
 } as ComponentMeta<typeof Button>;
@@ -74,4 +75,10 @@ export const WithIcon: ComponentStory<typeof Button> = (args) => (
 
 WithIcon.args = {
   children: 'Buy now'
+};
+
+export const Minimal: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+Minimal.args = {
+  minimal: true,
+  icon: <AddShoppingCart />
 };

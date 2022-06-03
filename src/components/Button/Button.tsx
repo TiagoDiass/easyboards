@@ -10,6 +10,7 @@ export type ButtonProps = {
   fullWidth?: boolean;
   outline?: boolean;
   icon?: React.ReactNode;
+  minimal?: boolean;
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -22,6 +23,7 @@ export default function Button({
   size = 'medium',
   fullWidth = false,
   outline = false,
+  minimal = false,
   icon,
   disabled = false,
   ...props
@@ -32,6 +34,7 @@ export default function Button({
       size={size}
       fullWidth={fullWidth}
       outline={outline}
+      minimal={minimal}
       hasIcon={!!icon}
       disabled={disabled}
       aria-disabled={disabled}

@@ -61,7 +61,7 @@ describe('Component: Button', () => {
       );
 
       expect(getButton()).toHaveStyle({
-        'background-color': 'transparent',
+        'background-color': 'none',
         color: theme.colors.primary.accent2,
         'border-color': theme.colors.primary.accent2
       });
@@ -75,7 +75,7 @@ describe('Component: Button', () => {
       );
 
       expect(getButton()).toHaveStyle({
-        'background-color': 'transparent',
+        'background-color': 'none',
         color: theme.colors.secondary.accent3,
         'border-color': theme.colors.secondary.accent3
       });
@@ -89,7 +89,7 @@ describe('Component: Button', () => {
       );
 
       expect(getButton()).toHaveStyle({
-        'background-color': 'transparent',
+        'background-color': 'none',
         color: theme.colors.success.default,
         'border-color': theme.colors.success.default
       });
@@ -103,7 +103,7 @@ describe('Component: Button', () => {
       );
 
       expect(getButton()).toHaveStyle({
-        'background-color': 'transparent',
+        'background-color': 'none',
         color: theme.colors.error.default,
         'border-color': theme.colors.error.default
       });
@@ -164,5 +164,14 @@ describe('Component: Button', () => {
 
     expect(getButton()).toBeInTheDocument();
     expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('should render correctly when it is a minimal button', () => {
+    renderWithTheme(<Button minimal>Add new task</Button>);
+
+    expect(getButton()).toHaveStyle({
+      background: 'none',
+      border: 'none'
+    });
   });
 });

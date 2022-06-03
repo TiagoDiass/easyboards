@@ -106,7 +106,7 @@ const wrapperModifiers = {
     const currentColor = colors[color];
 
     return css`
-      background: transparent;
+      background: none;
       border-color: ${currentColor.initialColor};
       color: ${currentColor.initialColor};
 
@@ -125,15 +125,24 @@ const wrapperModifiers = {
         margin-left: ${theme.spacings.xxsmall};
       }
     }
+  `,
+
+  minimal: () => css`
+    background: none;
+    border: none;
+
+    &:hover:not(:disabled) {
+      background-color: '#eaeaea';
+    }
   `
 };
 
 type WrapperProps = {
   hasIcon: boolean;
-} & Pick<ButtonProps, 'color' | 'size' | 'fullWidth' | 'outline'>;
+} & Pick<ButtonProps, 'color' | 'size' | 'fullWidth' | 'outline' | 'minimal'>;
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, color, size, fullWidth, outline, hasIcon }) => css`
+  ${({ theme, color, size, fullWidth, outline, minimal, hasIcon }) => css`
     cursor: pointer;
     outline: none;
     border: 1px solid transparent;
@@ -143,6 +152,7 @@ export const Wrapper = styled.button<WrapperProps>`
     ${wrapperModifiers.colors[color!](theme)}
     ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth()}
+    ${minimal && wrapperModifiers.minimal()}
     ${outline && wrapperModifiers.outline(theme, color!)}
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
   `}
