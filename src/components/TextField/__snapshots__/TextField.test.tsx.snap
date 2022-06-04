@@ -79,7 +79,7 @@ exports[`<TextField /> should render correctly with an accessible error 1`] = `
 .c4:-webkit-autofill:hover,
 .c4:-webkit-autofill:focus,
 .c4:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #EAEAEA inset !important;
+  -webkit-box-shadow: 0 0 0 30px #FAFAFA inset !important;
 }
 
 .c5 {

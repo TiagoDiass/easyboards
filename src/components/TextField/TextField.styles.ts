@@ -101,7 +101,7 @@ export const Input = styled.input`
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 30px ${theme.colors.primary.accent2} inset !important;
+      -webkit-box-shadow: 0 0 0 30px ${theme.colors.primary.accent1} inset !important;
     }
   `}
 `;
