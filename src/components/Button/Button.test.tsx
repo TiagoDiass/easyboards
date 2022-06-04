@@ -8,8 +8,6 @@ import theme from 'styles/theme';
 const getButton = () => screen.getByRole('button', { name: 'Add new task' });
 
 describe('Component: Button', () => {
-  it.todo('should render correctly');
-
   describe('Colors', () => {
     it('should render correctly with primary color', () => {
       renderWithTheme(<Button color='primary'>Add new task</Button>);
