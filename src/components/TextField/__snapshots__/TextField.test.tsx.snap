@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> should render correctly with an accessible error 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  row-gap: 0.8rem;
+}
+
+.c0 .c2 {
+  border: 1px solid #FF1A1A;
+}
+
+.c0 .c2:focus-within {
+  border: 2px solid #E00;
+  box-shadow: none;
+}
+
+.c1 {
+  font-size: 1.4rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #FAFAFA;
+  border-radius: 0.2rem;
+  padding: 0 0.8rem;
+  border: 0.2rem solid;
+  border-color: #EAEAEA;
+  -webkit-transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.c3:focus-within {
+  border: 1px solid #999;
+}
+
+.c4 {
+  color: #333;
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+
+.c4::-webkit-input-placeholder {
+  color: red;
+  color: #999;
+}
+
+.c4::-moz-placeholder {
+  color: red;
+  color: #999;
+}
+
+.c4:-ms-input-placeholder {
+  color: red;
+  color: #999;
+}
+
+.c4::placeholder {
+  color: red;
+  color: #999;
+}
+
+.c4:-webkit-autofill,
+.c4:-webkit-autofill:hover,
+.c4:-webkit-autofill:focus,
+.c4:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #EAEAEA inset !important;
+}
+
+.c5 {
+  color: #FF1A1A;
+  font-size: 1.2rem;
+}
+
+<div
+  class="c0"
+>
+  <label
+    class="c1"
+    for="email"
+  >
+    Label
+  </label>
+  <div
+    class="c2 c3"
+  >
+    <input
+      aria-disabled="false"
+      aria-errormessage="email-error"
+      aria-invalid="true"
+      class="c4"
+      id="email"
+      type="text"
+      value=""
+    />
+  </div>
+  <span
+    class="c5"
+    id="email-error"
+  >
+    Please fill out this field
+  </span>
+</div>
+`;
