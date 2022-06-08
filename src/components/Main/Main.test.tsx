@@ -2,7 +2,7 @@ import Main from './Main';
 import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/test-utils';
 
-describe('Component: Main', () => {
+xdescribe('Component: Main', () => {
   it('should render correctly', () => {
     const { container } = renderWithTheme(<Main />);
 
