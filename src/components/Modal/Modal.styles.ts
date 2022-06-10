@@ -18,17 +18,17 @@ export const Backdrop = styled.div`
 const wrapperModifiers = {
   small: () => css`
     width: 500px;
-    min-height: 420px;
+    height: 420px;
   `,
 
   medium: () => css`
     width: 700px;
-    min-height: 540px;
+    height: 540px;
   `,
 
   large: () => css`
     width: 1100px;
-    min-height: 680px;
+    height: 680px;
   `
 };
 
@@ -90,8 +90,4 @@ export const Header = styled.div`
       }
     }
   `}
-`;
-
-export const ContentWrapper = styled.div`
-  border: 1px solid red;
 `;

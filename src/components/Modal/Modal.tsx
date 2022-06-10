@@ -1,27 +1,42 @@
 import * as S from './Modal.styles';
 import { Close as CloseIcon } from '@styled-icons/evil';
 import { Button } from 'components';
+import ModalContent from './Elements/Content';
+import ModalFooter from './Elements/Footer';
+import { DefaultTheme, StyledComponent } from 'styled-components';
 
 export type ModalSizes = 'small' | 'medium' | 'large';
 
 export type ModalProps = {
   title?: string;
-  onClose: () => void;
+  onClose?: () => void;
   size?: ModalSizes;
-  isOpen: boolean;
+  isOpen?: boolean;
   children?: React.ReactNode;
 };
+
+interface CompoundedModal extends React.FunctionComponent<ModalProps> {
+  /**
+   * Compounded component that is used with the content of the Modal
+   */
+  Content: StyledComponent<'div', DefaultTheme>;
+
+  /**
+   * Compounded component that is used with the footer of the Modal
+   */
+  Footer: StyledComponent<'div', DefaultTheme>;
+}
 
 /**
  * Modal component
  */
-export default function Modal({
+const Modal: CompoundedModal = ({
   title = 'Atenção',
   size = 'medium',
-  isOpen,
+  isOpen = false,
   children,
   onClose
-}: ModalProps) {
+}: ModalProps) => {
   return isOpen ? (
     <S.Backdrop>
       <S.Wrapper size={size}>
@@ -36,28 +51,13 @@ export default function Modal({
           />
         </S.Header>
 
-        {/* i think a good approach is to create some componentes and here ill only render the children
-        
-        
-          when people want to use the modal, theyll do
-
-          <Modal>
-            <Modal.Content>
-              The content goes here
-            </Modal.Content>
-          
-            <Modal.Footer>
-              The footer goes here, for example we could have two buttons
-            </Modal.Footer>
-          </Modal>
-
-          basically, the Content will only have a flex-grow set to 1 and some padding
-
-          the footer will have padding
-        */}
-
-        <S.ContentWrapper>{children}</S.ContentWrapper>
+        {children}
       </S.Wrapper>
     </S.Backdrop>
   ) : null;
-}
+};
+
+Modal.Content = ModalContent;
+Modal.Footer = ModalFooter;
+
+export default Modal;
