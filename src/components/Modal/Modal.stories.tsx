@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button from '../Button/Button';
-import { useState } from 'react';
 import Modal from './Modal';
+import { useModalState } from 'hooks';
 
 export default {
   title: 'Modal',
@@ -13,6 +13,11 @@ export default {
 
     isOpen: {
       type: 'symbol'
+    },
+
+    size: {
+      options: ['xsmall', 'small', 'medium', 'large'],
+      control: { type: 'radio' }
     }
   },
   args: {
@@ -22,24 +27,30 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 export const Basic: ComponentStory<typeof Modal> = (args) => {
-  // refactor this later to use a useModalState
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isModalOpen, openModal, closeModal] = useModalState();
 
   return (
     <div>
+      <h2 style={{ marginBottom: 24 }}>
+        I recommend you to put your controls tab aside of the canvas <br />
+        To do that, press <kbd>D</kbd>
+      </h2>
+
       <Button color='success' onClick={openModal}>
         Open Modal
       </Button>
 
-      <Modal {...args} isOpen={isModalOpen}>
-        <h2>Congratulations</h2>
-        <p>You are inside a modal 😉</p>
+      <Modal {...args} isOpen={isModalOpen} onClose={closeModal}>
+        <Modal.Content>
+          <h2>Congratulations</h2>
+          <p>You are inside a modal 😉</p>
+        </Modal.Content>
 
-        <Button onClick={closeModal} color='danger'>
-          Close modal
-        </Button>
+        <Modal.Footer>
+          <Button onClick={closeModal} color='danger'>
+            Close modal
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
