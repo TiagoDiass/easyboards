@@ -16,8 +16,7 @@ const wrapperColorRelatedStyles = ({
   background-color: ${backgroundColor};
   border-color: ${borderColor};
 
-  &:hover:not(:disabled),
-  &:focus {
+  &:hover:not(:disabled) {
     background-color: ${hoverBackgroundColor};
   }
 
