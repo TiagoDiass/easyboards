@@ -22,6 +22,8 @@ exports[`Component: Modal should render correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-animation: jBcSpD 0.1s ease-in;
+  animation: jBcSpD 0.1s ease-in;
 }
 
 .c1 {
@@ -40,6 +42,8 @@ exports[`Component: Modal should render correctly 1`] = `
   flex-direction: column;
   width: 700px;
   height: 540px;
+  -webkit-animation: gRMlCK 0.2s ease-in;
+  animation: gRMlCK 0.2s ease-in;
 }
 
 .c2 {

@@ -1,5 +1,27 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { ModalSizes } from './Modal';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const Backdrop = styled.div`
   width: 100%;
@@ -13,6 +35,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: ${fadeIn} 0.1s ease-in;
 `;
 
 const wrapperModifiers = {
@@ -54,6 +77,7 @@ export const Wrapper = styled.div<WrapperProps>`
     flex-direction: column;
 
     ${!!size && wrapperModifiers[size]()}
+    animation: ${fadeInUp} 0.2s ease-in;
   `}
 `;
 
