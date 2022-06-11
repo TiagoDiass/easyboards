@@ -42,8 +42,8 @@ export const Basic: ComponentStory<typeof Modal> = (args) => {
 
       <Modal {...args} isOpen={isModalOpen} onClose={closeModal}>
         <Modal.Content>
-          <h2>Congratulations</h2>
-          <p>You are inside a modal 😉</p>
+          <h1>Congratulations</h1>
+          <h2>You are inside a modal 😉</h2>
         </Modal.Content>
 
         <Modal.Footer>
