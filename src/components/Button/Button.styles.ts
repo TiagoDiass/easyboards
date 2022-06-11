@@ -148,6 +148,8 @@ export const Wrapper = styled.button<WrapperProps>`
     border: 1px solid transparent;
     border-radius: ${theme.border.radius};
     transition: all ${theme.transitions.default};
+    display: flex;
+    align-items: center;
 
     ${wrapperModifiers.colors[color!](theme)}
     ${!!size && wrapperModifiers[size](theme)}
