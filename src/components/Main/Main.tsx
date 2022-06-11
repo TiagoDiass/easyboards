@@ -1,5 +1,5 @@
 import Button from 'components/Button/Button';
-import Modal, { ModalSizes } from 'components/Modal/Modal';
+import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
 import { useState } from 'react';
 import * as S from './Main.styles';
 
@@ -8,10 +8,8 @@ import * as S from './Main.styles';
  */
 export default function Main() {
   const [isOpen, setIsOpen] = useState(false);
-  const [size, setSize] = useState<ModalSizes>('small');
 
-  const open = (size: ModalSizes) => {
-    setSize(size);
+  const open = () => {
     setIsOpen(true);
   };
 
@@ -23,76 +21,35 @@ export default function Main() {
       <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
       <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
 
-      <Button onClick={() => open('small')}>Open Small Modal</Button>
+      <Button onClick={open}>Open Small Modal</Button>
 
       <br />
-      <Button onClick={() => open('medium')}>Open Medium Modal</Button>
+      <Button onClick={open}>Open Medium Modal</Button>
 
       <br />
-      <Button onClick={() => open('large')}>Open Large Modal</Button>
+      <Button onClick={open}>Open Large Modal</Button>
 
       <br />
 
       <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
 
-      <Modal isOpen={isOpen} onClose={close} size={size} title='Editar perfil'>
-        <Modal.Content>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-          <h1>modaallllalalsalasl</h1>
-        </Modal.Content>
-      </Modal>
+      <ConfirmationModal
+        isOpen={isOpen}
+        onClose={close}
+        title='Are you sure?'
+        content={
+          <>
+            You <strong>won't</strong> be able to revert this action
+          </>
+        }
+        cancelButtonProps={{
+          children: "No, I'm not sure"
+        }}
+        confirmButtonProps={{
+          color: 'danger',
+          children: 'Yes, delete location'
+        }}
+      />
     </S.Wrapper>
   );
 }

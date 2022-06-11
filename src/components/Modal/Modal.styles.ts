@@ -16,6 +16,11 @@ export const Backdrop = styled.div`
 `;
 
 const wrapperModifiers = {
+  xsmall: () => css`
+    width: 420px;
+    height: 260px;
+  `,
+
   small: () => css`
     width: 500px;
     height: 420px;

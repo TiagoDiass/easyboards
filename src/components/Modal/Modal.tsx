@@ -5,7 +5,7 @@ import ModalContent from './Elements/Content';
 import ModalFooter from './Elements/Footer';
 import { DefaultTheme, StyledComponent } from 'styled-components';
 
-export type ModalSizes = 'small' | 'medium' | 'large';
+export type ModalSizes = 'xsmall' | 'small' | 'medium' | 'large';
 
 export type ModalProps = {
   title?: string;
@@ -31,7 +31,7 @@ interface CompoundedModal extends React.FunctionComponent<ModalProps> {
  * Modal component
  */
 const Modal: CompoundedModal = ({
-  title = 'Atenção',
+  title = 'Be careful',
   size = 'medium',
   isOpen = false,
   children,
