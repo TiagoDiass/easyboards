@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Button } from 'components';
+import Button from 'components/Button/Button';
 
 export const Wrapper = styled.div``;
 
@@ -23,7 +23,7 @@ export const MenuButton = styled(Button)`
   }
 `;
 
-export const MenuList = styled.div`
+export const MenuListWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
@@ -34,7 +34,19 @@ export const MenuList = styled.div`
   `}
 `;
 
-export const MenuItem = styled.button`
+export const MenuList = styled.ul`
+  ${({ theme }) => css`
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 18rem;
+    border: 1px solid ${theme.colors.primary.accent2};
+    border-radius: ${(p) => p.theme.border.radius};
+    background-color: ${theme.colors.primary.accent1};
+  `}
+`;
+
+export const MenuItem = styled.li`
   ${({ theme }) => css`
     border: none;
     outline: none;

@@ -1,5 +1,6 @@
 import Button from 'components/Button/Button';
 import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
+import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useModalState } from 'hooks';
 import * as S from './Main.styles';
 
@@ -32,6 +33,10 @@ export default function Main() {
           children: 'Yes, delete location'
         }}
       />
+
+      <div style={{ background: '#FFF', padding: '2rem', margin: '2rem' }}>
+        <DropdownMenu />
+      </div>
     </S.Wrapper>
   );
 }
