@@ -2,6 +2,7 @@ import Button from 'components/Button/Button';
 import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useModalState } from 'hooks';
+import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 import * as S from './Main.styles';
 
 /**
@@ -34,9 +35,20 @@ export default function Main() {
         }}
       />
 
-      <div style={{ background: '#FFF', padding: '2rem', margin: '2rem' }}>
-        <DropdownMenu />
-      </div>
+      <DropdownMenu
+        items={[
+          {
+            icon: <PencilIcon />,
+            text: 'Edit task',
+            onClick: () => console.log('EDIT TASK')
+          },
+          {
+            icon: <TrashIcon />,
+            text: 'Delete task',
+            onClick: () => console.log('DELETE TASK')
+          }
+        ]}
+      />
     </S.Wrapper>
   );
 }

@@ -23,14 +23,20 @@ export const MenuButton = styled(Button)`
   }
 `;
 
-export const MenuListWrapper = styled.div`
-  ${({ theme }) => css`
+export const MenuListWrapper = styled.div<{ isOpen: boolean }>`
+  ${({ theme, isOpen }) => css`
+    position: fixed;
     display: flex;
     flex-direction: column;
     max-width: 18rem;
     border: 1px solid ${theme.colors.primary.accent2};
     border-radius: ${(p) => p.theme.border.radius};
     background-color: ${theme.colors.primary.accent1};
+    transform: translateY(4px);
+
+    opacity: ${isOpen ? 1 : 0};
+    pointer-events: ${isOpen ? 'initial' : 'none'};
+    transition: opacity ${theme.transitions.fast};
   `}
 `;
 
@@ -40,7 +46,6 @@ export const MenuList = styled.ul`
     display: flex;
     flex-direction: column;
     max-width: 18rem;
-    border: 1px solid ${theme.colors.primary.accent2};
     border-radius: ${(p) => p.theme.border.radius};
     background-color: ${theme.colors.primary.accent1};
   `}
@@ -48,25 +53,24 @@ export const MenuList = styled.ul`
 
 export const MenuItem = styled.li`
   ${({ theme }) => css`
-    border: none;
-    outline: none;
-    text-align: left;
     background-color: ${theme.colors.primary.accent1};
     padding: ${theme.spacings.xxsmall};
     font-size: ${theme.font.sizes.small};
+    color: ${theme.colors.secondary.accent2};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    & + li {
+      border-top: 1px solid ${theme.colors.primary.accent2};
+    }
 
     &:hover {
       background-color: ${theme.colors.primary.accent2};
     }
 
-    &:first-of-type {
-      border-top-left-radius: ${(p) => p.theme.border.radius};
-      border-top-right-radius: ${(p) => p.theme.border.radius};
-    }
-
-    &:last-of-type {
-      border-bottom-left-radius: ${(p) => p.theme.border.radius};
-      border-bottom-right-radius: ${(p) => p.theme.border.radius};
+    svg {
+      width: 2.6rem;
     }
   `}
 `;

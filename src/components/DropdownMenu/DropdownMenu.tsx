@@ -1,26 +1,51 @@
 import * as S from './DropdownMenu.styles';
 import { DotsHorizontal } from '@styled-icons/heroicons-outline';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useOutsideClick } from 'hooks';
+
+type DropdownMenuItem = {
+  onClick?: () => void;
+  text: string;
+  icon?: React.ReactNode;
+};
+
+type DropdownMenuProps = {
+  items: DropdownMenuItem[];
+};
 
 /**
  * Dropdown menu component
  */
-export default function DropdownMenu() {
-  const [, setIsMenuOpen] = useState(false);
+export default function DropdownMenu({ items }: DropdownMenuProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const openMenu = () => setIsMenuOpen(true);
-  // const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = () => setIsMenuOpen(false);
+  const menuRef = useRef(null);
+
+  const handleOpenCloseMenu = () => {
+    isMenuOpen ? closeMenu() : openMenu();
+  };
+
+  useOutsideClick(menuRef, closeMenu);
+
+  const handleItemClick = (item: DropdownMenuItem) => {
+    if (item.onClick) item.onClick();
+
+    closeMenu();
+  };
 
   return (
-    <S.Wrapper>
-      <S.MenuButton minimal icon={<DotsHorizontal />} onClick={openMenu} />
+    <S.Wrapper ref={menuRef}>
+      <S.MenuButton minimal icon={<DotsHorizontal />} onClick={handleOpenCloseMenu} />
 
-      <S.MenuListWrapper>
+      <S.MenuListWrapper isOpen={isMenuOpen}>
         <S.MenuList>
-          <S.MenuItem>Download</S.MenuItem>
-          <S.MenuItem>Create a Copy</S.MenuItem>
-          <S.MenuItem>Mark as Draft</S.MenuItem>
-          <S.MenuItem>Delete</S.MenuItem>
-          <S.MenuItem>Attend a Workshop</S.MenuItem>
+          {items.map((item, index) => (
+            <S.MenuItem key={index} onClick={() => handleItemClick(item)}>
+              {!!item.icon && item.icon}
+              {item.text}
+            </S.MenuItem>
+          ))}
         </S.MenuList>
       </S.MenuListWrapper>
     </S.Wrapper>
