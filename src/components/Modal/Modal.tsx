@@ -4,6 +4,8 @@ import { Button } from 'components';
 import ModalContent from './Elements/Content';
 import ModalFooter from './Elements/Footer';
 import { DefaultTheme, StyledComponent } from 'styled-components';
+import { useRef } from 'react';
+import { useOutsideClick } from 'hooks';
 
 export type ModalSizes = 'xsmall' | 'small' | 'medium' | 'large';
 
@@ -37,9 +39,13 @@ const Modal: CompoundedModal = ({
   children,
   onClose
 }: ModalProps) => {
+  const modalContentWrapperRef = useRef(null);
+
+  useOutsideClick(modalContentWrapperRef, onClose);
+
   return isOpen ? (
     <S.Backdrop>
-      <S.Wrapper size={size}>
+      <S.Wrapper size={size} ref={modalContentWrapperRef}>
         <S.Header>
           <h3 className='title'>{title}</h3>
 
