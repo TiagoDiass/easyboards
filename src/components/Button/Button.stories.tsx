@@ -12,6 +12,9 @@ export default {
     },
     icon: {
       type: 'symbol'
+    },
+    onClick: {
+      action: 'clicked'
     }
   },
 

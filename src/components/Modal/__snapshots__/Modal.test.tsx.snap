@@ -132,6 +132,10 @@ exports[`Component: Modal should render correctly 1`] = `
   background-color: #EAEAEA;
 }
 
+.c3:focus:not(:active) {
+  box-shadow: 0 0 0 1px transparent,0 0 0 1px #EAEAEA;
+}
+
 .c3:disabled {
   opacity: 0.7;
   cursor: not-allowed;

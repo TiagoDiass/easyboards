@@ -20,6 +20,10 @@ const wrapperColorRelatedStyles = ({
     background-color: ${hoverBackgroundColor};
   }
 
+  :focus:not(:active) {
+    box-shadow: 0 0 0 1px transparent, 0 0 0 1px ${borderColor};
+  }
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -109,7 +113,8 @@ const wrapperModifiers = {
       border-color: ${currentColor.initialColor};
       color: ${currentColor.initialColor};
 
-      &:hover:not(:disabled) {
+      &:hover:not(:disabled),
+      :active {
         background-color: ${currentColor.initialColor};
         color: ${currentColor.textColorOnButtonHover};
       }
