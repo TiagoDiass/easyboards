@@ -11,12 +11,16 @@ type DropdownMenuItem = {
 
 type DropdownMenuProps = {
   items: DropdownMenuItem[];
+  ariaLabel?: string;
 };
 
 /**
  * Dropdown menu component
  */
-export default function DropdownMenu({ items }: DropdownMenuProps) {
+export default function DropdownMenu({
+  items,
+  ariaLabel = 'Dropdown list content'
+}: DropdownMenuProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const openMenu = () => setIsMenuOpen(true);
   const closeMenu = () => setIsMenuOpen(false);
@@ -36,13 +40,20 @@ export default function DropdownMenu({ items }: DropdownMenuProps) {
 
   return (
     <S.Wrapper ref={menuRef}>
-      <S.MenuButton minimal icon={<DotsHorizontal />} onClick={handleOpenCloseMenu} />
+      <S.MenuButton
+        minimal
+        icon={<DotsHorizontal />}
+        onClick={handleOpenCloseMenu}
+        aria-expanded={isMenuOpen}
+        aria-label='Open dropdown'
+      />
 
-      <S.MenuListWrapper isOpen={isMenuOpen}>
+      <S.MenuListWrapper isOpen={isMenuOpen} aria-label={ariaLabel} aria-hidden={!isMenuOpen}>
         <S.MenuList>
           {items.map((item, index) => (
             <S.MenuItem key={index} onClick={() => handleItemClick(item)}>
               {!!item.icon && item.icon}
+
               {item.text}
             </S.MenuItem>
           ))}
