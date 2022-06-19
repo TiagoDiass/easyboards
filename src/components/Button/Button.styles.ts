@@ -136,7 +136,7 @@ const wrapperModifiers = {
     border: none;
 
     &:hover:not(:disabled) {
-      background-color: '#eaeaea';
+      background-color: #eaeaea;
     }
   `
 };
