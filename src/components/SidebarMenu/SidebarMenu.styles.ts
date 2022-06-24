@@ -7,6 +7,8 @@ export const Wrapper = styled.aside`
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    row-gap: ${theme.spacings.xlarge};
     width: 25rem;
     position: relative;
     padding: ${theme.spacings.small} ${theme.spacings.xsmall};
@@ -51,13 +53,46 @@ export const CollapseButton = styled.button`
 `;
 
 export const BoardsListWrapper = styled.nav`
-  border: 1px solid red;
-  margin: auto 0;
+  flex-grow: 1;
 `;
 
-export const BoardsList = styled.ul``;
+export const BoardListLabel = styled.div`
+  border: 1px solid red;
+`;
 
-export const BoardsListItem = styled.li``;
+export const BoardsList = styled.ul`
+  ${({ theme }) => css`
+    list-style: none;
+    font-size: ${theme.font.sizes.small};
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: ${theme.spacings.xxsmall};
+  `}
+`;
+
+export const BoardsListItem = styled.li`
+  ${({ theme }) => css`
+    a {
+      text-decoration: none;
+      display: flex;
+      column-gap: ${theme.spacings.xxsmall};
+      color: ${theme.colors.secondary.accent1};
+
+      &:hover {
+        margin-left: ${theme.spacings.xxsmall};
+        color: ${theme.colors.secondary.accent3};
+      }
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+
+      transition: all ${theme.transitions.fast};
+    }
+  `}
+`;
 
 export const SecondaryOptions = styled.div`
   ${({ theme }) => css`

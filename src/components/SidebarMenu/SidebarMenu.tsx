@@ -1,6 +1,10 @@
 import * as S from './SidebarMenu.styles';
 import { ChevronsLeft as ChevronLeftIcon, Settings as SettingsIcon } from '@styled-icons/feather';
-import { QuestionCircle as QuestionCircleIcon } from '@styled-icons/fluentui-system-regular';
+import {
+  QuestionCircle as QuestionCircleIcon,
+  Board as BoardIcon
+} from '@styled-icons/fluentui-system-regular';
+
 import { Button } from 'components';
 
 /**
@@ -19,17 +23,28 @@ export default function SidebarMenu() {
       </S.Logo>
 
       <S.BoardsListWrapper>
+        <S.BoardListLabel>Your boards</S.BoardListLabel>
+
         <S.BoardsList>
           <S.BoardsListItem>
-            <a href='#'>Go to another place</a>
+            <a href='#'>
+              <BoardIcon />
+              Work
+            </a>
           </S.BoardsListItem>
 
           <S.BoardsListItem>
-            <a href='#'>Go to another place</a>
+            <a href='#'>
+              <BoardIcon />
+              Cool project
+            </a>
           </S.BoardsListItem>
 
           <S.BoardsListItem>
-            <a href='#'>Go to another place</a>
+            <a href='#'>
+              <BoardIcon />
+              iOS App
+            </a>
           </S.BoardsListItem>
         </S.BoardsList>
       </S.BoardsListWrapper>
