@@ -1,26 +1,27 @@
 import styled, { css } from 'styled-components';
-import Button from 'components/Button/Button';
 
 export const Wrapper = styled.div``;
 
-export const MenuButton = styled(Button)`
-  padding: 0;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const MenuButton = styled.button`
+  ${({ theme }) => css`
+    border: none;
+    outline: none;
+    padding: 0.2rem;
+    border-radius: 2px;
+    background: transparent;
+    color: ${theme.colors.primary.accent3};
+    transition: all ${theme.transitions.fast};
+    cursor: pointer;
 
-  // inner icon
-  svg {
-    width: 1.8rem;
-  }
+    svg {
+      width: 1.6rem;
+    }
 
-  // button inner content (<span />)
-  span {
-    display: none;
-  }
+    &:hover {
+      background-color: ${theme.colors.primary.accent2};
+      color: ${theme.colors.secondary.accent1};
+    }
+  `}
 `;
 
 export const MenuListWrapper = styled.div<{ isOpen: boolean }>`
@@ -71,7 +72,7 @@ export const MenuItem = styled.li`
     }
 
     svg {
-      width: 2.6rem;
+      width: 2.2rem;
     }
   `}
 `;

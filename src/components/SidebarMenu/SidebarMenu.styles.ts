@@ -56,11 +56,11 @@ export const BoardsListWrapper = styled.nav`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  row-gap: ${(p) => p.theme.spacings.xxsmall};
 `;
 
 export const BoardListLabel = styled.div`
   ${({ theme }) => css`
+    padding: 4px 0;
     font-size: ${theme.font.sizes.xsmall};
     text-transform: uppercase;
     font-weight: ${theme.font.bold};
@@ -71,6 +71,10 @@ export const BoardListLabel = styled.div`
     justify-content: space-between;
 
     .add-board-button {
+      visibility: hidden;
+      opacity: 0;
+      transition: all ${theme.transitions.default};
+
       border: none;
       outline: none;
       padding: 0.2rem;
@@ -89,21 +93,30 @@ export const BoardListLabel = styled.div`
         color: ${theme.colors.secondary.accent1};
       }
     }
+
+    &:hover {
+      .add-board-button {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   `}
 `;
 
 export const BoardsList = styled.ul`
-  ${({ theme }) => css`
+  ${() => css`
     list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    row-gap: ${theme.spacings.xxsmall};
   `}
 `;
 
 export const BoardsListItem = styled.li`
   ${({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+
     a {
       text-decoration: none;
       display: flex;
@@ -125,6 +138,18 @@ export const BoardsListItem = styled.li`
       }
 
       transition: all ${theme.transitions.fast};
+    }
+
+    button {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &:hover {
+      button {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   `}
 `;

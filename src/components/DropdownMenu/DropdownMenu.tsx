@@ -41,12 +41,12 @@ export default function DropdownMenu({
   return (
     <S.Wrapper ref={menuRef}>
       <S.MenuButton
-        minimal
-        icon={<DotsHorizontal />}
         onClick={handleOpenCloseMenu}
         aria-expanded={isMenuOpen}
         aria-label='Open dropdown'
-      />
+      >
+        <DotsHorizontal />
+      </S.MenuButton>
 
       <S.MenuListWrapper isOpen={isMenuOpen} aria-label={ariaLabel} aria-hidden={!isMenuOpen}>
         <S.MenuList>

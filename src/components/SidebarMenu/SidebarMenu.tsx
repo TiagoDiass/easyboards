@@ -8,8 +8,28 @@ import {
   QuestionCircle as QuestionCircleIcon,
   Board as BoardIcon
 } from '@styled-icons/fluentui-system-regular';
+import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 
 import { Button } from 'components';
+import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
+
+const Dropdown = () => (
+  <DropdownMenu
+    items={[
+      {
+        icon: <PencilIcon />,
+        text: 'Edit board',
+        onClick: () => console.log('EDIT TASK')
+      },
+      {
+        icon: <TrashIcon />,
+        text: 'Delete board',
+        onClick: () => console.log('DELETE TASK')
+      }
+    ]}
+    ariaLabel='Board related actions'
+  />
+);
 
 /**
  * Component that will be used as a menu in the app
@@ -40,6 +60,8 @@ export default function SidebarMenu() {
               <BoardIcon />
               Work
             </a>
+
+            <Dropdown />
           </S.BoardsListItem>
 
           <S.BoardsListItem>
@@ -47,6 +69,8 @@ export default function SidebarMenu() {
               <BoardIcon />
               Cool project
             </a>
+
+            <Dropdown />
           </S.BoardsListItem>
 
           <S.BoardsListItem>
@@ -54,6 +78,8 @@ export default function SidebarMenu() {
               <BoardIcon />
               iOS App
             </a>
+
+            <Dropdown />
           </S.BoardsListItem>
         </S.BoardsList>
       </S.BoardsListWrapper>
