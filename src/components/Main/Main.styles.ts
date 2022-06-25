@@ -4,7 +4,7 @@ export const Wrapper = styled.main`
   background-color: ${(p) => p.theme.colors.success.darker};
   color: ${(p) => p.theme.colors.primary.accent1};
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 3rem;
   display: flex;
   justify-content: center;

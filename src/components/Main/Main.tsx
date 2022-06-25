@@ -3,6 +3,7 @@ import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useModalState } from 'hooks';
 import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
+import SidebarMenu from '../SidebarMenu/SidebarMenu';
 import * as S from './Main.styles';
 
 /**
@@ -12,43 +13,47 @@ export default function Main() {
   const [isOpen, open, close] = useModalState();
 
   return (
-    <S.Wrapper>
-      <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
+    <div style={{ display: 'flex' }}>
+      <SidebarMenu />
 
-      <Button onClick={open}>Open Modal</Button>
+      <S.Wrapper>
+        <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
 
-      <ConfirmationModal
-        isOpen={isOpen}
-        onClose={close}
-        title='Are you sure?'
-        content={
-          <>
-            You <strong>won't</strong> be able to revert this action
-          </>
-        }
-        cancelButtonProps={{
-          children: "No, I'm not sure"
-        }}
-        confirmButtonProps={{
-          color: 'danger',
-          children: 'Yes, delete location'
-        }}
-      />
+        <Button onClick={open}>Open Modal</Button>
 
-      <DropdownMenu
-        items={[
-          {
-            icon: <PencilIcon />,
-            text: 'Edit task',
-            onClick: () => console.log('EDIT TASK')
-          },
-          {
-            icon: <TrashIcon />,
-            text: 'Delete task',
-            onClick: () => console.log('DELETE TASK')
+        <ConfirmationModal
+          isOpen={isOpen}
+          onClose={close}
+          title='Are you sure?'
+          content={
+            <>
+              You <strong>won't</strong> be able to revert this action
+            </>
           }
-        ]}
-      />
-    </S.Wrapper>
+          cancelButtonProps={{
+            children: "No, I'm not sure"
+          }}
+          confirmButtonProps={{
+            color: 'danger',
+            children: 'Yes, delete location'
+          }}
+        />
+
+        <DropdownMenu
+          items={[
+            {
+              icon: <PencilIcon />,
+              text: 'Edit task',
+              onClick: () => console.log('EDIT TASK')
+            },
+            {
+              icon: <TrashIcon />,
+              text: 'Delete task',
+              onClick: () => console.log('DELETE TASK')
+            }
+          ]}
+        />
+      </S.Wrapper>
+    </div>
   );
 }

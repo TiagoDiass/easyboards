@@ -1,5 +1,9 @@
 import * as S from './SidebarMenu.styles';
-import { ChevronsLeft as ChevronLeftIcon, Settings as SettingsIcon } from '@styled-icons/feather';
+import {
+  ChevronsLeft as ChevronLeftIcon,
+  Settings as SettingsIcon,
+  Plus as PlusIcon
+} from '@styled-icons/feather';
 import {
   QuestionCircle as QuestionCircleIcon,
   Board as BoardIcon
@@ -23,7 +27,12 @@ export default function SidebarMenu() {
       </S.Logo>
 
       <S.BoardsListWrapper>
-        <S.BoardListLabel>Your boards</S.BoardListLabel>
+        <S.BoardListLabel>
+          your boards
+          <button className='add-board-button' title='Add new board'>
+            <PlusIcon />
+          </button>
+        </S.BoardListLabel>
 
         <S.BoardsList>
           <S.BoardsListItem>

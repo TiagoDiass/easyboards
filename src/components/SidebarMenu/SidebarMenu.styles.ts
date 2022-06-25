@@ -9,7 +9,7 @@ export const Wrapper = styled.aside`
     flex-direction: column;
     justify-content: space-between;
     row-gap: ${theme.spacings.xlarge};
-    width: 25rem;
+    width: 28rem;
     position: relative;
     padding: ${theme.spacings.small} ${theme.spacings.xsmall};
     background-color: ${theme.colors.primary.accent1};
@@ -54,16 +54,47 @@ export const CollapseButton = styled.button`
 
 export const BoardsListWrapper = styled.nav`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: ${(p) => p.theme.spacings.xxsmall};
 `;
 
 export const BoardListLabel = styled.div`
-  border: 1px solid red;
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xsmall};
+    text-transform: uppercase;
+    font-weight: ${theme.font.bold};
+    color: ${theme.colors.primary.accent3};
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .add-board-button {
+      border: none;
+      outline: none;
+      padding: 0.2rem;
+      border-radius: 2px;
+      background: transparent;
+      color: ${theme.colors.primary.accent3};
+      transition: all ${theme.transitions.fast};
+      cursor: pointer;
+
+      svg {
+        width: 1.6rem;
+      }
+
+      &:hover {
+        background-color: ${theme.colors.primary.accent2};
+        color: ${theme.colors.secondary.accent1};
+      }
+    }
+  `}
 `;
 
 export const BoardsList = styled.ul`
   ${({ theme }) => css`
     list-style: none;
-    font-size: ${theme.font.sizes.small};
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -76,10 +107,14 @@ export const BoardsListItem = styled.li`
     a {
       text-decoration: none;
       display: flex;
+      align-items: center;
       column-gap: ${theme.spacings.xxsmall};
       color: ${theme.colors.secondary.accent1};
+      font-weight: ${theme.font.medium};
+      font-size: ${theme.font.sizes.small};
 
-      &:hover {
+      &:hover,
+      &:focus {
         margin-left: ${theme.spacings.xxsmall};
         color: ${theme.colors.secondary.accent3};
       }
