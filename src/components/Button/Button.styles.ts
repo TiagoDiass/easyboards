@@ -20,7 +20,9 @@ const wrapperColorRelatedStyles = ({
     background-color: ${hoverBackgroundColor};
   }
 
-  :focus:not(:active) {
+  &:focus,
+  &:active {
+    background-color: ${hoverBackgroundColor};
     box-shadow: 0 0 0 1px transparent, 0 0 0 1px ${borderColor};
   }
 

@@ -132,7 +132,9 @@ exports[`Component: Modal should render correctly 1`] = `
   background-color: #EAEAEA;
 }
 
-.c3:focus:not(:active) {
+.c3:focus,
+.c3:active {
+  background-color: #EAEAEA;
   box-shadow: 0 0 0 1px transparent,0 0 0 1px #EAEAEA;
 }
 
