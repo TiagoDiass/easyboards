@@ -42,7 +42,7 @@ export default function SidebarMenu() {
   const collapseSidebar = () => setIsSidebarExpanded(false);
 
   return isSidebarExpanded ? (
-    <S.Wrapper>
+    <S.Wrapper aria-label='Sidebar menu'>
       <S.CollapseButton title='Collapse sidebar' isSidebarExpanded={true} onClick={collapseSidebar}>
         <ChevronLeftIcon />
       </S.CollapseButton>
@@ -52,7 +52,7 @@ export default function SidebarMenu() {
         <span className='secondary'>Trello</span>
       </S.Logo>
 
-      <S.BoardsListWrapper>
+      <S.BoardsListWrapper aria-label='Your boards list'>
         <S.BoardListLabel>
           your boards
           <button className='add-board-button' title='Add new board'>
