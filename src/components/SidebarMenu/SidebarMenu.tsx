@@ -1,6 +1,7 @@
 import * as S from './SidebarMenu.styles';
 import {
   ChevronsLeft as ChevronLeftIcon,
+  ChevronsRight as ChevronRightIcon,
   Settings as SettingsIcon,
   Plus as PlusIcon
 } from '@styled-icons/feather';
@@ -12,6 +13,7 @@ import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 
 import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
+import { useState } from 'react';
 
 const Dropdown = () => (
   <DropdownMenu
@@ -35,9 +37,13 @@ const Dropdown = () => (
  * Component that will be used as a menu in the app
  */
 export default function SidebarMenu() {
-  return (
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+  const expandSidebar = () => setIsSidebarExpanded(true);
+  const collapseSidebar = () => setIsSidebarExpanded(false);
+
+  return isSidebarExpanded ? (
     <S.Wrapper>
-      <S.CollapseButton title='Collapse sidebar'>
+      <S.CollapseButton title='Collapse sidebar' isSidebarExpanded={true} onClick={collapseSidebar}>
         <ChevronLeftIcon />
       </S.CollapseButton>
 
@@ -94,5 +100,9 @@ export default function SidebarMenu() {
         </Button>
       </S.SecondaryOptions>
     </S.Wrapper>
+  ) : (
+    <S.CollapseButton title='Expand sidebar' isSidebarExpanded={false} onClick={expandSidebar}>
+      <ChevronRightIcon />
+    </S.CollapseButton>
   );
 }

@@ -31,19 +31,27 @@ export const Logo = styled.h2`
   `}
 `;
 
-export const CollapseButton = styled.button`
-  ${({ theme }) => css`
+export const CollapseButton = styled.button<{ isSidebarExpanded: boolean }>`
+  ${({ theme, isSidebarExpanded }) => css`
     width: 3rem;
     height: 3rem;
     position: absolute;
-    top: 4px;
-    right: 4px;
     border: none;
     outline: none;
     color: ${theme.colors.secondary.accent2};
     background-color: transparent;
     border-radius: ${theme.border.radius};
     transition: background-color ${theme.transitions.fast};
+
+    ${isSidebarExpanded
+      ? css`
+          top: 4px;
+          right: 4px;
+        `
+      : css`
+          top: 4px;
+          left: 4px;
+        `}
 
     &:hover {
       cursor: pointer;

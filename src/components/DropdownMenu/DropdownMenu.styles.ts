@@ -39,6 +39,7 @@ export const MenuListWrapper = styled.div<{ isOpen: boolean }>`
     pointer-events: ${isOpen ? 'initial' : 'none'};
     visibility: ${isOpen ? 'visible' : 'hidden'};
     transition: opacity ${theme.transitions.fast};
+    z-index: 10;
   `}
 `;
 
