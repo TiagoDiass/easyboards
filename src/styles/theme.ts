@@ -66,7 +66,9 @@ const theme = {
 
   border: {
     radius: '0.4rem'
-  }
+  },
+
+  boxShadow: 'rgba(149, 157, 165, 0.2) 0px 4px 24px'
 } as const;
 
 export default theme;
