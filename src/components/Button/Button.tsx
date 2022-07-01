@@ -41,7 +41,7 @@ export default function Button({
       {...props}
     >
       {!!icon && icon}
-      <span>{children}</span>
+      {!!children && <span>{children}</span>}
     </S.Wrapper>
   );
 }

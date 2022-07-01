@@ -208,7 +208,6 @@ exports[`Component: Modal should render correctly 1`] = `
             d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"
           />
         </svg>
-        <span />
       </button>
     </div>
     <div
