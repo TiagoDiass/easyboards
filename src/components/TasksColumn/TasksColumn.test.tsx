@@ -1,6 +1,7 @@
 import TasksColumn from './TasksColumn';
 import { renderWithTheme } from 'utils/test-utils';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 const renderComponent = () => {
   const handleAddTaskMock = jest.fn();
@@ -50,5 +51,15 @@ describe('Component: TasksColumn', () => {
       screen.getByRole('list', { name: 'Tasks of the "In progress" column' }).children
     ).toHaveLength(6);
     expect(screen.getByLabelText('Column related actions')).toBeInTheDocument();
+  });
+
+  it('should call handleAddTask when user clicks on the "Add task" dropdown option', async () => {
+    const { handleAddTaskMock } = renderComponent();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Open dropdown' }));
+
+    await userEvent.click(screen.getByText('Add task'));
+
+    expect(handleAddTaskMock).toHaveBeenCalledTimes(1);
   });
 });
