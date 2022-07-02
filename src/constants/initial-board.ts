@@ -3,7 +3,7 @@ import { Board } from 'types';
 export const INITIAL_BOARD: Board = {
   id: 'initial-board-id',
   title: 'Your first board 😄',
-  slug: 'initial-board',
+  slug: 'first-board',
   columns: [
     {
       id: 'todo-column-id',
