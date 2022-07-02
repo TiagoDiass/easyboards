@@ -62,4 +62,14 @@ describe('Component: TasksColumn', () => {
 
     expect(handleAddTaskMock).toHaveBeenCalledTimes(1);
   });
+
+  it('should call handleDeleteColumn when user clicks on the "Delete column" dropdown option', async () => {
+    const { handleDeleteColumnMock } = renderComponent();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Open dropdown' }));
+
+    await userEvent.click(screen.getByText('Delete column'));
+
+    expect(handleDeleteColumnMock).toHaveBeenCalledTimes(1);
+  });
 });
