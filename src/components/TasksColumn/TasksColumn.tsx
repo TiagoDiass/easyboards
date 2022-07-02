@@ -51,7 +51,7 @@ export default function TasksColumn({
         />
       </S.Header>
 
-      <S.TaskList>
+      <S.TaskList role='list' aria-label={`Tasks of the "${column.title}" column`}>
         {column.tasks.map((task, taskIndex) => (
           <TaskCard key={task.id} task={task} onDelete={() => handleDeleteTask(taskIndex)} />
         ))}
