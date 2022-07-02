@@ -72,4 +72,14 @@ describe('Component: TasksColumn', () => {
 
     expect(handleDeleteColumnMock).toHaveBeenCalledTimes(1);
   });
+
+  it('should call handleEditColumn when user clicks on the "Edit column" dropdown option', async () => {
+    const { handleEditColumnMock } = renderComponent();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Open dropdown' }));
+
+    await userEvent.click(screen.getByText('Edit column'));
+
+    expect(handleEditColumnMock).toHaveBeenCalledTimes(1);
+  });
 });
