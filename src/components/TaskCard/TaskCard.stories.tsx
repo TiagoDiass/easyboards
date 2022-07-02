@@ -13,7 +13,7 @@ export default {
 
   argTypes: {
     onDelete: {
-      action: 'requested deletion'
+      action: 'deletion requested'
     }
   }
 } as ComponentMeta<typeof TaskCard>;
