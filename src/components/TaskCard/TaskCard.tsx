@@ -12,7 +12,7 @@ type TaskCardProps = {
  */
 export default function TaskCard({ task, onDelete }: TaskCardProps) {
   return (
-    <S.Wrapper isDragging={false} role='listitem'>
+    <S.Wrapper isDragging={false} role='listitem' aria-label='Task card'>
       <span className='content'>{task.content}</span>
 
       <S.DeleteTaskButton aria-label='Delete task' title='Delete task' onClick={onDelete}>

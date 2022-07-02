@@ -32,7 +32,7 @@ export default function Board({ board }: BoardProps) {
         />
       ))}
 
-      <Button color='secondary' icon={<PlusIcon />}>
+      <Button color='success' icon={<PlusIcon />}>
         Add column
       </Button>
     </S.Wrapper>

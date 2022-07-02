@@ -25,7 +25,7 @@ export default function TasksColumn({
   handleDeleteColumn
 }: TasksColumnProps) {
   return (
-    <S.Wrapper>
+    <S.Wrapper aria-label='Tasks column'>
       <S.Header>
         <h4 className='title'>{column.title}</h4>
 
