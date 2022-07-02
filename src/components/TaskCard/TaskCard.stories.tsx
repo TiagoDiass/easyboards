@@ -29,8 +29,5 @@ export const Basic: ComponentStory<typeof TaskCard> = (args) => (
     }}
   >
     <TaskCard {...args} />
-    <TaskCard {...args} />
-    <TaskCard {...args} />
-    <TaskCard {...args} />
   </div>
 );
