@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: ${theme.spacings.xxsmall};
-    margin-right: 1rem;
+    margin-right: ${theme.spacings.xsmall};
   `}
 `;
 

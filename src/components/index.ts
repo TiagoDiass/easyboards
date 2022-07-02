@@ -1,6 +1,11 @@
-export { default as Main } from './Main/Main';
-export { default as Button } from './Button/Button';
-export { default as Modal } from './Modal/Modal';
-export { default as TextField } from './TextField/TextField';
+export { default as Board } from './Board/Board';
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
-// remove me later
+export { default as Button } from './Button/Button';
+export { default as ConfirmationModal } from './ConfirmationModal/ConfirmationModal';
+export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
+export { default as Main } from './Main/Main';
+export { default as Modal } from './Modal/Modal';
+export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
+export { default as TaskCard } from './TaskCard/TaskCard';
+export { default as TasksColumn } from './TasksColumn/TasksColumn';
+export { default as TextField } from './TextField/TextField';
