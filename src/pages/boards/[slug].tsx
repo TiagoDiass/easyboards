@@ -3,7 +3,7 @@ import BoardPageTemplate from 'templates/BoardPage/BoardPage';
 
 export default function Board() {
   const router = useRouter();
-  const slug = router.query.slug as string;
+  const boardSlug = router.query.slug as string;
 
-  return <BoardPageTemplate boardSlug={slug} />;
+  return <BoardPageTemplate boardSlug={boardSlug} />;
 }

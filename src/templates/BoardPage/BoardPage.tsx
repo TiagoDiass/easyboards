@@ -1,6 +1,6 @@
 import { Board, Breadcrumb, SidebarMenu } from 'components';
-import { BoardMock } from 'components/Board/Board.mock';
 import * as S from './BoardPage.styles';
+import useCurrentBoard from './logic/useCurrentBoard';
 
 type BoardPageProps = {
   boardSlug: string;
@@ -10,8 +10,11 @@ type BoardPageProps = {
  * Board page component
  */
 export default function BoardPage({ boardSlug }: BoardPageProps) {
-  const board = BoardMock;
-  console.log(boardSlug);
+  const board = useCurrentBoard({ boardSlug });
+
+  if (!board) {
+    return <h1>Sem board aqui bro</h1>;
+  }
 
   return (
     <S.Wrapper>
