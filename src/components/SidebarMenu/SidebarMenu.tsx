@@ -14,29 +14,22 @@ import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useState } from 'react';
+import Link from 'next/link';
 
-const Dropdown = () => (
-  <DropdownMenu
-    items={[
-      {
-        icon: <PencilIcon />,
-        text: 'Edit board',
-        onClick: () => console.log('EDIT TASK')
-      },
-      {
-        icon: <TrashIcon />,
-        text: 'Delete board',
-        onClick: () => console.log('DELETE TASK')
-      }
-    ]}
-    ariaLabel='Board related actions'
-  />
-);
+type BoardItem = {
+  id: string;
+  title: string;
+  slug: string;
+};
+
+export type SidebarMenuProps = {
+  boardsList: BoardItem[];
+};
 
 /**
  * Component that will be used as a menu in the app
  */
-export default function SidebarMenu() {
+export default function SidebarMenu({ boardsList }: SidebarMenuProps) {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const expandSidebar = () => setIsSidebarExpanded(true);
   const collapseSidebar = () => setIsSidebarExpanded(false);
@@ -53,40 +46,40 @@ export default function SidebarMenu() {
       </S.Logo>
 
       <S.BoardsListWrapper aria-label='Your boards list'>
-        <S.BoardListLabel>
+        <S.BoardsListLabel>
           your boards
           <button className='add-board-button' title='Add new board'>
             <PlusIcon />
           </button>
-        </S.BoardListLabel>
+        </S.BoardsListLabel>
 
         <S.BoardsList>
-          <S.BoardsListItem>
-            <a href='#'>
-              <BoardIcon />
-              Work
-            </a>
+          {boardsList.map((boardItem) => (
+            <S.BoardsListItem key={boardItem.id}>
+              <Link href={`/boards/${boardItem.slug}`}>
+                <a>
+                  <BoardIcon />
+                  {boardItem.title}
+                </a>
+              </Link>
 
-            <Dropdown />
-          </S.BoardsListItem>
-
-          <S.BoardsListItem>
-            <a href='#'>
-              <BoardIcon />
-              Cool project
-            </a>
-
-            <Dropdown />
-          </S.BoardsListItem>
-
-          <S.BoardsListItem>
-            <a href='#'>
-              <BoardIcon />
-              iOS App
-            </a>
-
-            <Dropdown />
-          </S.BoardsListItem>
+              <DropdownMenu
+                items={[
+                  {
+                    icon: <PencilIcon />,
+                    text: 'Edit board',
+                    onClick: () => console.log('EDIT TASK')
+                  },
+                  {
+                    icon: <TrashIcon />,
+                    text: 'Delete board',
+                    onClick: () => console.log('DELETE TASK')
+                  }
+                ]}
+                ariaLabel='Board related actions'
+              />
+            </S.BoardsListItem>
+          ))}
         </S.BoardsList>
       </S.BoardsListWrapper>
 

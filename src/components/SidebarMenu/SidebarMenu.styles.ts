@@ -66,7 +66,7 @@ export const BoardsListWrapper = styled.nav`
   flex-direction: column;
 `;
 
-export const BoardListLabel = styled.div`
+export const BoardsListLabel = styled.div`
   ${({ theme }) => css`
     padding: 4px 0;
     font-size: ${theme.font.sizes.xsmall};

@@ -6,7 +6,31 @@ export default {
   component: SidebarMenu,
   parameters: {
     layout: 'fullscreen'
+  },
+  argTypes: {
+    boardsList: {
+      type: 'symbol'
+    }
+  },
+  args: {
+    boardsList: [
+      {
+        id: 'board-1-id',
+        title: 'Cool project',
+        slug: 'cool-project'
+      },
+      {
+        id: 'board-2-id',
+        title: 'Work',
+        slug: 'work'
+      },
+      {
+        id: 'board-3-id',
+        title: 'iOS App',
+        slug: 'ios-app'
+      }
+    ]
   }
 } as ComponentMeta<typeof SidebarMenu>;
 
-export const Basic: ComponentStory<typeof SidebarMenu> = () => <SidebarMenu />;
+export const Basic: ComponentStory<typeof SidebarMenu> = (args) => <SidebarMenu {...args} />;
