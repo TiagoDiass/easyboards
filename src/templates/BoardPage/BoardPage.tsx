@@ -1,5 +1,6 @@
 import { Board, Breadcrumb, SidebarMenu } from 'components';
 import * as S from './BoardPage.styles';
+import useBoardsList from './logic/useBoardsList';
 import useCurrentBoard from './logic/useCurrentBoard';
 
 type BoardPageProps = {
@@ -18,7 +19,7 @@ export default function BoardPage({ boardSlug }: BoardPageProps) {
 
   return (
     <S.Wrapper>
-      <SidebarMenu />
+      <SidebarMenu useBoardsList={useBoardsList} />
 
       <S.BoardContent>
         <S.BoardContentTopSection>
