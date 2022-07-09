@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 const renderComponent = () => {
   renderWithTheme(
     <SidebarMenu
-      boardsList={[
+      useBoardsList={() => [
         {
           id: 'board-1-id',
           title: 'Cool project',

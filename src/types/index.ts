@@ -15,3 +15,5 @@ export type Board = {
   title: string;
   columns: Column[];
 };
+
+export type PartialBoard = Pick<Board, 'id' | 'title' | 'slug'>;

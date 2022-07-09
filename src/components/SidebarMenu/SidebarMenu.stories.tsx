@@ -8,12 +8,12 @@ export default {
     layout: 'fullscreen'
   },
   argTypes: {
-    boardsList: {
-      type: 'symbol'
+    useBoardsList: {
+      type: 'function'
     }
   },
   args: {
-    boardsList: [
+    useBoardsList: () => [
       {
         id: 'board-1-id',
         title: 'Cool project',

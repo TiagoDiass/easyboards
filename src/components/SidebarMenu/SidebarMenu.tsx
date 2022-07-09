@@ -15,21 +15,20 @@ import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useState } from 'react';
 import Link from 'next/link';
-
-type BoardItem = {
-  id: string;
-  title: string;
-  slug: string;
-};
+import { PartialBoard } from 'types';
 
 export type SidebarMenuProps = {
-  boardsList: BoardItem[];
+  /**
+   * Function that returns the a list of PartialBoard objects to be shown in the sidebar
+   */
+  useBoardsList: () => PartialBoard[];
 };
 
 /**
  * Component that will be used as a menu in the app
  */
-export default function SidebarMenu({ boardsList }: SidebarMenuProps) {
+export default function SidebarMenu({ useBoardsList }: SidebarMenuProps) {
+  const boardsList = useBoardsList();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const expandSidebar = () => setIsSidebarExpanded(true);
   const collapseSidebar = () => setIsSidebarExpanded(false);
