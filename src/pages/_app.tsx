@@ -1,13 +1,21 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from 'styles';
+import useOnAppInit from 'logic/useOnAppInit/useOnAppInit';
 import theme from 'styles/theme';
 
 /**
  * @component Next.js root component
  */
 export default function App({ Component, pageProps }: AppProps) {
+  const onAppInit = useOnAppInit();
+
+  useEffect(() => {
+    onAppInit();
+  }, [onAppInit]);
+
   return (
     <>
       <Head>

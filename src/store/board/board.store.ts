@@ -1,16 +1,16 @@
-import { BoardMock } from 'components/Board/Board.mock';
-import { INITIAL_BOARD } from 'constants/initial-board';
-import { PartialBoard } from 'types';
+import { Board, PartialBoard } from 'types';
 import createStore from 'zustand';
 
 export type BoardStore = {
   state: {
     partialBoards: PartialBoard[];
+    boards: Board[];
     // currentBoard: Board | null;
     // currentBoardId: string | null;
   };
 
   actions: {
+    setBoardsAndPartialBoards: (boards: Board[]) => void;
     // setCurrentBoard: (currentBoard: Board | null) => void;
     // addBoard: (board: Board) => void;
     // deleteBoard: (boardId: string) => void;
@@ -21,14 +21,30 @@ export type BoardStore = {
   };
 };
 
-const useBoardStore = createStore<BoardStore>()(() => {
+const useBoardStore = createStore<BoardStore>()((set) => {
   const initialState: BoardStore['state'] = {
-    partialBoards: [INITIAL_BOARD, BoardMock]
+    partialBoards: [],
+    boards: []
   };
 
   return {
     state: {
       ...initialState
+    },
+
+    actions: {
+      setBoardsAndPartialBoards: (newBoards) =>
+        set((store) => ({
+          state: {
+            ...store.state,
+            boards: newBoards,
+            partialBoards: newBoards.map((board) => ({
+              id: board.id,
+              title: board.title,
+              slug: board.slug
+            }))
+          }
+        }))
     }
   } as BoardStore;
 });

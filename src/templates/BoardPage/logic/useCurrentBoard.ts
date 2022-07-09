@@ -10,7 +10,7 @@ type UseCurrentBoardResult = Board | null;
 export default function useCurrentBoard({
   boardSlug
 }: UseCurrentBoardParams): UseCurrentBoardResult {
-  const boards = useBoardStore((store) => store.state.partialBoards);
+  const boards = useBoardStore((store) => store.state.boards);
 
   const currentBoard = boards.find((board) => board.slug === boardSlug);
 
