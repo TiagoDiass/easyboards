@@ -5,13 +5,12 @@ export type BoardStore = {
   state: {
     partialBoards: PartialBoard[];
     boards: Board[];
-    // currentBoard: Board | null;
-    // currentBoardId: string | null;
+    currentBoard: Board | null;
   };
 
   actions: {
     setBoardsAndPartialBoards: (boards: Board[]) => void;
-    // setCurrentBoard: (currentBoard: Board | null) => void;
+    setCurrentBoard: (currentBoard: Board | null) => void;
     // addBoard: (board: Board) => void;
     // deleteBoard: (boardId: string) => void;
     // editBoard: (newBoardName: string) => void;
@@ -24,7 +23,8 @@ export type BoardStore = {
 const useBoardStore = createStore<BoardStore>()((set) => {
   const initialState: BoardStore['state'] = {
     partialBoards: [],
-    boards: []
+    boards: [],
+    currentBoard: null
   };
 
   return {
@@ -33,7 +33,10 @@ const useBoardStore = createStore<BoardStore>()((set) => {
     },
 
     actions: {
-      setBoardsAndPartialBoards: (newBoards) =>
+      setBoardsAndPartialBoards: (newBoards) => {
+        console.log('vou atualizar a store');
+        console.log(newBoards);
+
         set((store) => ({
           state: {
             ...store.state,
@@ -43,6 +46,15 @@ const useBoardStore = createStore<BoardStore>()((set) => {
               title: board.title,
               slug: board.slug
             }))
+          }
+        }));
+      },
+
+      setCurrentBoard: (currentBoard) =>
+        set((store) => ({
+          state: {
+            ...store.state,
+            currentBoard
           }
         }))
     }

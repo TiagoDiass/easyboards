@@ -11,7 +11,7 @@ type BoardPageProps = {
  * Board page component
  */
 export default function BoardPage({ boardSlug }: BoardPageProps) {
-  const board = useCurrentBoard({ boardSlug });
+  const [board, setBoard] = useCurrentBoard({ boardSlug });
 
   if (!board) {
     return <h1>Sem board aqui bro</h1>;
@@ -37,7 +37,7 @@ export default function BoardPage({ boardSlug }: BoardPageProps) {
           <S.BoardTitle>{board.title}</S.BoardTitle>
         </S.BoardContentTopSection>
 
-        <Board board={board} />
+        <Board board={board} setBoard={setBoard} key={board.id} />
       </S.BoardContent>
     </S.Wrapper>
   );

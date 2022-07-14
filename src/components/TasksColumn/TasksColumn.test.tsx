@@ -42,7 +42,7 @@ const renderComponent = () => {
   };
 };
 
-describe('Component: TasksColumn', () => {
+describe.skip('Component: TasksColumn', () => {
   it('should render correctly', () => {
     renderComponent();
 

@@ -8,3 +8,10 @@ export const Wrapper = styled.div`
     height: 100%;
   `}
 `;
+
+export const ColumnsWrapper = styled.div`
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;

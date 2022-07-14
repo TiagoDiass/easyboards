@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-const useOutsideClick = (ref: RefObject<HTMLElement>, callback: CallableFunction) => {
+const useOutsideClick = (ref: RefObject<HTMLElement>, callback?: () => void) => {
   useEffect(() => {
     const handler = (event: MouseEvent | TouchEvent) => {
       const elementRef = ref.current;
@@ -9,7 +9,7 @@ const useOutsideClick = (ref: RefObject<HTMLElement>, callback: CallableFunction
         return;
       }
 
-      callback();
+      if (callback) callback();
     };
 
     document.addEventListener('mousedown', handler);
