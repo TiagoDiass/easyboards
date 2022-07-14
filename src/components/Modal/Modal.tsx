@@ -2,7 +2,7 @@ import * as S from './Modal.styles';
 import { Close as CloseIcon } from '@styled-icons/evil';
 import { Button } from 'components';
 import ModalContent from './Elements/Content';
-import ModalFooter from './Elements/Footer';
+import ModalFooter, { ModalFooterProps } from './Elements/Footer';
 import { DefaultTheme, StyledComponent } from 'styled-components';
 import { useRef } from 'react';
 import { useOutsideClick } from 'hooks';
@@ -26,7 +26,7 @@ interface CompoundedModal extends React.FunctionComponent<ModalProps> {
   /**
    * Compounded component that is used with the footer of the Modal
    */
-  Footer: StyledComponent<'div', DefaultTheme>;
+  Footer: StyledComponent<'div', DefaultTheme, ModalFooterProps>;
 }
 
 /**

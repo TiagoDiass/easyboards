@@ -4,6 +4,8 @@ import { Plus as PlusIcon } from '@styled-icons/feather';
 import { Board as BoardType } from 'types';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import useOnDragEnd from 'logic/useOnDragEnd/useOnDragEnd';
+import AddTaskModal from './Elements/AddTaskModal/AddTaskModal';
+import { useModalState } from 'hooks';
 
 type BoardProps = {
   board: BoardType;
@@ -14,6 +16,7 @@ type BoardProps = {
  * Board component used to display the data of a board (columns and task)
  */
 export default function Board({ board, setBoard }: BoardProps) {
+  const [isAddTaskModalOpen, openAddTaskModal, closeAddTaskModal] = useModalState();
   const getNewStateAfterDragEnd = useOnDragEnd();
 
   const onDragEnd = (result: DropResult) => {
@@ -38,9 +41,7 @@ export default function Board({ board, setBoard }: BoardProps) {
                   key={column.id}
                   columnIndex={index}
                   column={column}
-                  handleAddTask={function (): void {
-                    throw new Error('Function not implemented.');
-                  }}
+                  handleAddTask={openAddTaskModal}
                   handleDeleteTask={function (): void {
                     throw new Error('Function not implemented.');
                   }}
@@ -62,6 +63,8 @@ export default function Board({ board, setBoard }: BoardProps) {
       <Button color='success' icon={<PlusIcon />}>
         Add column
       </Button>
+
+      <AddTaskModal isOpen={isAddTaskModalOpen} onClose={closeAddTaskModal} />
     </S.Wrapper>
   );
 }
