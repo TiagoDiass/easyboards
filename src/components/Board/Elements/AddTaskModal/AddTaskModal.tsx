@@ -2,7 +2,9 @@ import { Button, Modal, TextField } from 'components';
 import { ModalProps } from 'components/Modal/Modal';
 import { CardText as CardTextIcon } from 'styled-icons/bootstrap';
 
-type AddTaskModalProps = Pick<ModalProps, 'isOpen' | 'onClose'>;
+type AddTaskModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
+  handleAddTask: (taskContent: string) => void;
+};
 
 /**
  * Modal where the user can type a task content in order to create a task
