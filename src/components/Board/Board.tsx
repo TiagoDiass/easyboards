@@ -64,7 +64,13 @@ export default function Board({ board, setBoard }: BoardProps) {
         Add column
       </Button>
 
-      <AddTaskModal isOpen={isAddTaskModalOpen} onClose={closeAddTaskModal} />
+      {/*
+        Doing this conditional to force the component to re-render everytime this state changes.
+        Without this conditional, the modal keeps state even though the user closes the modal and open it again
+       */}
+      {isAddTaskModalOpen && (
+        <AddTaskModal isOpen={isAddTaskModalOpen} onClose={closeAddTaskModal} />
+      )}
     </S.Wrapper>
   );
 }
