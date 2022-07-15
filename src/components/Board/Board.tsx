@@ -1,11 +1,13 @@
 import * as S from './Board.styles';
 import { Button, TasksColumn } from 'components';
 import { Plus as PlusIcon } from '@styled-icons/feather';
-import { Board as BoardType } from 'types';
+import { Board as BoardType, Column, Task } from 'types';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import useOnDragEnd from 'logic/useOnDragEnd/useOnDragEnd';
 import AddTaskModal from './Elements/AddTaskModal/AddTaskModal';
 import { useModalState } from 'hooks';
+import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
 
 type BoardProps = {
   board: BoardType;
@@ -17,6 +19,8 @@ type BoardProps = {
  */
 export default function Board({ board, setBoard }: BoardProps) {
   const [isAddTaskModalOpen, openAddTaskModal, closeAddTaskModal] = useModalState();
+  const [currentColumn, setCurrentColumn] = useState<Column | null>(null);
+
   const getNewStateAfterDragEnd = useOnDragEnd();
 
   const onDragEnd = (result: DropResult) => {
@@ -30,6 +34,31 @@ export default function Board({ board, setBoard }: BoardProps) {
     });
   };
 
+  const handleAddTask = (taskContent: string) => {
+    console.log('vou adicionar essa task');
+    console.log(taskContent);
+
+    console.log('nessa coluna');
+    console.log(currentColumn);
+
+    if (!currentColumn) return alert('Ops, something went wrong, please refresh the page.');
+
+    const newTask: Task = {
+      id: uuid(),
+      content: taskContent
+    };
+
+    const newColumn: Column = { ...currentColumn, tasks: [...currentColumn.tasks, newTask] };
+    const columnIndex = board.columns.findIndex((column) => column.id === currentColumn.id);
+
+    const newBoard: BoardType = structuredClone(board);
+
+    newBoard.columns.splice(columnIndex, 1, newColumn);
+
+    setBoard(newBoard);
+    closeAddTaskModal();
+  };
+
   return (
     <S.Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -41,7 +70,10 @@ export default function Board({ board, setBoard }: BoardProps) {
                   key={column.id}
                   columnIndex={index}
                   column={column}
-                  handleAddTask={openAddTaskModal}
+                  handleAddTask={() => {
+                    setCurrentColumn(column);
+                    openAddTaskModal();
+                  }}
                   handleDeleteTask={function (): void {
                     throw new Error('Function not implemented.');
                   }}
@@ -69,7 +101,11 @@ export default function Board({ board, setBoard }: BoardProps) {
         Without this conditional, the modal keeps state even though the user closes the modal and open it again
        */}
       {isAddTaskModalOpen && (
-        <AddTaskModal isOpen={isAddTaskModalOpen} onClose={closeAddTaskModal} />
+        <AddTaskModal
+          isOpen={isAddTaskModalOpen}
+          onClose={closeAddTaskModal}
+          handleAddTask={handleAddTask}
+        />
       )}
     </S.Wrapper>
   );
