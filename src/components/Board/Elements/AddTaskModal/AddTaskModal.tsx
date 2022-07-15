@@ -22,8 +22,8 @@ type AddTaskModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
 /**
  * Modal where the user can type a task content in order to create a task
  */
-export default function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
-  const { control, formState, getValues } = useForm<AddTaskForm>({
+export default function AddTaskModal({ isOpen, onClose, handleAddTask }: AddTaskModalProps) {
+  const { control, formState, handleSubmit } = useForm<AddTaskForm>({
     defaultValues: {
       taskContent: ''
     },
@@ -31,22 +31,19 @@ export default function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
     resolver: yupResolver(validationSchema)
   });
 
-  const handleFormSubmit = (event: FormEvent) => {
+  const onSubmit = handleSubmit((form) => {
+    handleAddTask(form.taskContent);
+  });
+
+  const onFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-    formState.isValid && handleSubmit();
-  };
-
-  const handleSubmit = () => {
-    const { taskContent } = getValues();
-
-    console.log('Olha a task que eu vou add xD');
-    console.log(taskContent);
+    onSubmit();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='xsmall' title='Add task'>
       <Modal.Content style={{ paddingBlock: '1rem' }}>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={onFormSubmit}>
           <Controller
             name='taskContent'
             control={control}
@@ -72,7 +69,7 @@ export default function AddTaskModal({ isOpen, onClose }: AddTaskModalProps) {
           Cancel
         </Button>
 
-        <Button color='success' disabled={!formState.isValid} onClick={handleSubmit}>
+        <Button color='success' disabled={!formState.isValid} onClick={onSubmit}>
           Add task
         </Button>
       </Modal.Footer>

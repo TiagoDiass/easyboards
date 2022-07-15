@@ -22,8 +22,7 @@ describe('Component: AddTaskModal', () => {
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });
 
-  it.todo('make the test below pass bro');
-  xit('should call handleAddTask when user clicks on "Add task" button', async () => {
+  it('should call handleAddTask when user clicks on "Add task" button', async () => {
     const handleAddTaskMock = jest.fn();
     renderWithTheme(<AddTaskModal isOpen handleAddTask={handleAddTaskMock} />);
 
