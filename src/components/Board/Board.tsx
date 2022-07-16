@@ -1,13 +1,13 @@
 import * as S from './Board.styles';
 import { Button, TasksColumn } from 'components';
 import { Plus as PlusIcon } from '@styled-icons/feather';
-import { Board as BoardType, Column, Task } from 'types';
+import { Board as BoardType, Column } from 'types';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import useOnDragEnd from 'logic/useOnDragEnd/useOnDragEnd';
 import AddTaskModal from './Elements/AddTaskModal/AddTaskModal';
 import { useModalState } from 'hooks';
-import { v4 as uuid } from 'uuid';
 import { useState } from 'react';
+import useHandleAddTask from './logic/useHandleAddTask/useHandleAddTask';
 
 type BoardProps = {
   board: BoardType;
@@ -34,30 +34,12 @@ export default function Board({ board, setBoard }: BoardProps) {
     });
   };
 
-  const handleAddTask = (taskContent: string) => {
-    console.log('vou adicionar essa task');
-    console.log(taskContent);
-
-    console.log('nessa coluna');
-    console.log(currentColumn);
-
-    if (!currentColumn) return alert('Ops, something went wrong, please refresh the page.');
-
-    const newTask: Task = {
-      id: uuid(),
-      content: taskContent
-    };
-
-    const newColumn: Column = { ...currentColumn, tasks: [...currentColumn.tasks, newTask] };
-    const columnIndex = board.columns.findIndex((column) => column.id === currentColumn.id);
-
-    const newBoard: BoardType = structuredClone(board);
-
-    newBoard.columns.splice(columnIndex, 1, newColumn);
-
-    setBoard(newBoard);
-    closeAddTaskModal();
-  };
+  const handleAddTask = useHandleAddTask({
+    board,
+    currentColumn,
+    setBoard,
+    closeAddTaskModal
+  });
 
   return (
     <S.Wrapper>
