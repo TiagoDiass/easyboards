@@ -8,6 +8,7 @@ import AddTaskModal from './Elements/AddTaskModal/AddTaskModal';
 import { useModalState } from 'hooks';
 import { useState } from 'react';
 import useHandleAddTask from './logic/useHandleAddTask/useHandleAddTask';
+import useHandleDeleteTask from './logic/useHandleDeleteTask/useHandleDeleteTask';
 
 type BoardProps = {
   board: BoardType;
@@ -20,9 +21,9 @@ type BoardProps = {
 export default function Board({ board, setBoard }: BoardProps) {
   const [isAddTaskModalOpen, openAddTaskModal, closeAddTaskModal] = useModalState();
   const [
-    isRemoveTaskConfirmationModalOpen,
-    openRemoveTaskConfirmationModal,
-    closeRemoveTaskConfirmationModal
+    isDeleteTaskConfirmationModalOpen,
+    openDeleteTaskConfirmationModal,
+    closeDeleteTaskConfirmationModal
   ] = useModalState();
   const [currentColumn, setCurrentColumn] = useState<Column | null>(null);
   const [taskToBeDeletedIndex, setTaskToBeDeletedIndex] = useState<number | null>(null);
@@ -47,24 +48,13 @@ export default function Board({ board, setBoard }: BoardProps) {
     closeAddTaskModal
   });
 
-  const handleDeleteTask = () => {
-    if (!currentColumn || taskToBeDeletedIndex === null) return;
-
-    const newColumn: Column = {
-      ...currentColumn,
-      tasks: [
-        ...currentColumn.tasks.filter((t) => t.id !== currentColumn.tasks[taskToBeDeletedIndex].id)
-      ]
-    };
-    const columnIndex = board.columns.findIndex((column) => column.id === currentColumn.id);
-
-    const newBoard: BoardType = structuredClone(board);
-
-    newBoard.columns.splice(columnIndex, 1, newColumn);
-
-    setBoard(newBoard);
-    closeRemoveTaskConfirmationModal();
-  };
+  const handleDeleteTask = useHandleDeleteTask({
+    board,
+    currentColumn,
+    taskToBeDeletedIndex,
+    setBoard,
+    closeDeleteTaskConfirmationModal
+  });
 
   return (
     <S.Wrapper>
@@ -84,7 +74,7 @@ export default function Board({ board, setBoard }: BoardProps) {
                   handleDeleteTask={(taskIndex) => {
                     setCurrentColumn(column);
                     setTaskToBeDeletedIndex(taskIndex);
-                    openRemoveTaskConfirmationModal();
+                    openDeleteTaskConfirmationModal();
                   }}
                   handleEditColumn={function (): void {
                     throw new Error('Function not implemented.');
@@ -128,8 +118,8 @@ export default function Board({ board, setBoard }: BoardProps) {
           children: 'Yes, delete task',
           onClick: handleDeleteTask
         }}
-        isOpen={isRemoveTaskConfirmationModalOpen}
-        onClose={closeRemoveTaskConfirmationModal}
+        isOpen={isDeleteTaskConfirmationModalOpen}
+        onClose={closeDeleteTaskConfirmationModal}
       />
     </S.Wrapper>
   );
