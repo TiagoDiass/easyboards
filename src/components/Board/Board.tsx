@@ -9,6 +9,7 @@ import { useModalState } from 'hooks';
 import { useState } from 'react';
 import useHandleAddTask from './logic/useHandleAddTask/useHandleAddTask';
 import useHandleDeleteTask from './logic/useHandleDeleteTask/useHandleDeleteTask';
+import useHandleDeleteColumn from './logic/useHandleDeleteColumn/useHandleDeleteColumn';
 
 type BoardProps = {
   board: BoardType;
@@ -25,6 +26,12 @@ export default function Board({ board, setBoard }: BoardProps) {
     openDeleteTaskConfirmationModal,
     closeDeleteTaskConfirmationModal
   ] = useModalState();
+  const [
+    isDeleteColumnConfirmationModalOpen,
+    openDeleteColumnConfirmationModal,
+    closeDeleteColumnConfirmationModal
+  ] = useModalState();
+
   const [currentColumn, setCurrentColumn] = useState<Column | null>(null);
   const [taskToBeDeletedIndex, setTaskToBeDeletedIndex] = useState<number | null>(null);
 
@@ -56,6 +63,13 @@ export default function Board({ board, setBoard }: BoardProps) {
     closeDeleteTaskConfirmationModal
   });
 
+  const handleDeleteColumn = useHandleDeleteColumn({
+    board,
+    currentColumn,
+    setBoard,
+    closeDeleteColumnConfirmationModal
+  });
+
   return (
     <S.Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -79,8 +93,9 @@ export default function Board({ board, setBoard }: BoardProps) {
                   handleEditColumn={function (): void {
                     throw new Error('Function not implemented.');
                   }}
-                  handleDeleteColumn={function (): void {
-                    throw new Error('Function not implemented.');
+                  handleDeleteColumn={() => {
+                    setCurrentColumn(column);
+                    openDeleteColumnConfirmationModal();
                   }}
                 />
               ))}
@@ -120,6 +135,21 @@ export default function Board({ board, setBoard }: BoardProps) {
         }}
         isOpen={isDeleteTaskConfirmationModalOpen}
         onClose={closeDeleteTaskConfirmationModal}
+      />
+
+      <ConfirmationModal
+        title='Delete column'
+        content='Are you sure you want to delete this column?'
+        cancelButtonProps={{
+          children: "No, I'm not sure"
+        }}
+        confirmButtonProps={{
+          color: 'danger',
+          children: 'Yes, delete column',
+          onClick: handleDeleteColumn
+        }}
+        isOpen={isDeleteColumnConfirmationModalOpen}
+        onClose={closeDeleteColumnConfirmationModal}
       />
     </S.Wrapper>
   );
