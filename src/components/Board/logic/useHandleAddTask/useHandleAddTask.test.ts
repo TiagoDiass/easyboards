@@ -20,7 +20,7 @@ const BOARD_MOCK: Board = {
 };
 
 describe('Component: Board > Logic hook: useHandleAddTask', () => {
-  it('should setBoard correctly and then closeModal', () => {
+  it('should call setBoard and closeModal correctly', () => {
     // as this hook doesn't use any React logic, we don't need to use @testing-library/react-hooks
     const closeAddTaskModalMock = jest.fn();
     const setBoardMock = jest.fn();
