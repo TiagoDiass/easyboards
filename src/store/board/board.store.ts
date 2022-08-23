@@ -34,9 +34,6 @@ const useBoardStore = createStore<BoardStore>()((set) => {
 
     actions: {
       setBoardsAndPartialBoards: (newBoards) => {
-        console.log('vou atualizar a store');
-        console.log(newBoards);
-
         set((store) => ({
           state: {
             ...store.state,
