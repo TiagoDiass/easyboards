@@ -91,7 +91,7 @@ export default function Board({ board, setBoard }: BoardProps) {
                     openDeleteTaskConfirmationModal();
                   }}
                   handleEditColumn={function (): void {
-                    throw new Error('Function not implemented.');
+                    throw new Error('Function not implemented bro');
                   }}
                   handleDeleteColumn={() => {
                     setCurrentColumn(column);
