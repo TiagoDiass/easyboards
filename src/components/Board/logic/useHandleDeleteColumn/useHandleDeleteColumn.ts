@@ -23,9 +23,6 @@ export default function useHandleDeleteColumn({
 
     setBoard(newBoard);
 
-    console.log('newBoard withou column');
-    console.log(newBoard);
-
     closeDeleteColumnConfirmationModal();
   };
 }

@@ -16,8 +16,6 @@ export default function useHandleDeleteTask({
   closeDeleteTaskConfirmationModal
 }: UseHandleDeleteTaskParams) {
   return () => {
-    console.log('from hook bro');
-
     if (!currentColumn || taskToBeDeletedIndex === null) return;
 
     const newColumn: Column = {
