@@ -39,6 +39,7 @@
 - [x] User can delete columns
 - [x] User can edit a column name
 - [x] The board data is persisted into the browser's localStorage so the user will not loose his/her board data
+- [x] The application starts with a simple first board so the user can start using the app without having to create his/her own board. A starter board also helps users to get to know the app when they are having their first contact with that
 - [ ] User can change the application's theme from light to dark mode
 - [ ] User can create multiple boards:
   - [ ] User can create a board starting from a starter template (basic Kanban template)
