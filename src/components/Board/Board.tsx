@@ -10,6 +10,8 @@ import { useState } from 'react';
 import useHandleAddTask from './logic/useHandleAddTask/useHandleAddTask';
 import useHandleDeleteTask from './logic/useHandleDeleteTask/useHandleDeleteTask';
 import useHandleDeleteColumn from './logic/useHandleDeleteColumn/useHandleDeleteColumn';
+import EditColumnModal from './Elements/EditColumnModal/EditColumnModal';
+import useHandleEditColumn from './logic/useHandleEditColumn/useHandleEditColumn';
 
 type BoardProps = {
   board: BoardType;
@@ -31,6 +33,7 @@ export default function Board({ board, setBoard }: BoardProps) {
     openDeleteColumnConfirmationModal,
     closeDeleteColumnConfirmationModal
   ] = useModalState();
+  const [isEditColumnModalOpen, openEditColumnModal, closeEditColumnModal] = useModalState();
 
   const [currentColumn, setCurrentColumn] = useState<Column | null>(null);
   const [taskToBeDeletedIndex, setTaskToBeDeletedIndex] = useState<number | null>(null);
@@ -70,6 +73,13 @@ export default function Board({ board, setBoard }: BoardProps) {
     closeDeleteColumnConfirmationModal
   });
 
+  const handleEditColumn = useHandleEditColumn({
+    board,
+    currentColumn,
+    setBoard,
+    closeEditColumnModal
+  });
+
   return (
     <S.Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -90,8 +100,9 @@ export default function Board({ board, setBoard }: BoardProps) {
                     setTaskToBeDeletedIndex(taskIndex);
                     openDeleteTaskConfirmationModal();
                   }}
-                  handleEditColumn={function (): void {
-                    throw new Error('Function not implemented bro');
+                  handleEditColumn={() => {
+                    setCurrentColumn(column);
+                    openEditColumnModal();
                   }}
                   handleDeleteColumn={() => {
                     setCurrentColumn(column);
@@ -119,6 +130,15 @@ export default function Board({ board, setBoard }: BoardProps) {
           isOpen={isAddTaskModalOpen}
           onClose={closeAddTaskModal}
           handleAddTask={handleAddTask}
+        />
+      )}
+
+      {isEditColumnModalOpen && (
+        <EditColumnModal
+          isOpen={isEditColumnModalOpen}
+          onClose={closeEditColumnModal}
+          handleEditColumn={handleEditColumn}
+          currentColumnTitle={currentColumn?.title}
         />
       )}
 
