@@ -31,14 +31,14 @@
   :clipboard: Features
 </h2>
 
-- [ ] User can drag and drop tasks into columns
-- [ ] User can reorder the columns by dragging and dropping them
-- [ ] User can create tasks
-- [ ] User can delete tasks
+- [x] User can drag and drop tasks into columns
+- [x] User can reorder the columns by dragging and dropping them
+- [x] User can create tasks
+- [x] User can delete tasks
 - [ ] User can create columns
-- [ ] User can delete columns
-- [ ] User can edit a column name
-- [ ] The board data is persisted into the browser's localStorage so the user will not loose his/her board data
+- [x] User can delete columns
+- [x] User can edit a column name
+- [x] The board data is persisted into the browser's localStorage so the user will not loose his/her board data
 - [ ] User can change the application's theme from light to dark mode
 - [ ] User can create multiple boards:
   - [ ] User can create a board starting from a starter template (basic Kanban template)
