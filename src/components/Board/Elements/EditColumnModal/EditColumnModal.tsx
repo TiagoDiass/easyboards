@@ -8,11 +8,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { FormEvent } from 'react';
 
 type EditColumnForm = {
-  columnName: string;
+  columnTitle: string;
 };
 
 const validationSchema: SchemaOf<EditColumnForm> = object().shape({
-  columnName: string().required('Please enter a name for the column')
+  columnTitle: string().required('Please enter a title for the column')
 });
 
 type EditColumnModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
@@ -26,19 +26,19 @@ type EditColumnModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
 export default function EditColumnModal({
   isOpen,
   onClose,
-  handleEditColumn: handleAddTask,
+  handleEditColumn,
   currentColumnTitle
 }: EditColumnModalProps) {
   const { control, formState, handleSubmit } = useForm<EditColumnForm>({
     defaultValues: {
-      columnName: currentColumnTitle || ''
+      columnTitle: currentColumnTitle || ''
     },
     mode: 'onChange',
     resolver: yupResolver(validationSchema)
   });
 
   const onSubmit = handleSubmit((form) => {
-    handleAddTask(form.columnName);
+    handleEditColumn(form.columnTitle);
   });
 
   const onFormSubmit = (event: FormEvent) => {
@@ -51,15 +51,15 @@ export default function EditColumnModal({
       <Modal.Content style={{ paddingBlock: '1rem' }}>
         <form onSubmit={onFormSubmit}>
           <Controller
-            name='columnName'
+            name='columnTitle'
             control={control}
             render={({ field, formState }) => (
               <TextField
                 label='Column title'
-                labelFor='task'
+                labelFor='column'
                 onInput={field.onChange}
                 value={field.value}
-                error={formState.errors.columnName?.message}
+                error={formState.errors.columnTitle?.message}
                 placeholder='My awesome new column'
                 icon={<CardTextIcon />}
                 autoComplete='off'
