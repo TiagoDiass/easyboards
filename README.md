@@ -35,7 +35,7 @@
 - [x] User can reorder the columns by dragging and dropping them
 - [x] User can create tasks
 - [x] User can delete tasks
-- [ ] User can create columns
+- [x] User can create columns
 - [x] User can delete columns
 - [x] User can edit a column name
 - [x] The board data is persisted into the browser's localStorage so the user will not loose his/her board data
