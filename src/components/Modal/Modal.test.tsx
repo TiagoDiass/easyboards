@@ -17,6 +17,7 @@ describe('Component: Modal', () => {
       </Modal>
     );
 
+    expect(screen.getByLabelText('Modal with title "Modal Title"')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Modal Title' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'My Content' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Footer Content' })).toBeInTheDocument();

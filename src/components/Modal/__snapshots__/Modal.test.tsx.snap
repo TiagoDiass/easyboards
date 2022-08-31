@@ -177,6 +177,7 @@ exports[`Component: Modal should render correctly 1`] = `
   class="c0"
 >
   <div
+    aria-label="Modal with title \\"Modal Title\\""
     class="c1"
   >
     <div

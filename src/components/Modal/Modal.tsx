@@ -45,7 +45,11 @@ const Modal: CompoundedModal = ({
 
   return isOpen ? (
     <S.Backdrop>
-      <S.Wrapper size={size} ref={modalContentWrapperRef}>
+      <S.Wrapper
+        size={size}
+        ref={modalContentWrapperRef}
+        aria-label={`Modal with title "${title}"`}
+      >
         <S.Header>
           <h3 className='title'>{title}</h3>
 
