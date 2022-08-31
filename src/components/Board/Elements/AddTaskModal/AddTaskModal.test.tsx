@@ -29,6 +29,9 @@ describe('Component: AddTaskModal', () => {
     expect(screen.getByRole('button', { name: 'Add task' })).toBeDisabled();
 
     await userEvent.type(screen.getByRole('textbox', { name: 'Task content' }), 'Do the homework');
+
+    expect(screen.getByRole('button', { name: 'Add task' })).toBeEnabled();
+
     await userEvent.click(screen.getByRole('button', { name: 'Add task' }));
 
     expect(handleAddTaskMock).toHaveBeenCalledTimes(1);

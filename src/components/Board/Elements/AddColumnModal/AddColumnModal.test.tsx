@@ -26,7 +26,12 @@ describe('Component: AddColumnModal', () => {
     const handleAddColumnMock = jest.fn();
     renderWithTheme(<AddColumnModal isOpen handleAddColumn={handleAddColumnMock} />);
 
+    expect(screen.getByRole('button', { name: 'Add column' })).toBeDisabled();
+
     await userEvent.type(screen.getByRole('textbox', { name: 'Column title' }), 'In progress');
+
+    expect(screen.getByRole('button', { name: 'Add column' })).toBeEnabled();
+
     await userEvent.click(screen.getByRole('button', { name: 'Add column' }));
 
     expect(handleAddColumnMock).toHaveBeenCalledTimes(1);

@@ -44,8 +44,13 @@ describe('Component: EditColumnModal', () => {
       />
     );
 
+    expect(screen.getByRole('button', { name: 'Edit column' })).toBeDisabled();
+
     await userEvent.clear(screen.getByRole('textbox', { name: 'Column title' }));
     await userEvent.type(screen.getByRole('textbox', { name: 'Column title' }), 'Backlog');
+
+    expect(screen.getByRole('button', { name: 'Edit column' })).toBeEnabled();
+
     await userEvent.click(screen.getByRole('button', { name: 'Edit column' }));
 
     expect(handleAddTaskMock).toHaveBeenCalledTimes(1);
