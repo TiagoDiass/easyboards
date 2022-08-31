@@ -10,7 +10,11 @@ module.exports = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-  collectCoverageFrom: ['src/**/*.ts(x)?', '!src/**/*.stories.tsx'],
+  collectCoverageFrom: [
+    'src/**/*.ts(x)?',
+    '!src/**/*.stories.tsx',
+    '!src/components/Board/Board.mock.ts'
+  ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   moduleDirectories: ['node_modules', 'src']
 };
