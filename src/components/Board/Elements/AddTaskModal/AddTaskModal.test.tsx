@@ -26,6 +26,8 @@ describe('Component: AddTaskModal', () => {
     const handleAddTaskMock = jest.fn();
     renderWithTheme(<AddTaskModal isOpen handleAddTask={handleAddTaskMock} />);
 
+    expect(screen.getByRole('button', { name: 'Add task' })).toBeDisabled();
+
     await userEvent.type(screen.getByRole('textbox', { name: 'Task content' }), 'Do the homework');
     await userEvent.click(screen.getByRole('button', { name: 'Add task' }));
 
