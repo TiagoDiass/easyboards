@@ -20,7 +20,7 @@ type AddTaskModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
 };
 
 /**
- * Modal where the user can type a task content in order to create a task
+ * Modal where user will be able to create a task
  */
 export default function AddTaskModal({ isOpen, onClose, handleAddTask }: AddTaskModalProps) {
   const { control, formState, handleSubmit } = useForm<AddTaskForm>({
