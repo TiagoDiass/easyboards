@@ -119,6 +119,31 @@ describe('Component: Board', () => {
     });
   });
 
+  it('should add a column correctly', async () => {
+    const setBoardMock = jest.fn();
+
+    renderWithTheme(<Board board={BoardMock} setBoard={setBoardMock} />);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Add column' }));
+
+    const addColumnModal = await screen.findByLabelText('Modal with title "Add column"');
+    await userEvent.type(screen.getByRole('textbox', { name: 'Column title' }), 'Backlog');
+    await userEvent.click(within(addColumnModal).getByRole('button', { name: 'Add column' }));
+
+    expect(setBoardMock).toHaveBeenCalledTimes(1);
+    expect(setBoardMock).toHaveBeenCalledWith({
+      ...BoardMock,
+      columns: [
+        ...BoardMock.columns,
+        {
+          id: expect.any(String),
+          title: 'Backlog',
+          tasks: []
+        }
+      ]
+    });
+  });
+
   it('should edit a column correctly', async () => {
     const setBoardMock = jest.fn();
 
