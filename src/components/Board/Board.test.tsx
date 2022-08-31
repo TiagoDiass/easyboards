@@ -87,6 +87,38 @@ describe('Component: Board', () => {
     });
   });
 
+  it('should delete a task correctly', async () => {
+    const setBoardMock = jest.fn();
+
+    renderWithTheme(<Board board={BoardMock} setBoard={setBoardMock} />);
+
+    const secondColumn = within(screen.getAllByLabelText('Tasks column')[1]);
+
+    expect(secondColumn.getByRole('heading', { name: 'In progress' })).toBeInTheDocument();
+    expect(secondColumn.getByLabelText('Tasks of the "In progress" column').children).toHaveLength(
+      1
+    );
+    expect(secondColumn.getByLabelText('Task card')).toHaveTextContent('Task 3');
+
+    await userEvent.click(secondColumn.getByLabelText('Delete task'));
+
+    await screen.findByLabelText('Modal with title "Delete task"');
+    await userEvent.click(screen.getByRole('button', { name: 'Yes, delete task' }));
+
+    expect(setBoardMock).toHaveBeenCalledTimes(1);
+    expect(setBoardMock).toHaveBeenCalledWith({
+      ...BoardMock,
+      columns: [
+        BoardMock.columns[0],
+        {
+          id: 'in-progress-column-id',
+          title: 'In progress',
+          tasks: []
+        }
+      ]
+    });
+  });
+
   it('should edit a column correctly', async () => {
     const setBoardMock = jest.fn();
 
