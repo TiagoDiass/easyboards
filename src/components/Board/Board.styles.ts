@@ -15,3 +15,8 @@ export const ColumnsWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 `;
+
+export const AddColumnButtonWrapper = styled.div`
+  height: fit-content;
+  min-width: 17rem;
+`;

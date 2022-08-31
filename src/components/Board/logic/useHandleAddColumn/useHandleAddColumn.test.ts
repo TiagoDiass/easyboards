@@ -27,7 +27,6 @@ describe('Component: Board > Logic hook: useHandleAddColumn', () => {
 
     const handleAddColumn = useHandleAddColumn({
       board: BOARD_MOCK,
-      currentColumn: BOARD_MOCK.columns[0],
       closeAddColumnModal: closeAddColumnModalMock,
       setBoard: setBoardMock
     });

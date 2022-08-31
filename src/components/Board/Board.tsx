@@ -12,6 +12,8 @@ import useHandleDeleteTask from './logic/useHandleDeleteTask/useHandleDeleteTask
 import useHandleDeleteColumn from './logic/useHandleDeleteColumn/useHandleDeleteColumn';
 import EditColumnModal from './Elements/EditColumnModal/EditColumnModal';
 import useHandleEditColumn from './logic/useHandleEditColumn/useHandleEditColumn';
+import AddColumnModal from './Elements/AddColumnModal/AddColumnModal';
+import useHandleAddColumn from './logic/useHandleAddColumn/useHandleAddColumn';
 
 type BoardProps = {
   board: BoardType;
@@ -23,6 +25,7 @@ type BoardProps = {
  */
 export default function Board({ board, setBoard }: BoardProps) {
   const [isAddTaskModalOpen, openAddTaskModal, closeAddTaskModal] = useModalState();
+  const [isAddColumnModalOpen, openAddColumnModal, closeAddColumnModal] = useModalState();
   const [
     isDeleteTaskConfirmationModalOpen,
     openDeleteTaskConfirmationModal,
@@ -80,6 +83,12 @@ export default function Board({ board, setBoard }: BoardProps) {
     closeEditColumnModal
   });
 
+  const handleAddColumn = useHandleAddColumn({
+    board,
+    setBoard,
+    closeAddColumnModal
+  });
+
   return (
     <S.Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -117,9 +126,11 @@ export default function Board({ board, setBoard }: BoardProps) {
         </Droppable>
       </DragDropContext>
 
-      <Button color='success' icon={<PlusIcon />}>
-        Add column
-      </Button>
+      <S.AddColumnButtonWrapper>
+        <Button color='success' icon={<PlusIcon />} onClick={openAddColumnModal} fullWidth>
+          Add column
+        </Button>
+      </S.AddColumnButtonWrapper>
 
       {/*
         Doing this conditional to force the component to re-render everytime this state changes.
@@ -139,6 +150,14 @@ export default function Board({ board, setBoard }: BoardProps) {
           onClose={closeEditColumnModal}
           handleEditColumn={handleEditColumn}
           currentColumnTitle={currentColumn?.title}
+        />
+      )}
+
+      {isAddColumnModalOpen && (
+        <AddColumnModal
+          isOpen={isAddColumnModalOpen}
+          onClose={closeAddColumnModal}
+          handleAddColumn={handleAddColumn}
         />
       )}
 
