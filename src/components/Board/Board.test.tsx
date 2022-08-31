@@ -86,4 +86,43 @@ describe('Component: Board', () => {
       ]
     });
   });
+
+  it('should edit a column correctly', async () => {
+    const setBoardMock = jest.fn();
+
+    renderWithTheme(<Board board={BoardMock} setBoard={setBoardMock} />);
+
+    const secondColumn = within(screen.getAllByLabelText('Tasks column')[1]);
+
+    expect(secondColumn.getByRole('heading', { name: 'In progress' })).toBeInTheDocument();
+    expect(secondColumn.getByLabelText('Tasks of the "In progress" column').children).toHaveLength(
+      1
+    );
+
+    await userEvent.click(secondColumn.getByRole('button', { name: 'Open dropdown' }));
+    await userEvent.click(secondColumn.getByText('Edit column'));
+
+    await screen.findByLabelText('Modal with title "Edit column"');
+    await userEvent.clear(screen.getByRole('textbox', { name: 'Column title' }));
+    await userEvent.type(screen.getByRole('textbox', { name: 'Column title' }), 'Backlog');
+    await userEvent.click(screen.getByRole('button', { name: 'Edit column' }));
+
+    expect(setBoardMock).toHaveBeenCalledTimes(1);
+    expect(setBoardMock).toHaveBeenCalledWith({
+      ...BoardMock,
+      columns: [
+        BoardMock.columns[0],
+        {
+          id: 'in-progress-column-id',
+          title: 'Backlog',
+          tasks: [
+            {
+              id: 'task-3',
+              content: 'Task 3'
+            }
+          ]
+        }
+      ]
+    });
+  });
 });
