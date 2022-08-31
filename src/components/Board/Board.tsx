@@ -4,16 +4,16 @@ import { Plus as PlusIcon } from '@styled-icons/feather';
 import { Board as BoardType, Column } from 'types';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import useOnDragEnd from 'logic/useOnDragEnd/useOnDragEnd';
-import AddTaskModal from './Elements/AddTaskModal/AddTaskModal';
 import { useModalState } from 'hooks';
 import { useState } from 'react';
-import useHandleAddTask from './logic/useHandleAddTask/useHandleAddTask';
-import useHandleDeleteTask from './logic/useHandleDeleteTask/useHandleDeleteTask';
-import useHandleDeleteColumn from './logic/useHandleDeleteColumn/useHandleDeleteColumn';
-import EditColumnModal from './Elements/EditColumnModal/EditColumnModal';
-import useHandleEditColumn from './logic/useHandleEditColumn/useHandleEditColumn';
-import AddColumnModal from './Elements/AddColumnModal/AddColumnModal';
-import useHandleAddColumn from './logic/useHandleAddColumn/useHandleAddColumn';
+import { AddTaskModal, EditColumnModal, AddColumnModal } from './Elements';
+import {
+  useHandleAddTask,
+  useHandleDeleteTask,
+  useHandleDeleteColumn,
+  useHandleEditColumn,
+  useHandleAddColumn
+} from './logic';
 
 type BoardProps = {
   board: BoardType;
