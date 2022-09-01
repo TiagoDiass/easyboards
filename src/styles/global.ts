@@ -23,8 +23,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${(p) => p.theme.font.family};
     background-color: ${(p) => p.theme.colors.primary.accent1};
   }
 `;

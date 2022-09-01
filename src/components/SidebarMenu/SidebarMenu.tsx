@@ -2,7 +2,7 @@ import * as S from './SidebarMenu.styles';
 import {
   ChevronsLeft as ChevronLeftIcon,
   ChevronsRight as ChevronRightIcon,
-  Settings as SettingsIcon,
+  // Settings as SettingsIcon,
   Plus as PlusIcon
 } from '@styled-icons/feather';
 import {
@@ -10,6 +10,7 @@ import {
   Board as BoardIcon
 } from '@styled-icons/fluentui-system-regular';
 import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
+import { DarkTheme as ThemesIcon } from '@styled-icons/fluentui-system-regular';
 
 import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
@@ -22,12 +23,14 @@ export type SidebarMenuProps = {
    * Function that returns the a list of PartialBoard objects to be shown in the sidebar
    */
   useBoardsList: () => PartialBoard[];
+
+  toggleTheme: () => void;
 };
 
 /**
  * Component that will be used as a menu in the app
  */
-export default function SidebarMenu({ useBoardsList }: SidebarMenuProps) {
+export default function SidebarMenu({ useBoardsList, toggleTheme }: SidebarMenuProps) {
   const boardsList = useBoardsList();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const expandSidebar = () => setIsSidebarExpanded(true);
@@ -87,8 +90,12 @@ export default function SidebarMenu({ useBoardsList }: SidebarMenuProps) {
           Help
         </Button>
 
-        <Button fullWidth icon={<SettingsIcon />} minimal>
+        {/* <Button fullWidth icon={<SettingsIcon />} minimal>
           Settings
+        </Button> */}
+
+        <Button fullWidth icon={<ThemesIcon />} minimal onClick={toggleTheme}>
+          Toggle theme
         </Button>
       </S.SecondaryOptions>
     </S.Wrapper>

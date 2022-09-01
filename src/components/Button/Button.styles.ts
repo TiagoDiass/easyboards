@@ -133,12 +133,12 @@ const wrapperModifiers = {
     }
   `,
 
-  minimal: () => css`
+  minimal: (theme: DefaultTheme) => css`
     background: none;
     border: none;
 
     &:hover:not(:disabled) {
-      background-color: #eaeaea;
+      background-color: ${theme.colors.primary.accent2};
     }
   `
 };
@@ -160,7 +160,7 @@ export const Wrapper = styled.button<WrapperProps>`
     ${wrapperModifiers.colors[color!](theme)}
     ${!!size && wrapperModifiers[size](theme)}
     ${fullWidth && wrapperModifiers.fullWidth()}
-    ${minimal && wrapperModifiers.minimal()}
+    ${minimal && wrapperModifiers.minimal(theme)}
     ${outline && wrapperModifiers.outline(theme, color!)}
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
   `}

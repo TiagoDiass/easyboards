@@ -1,4 +1,4 @@
-const theme = {
+const lightTheme = {
   colors: {
     white: '#FFF',
 
@@ -42,8 +42,8 @@ const theme = {
   },
 
   font: {
-    // family:
-    //   "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    family:
+      "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     light: 300,
     normal: 400,
     medium: 500,
@@ -71,4 +71,43 @@ const theme = {
   boxShadow: 'rgba(149, 157, 165, 0.2) 0px 4px 24px'
 } as const;
 
-export default theme;
+export const darkTheme = {
+  ...lightTheme,
+
+  colors: {
+    white: '#FFF',
+
+    primary: {
+      accent1: '#272727',
+      accent2: '#323232',
+      accent3: '#999',
+      accent4: '#030D15'
+    },
+
+    secondary: {
+      accent1: '#FAFAFA',
+      accent2: '#FAFAFA',
+      accent3: '#BABABA'
+    },
+
+    error: {
+      default: '#FF1A1A',
+      darker: '#E00'
+    },
+
+    success: {
+      lighter: '#3291FF',
+      default: '#0070F3',
+      darker: '#0761D1'
+    },
+
+    warning: {
+      default: '#F5A623',
+      darker: '#AB570A'
+    }
+  },
+
+  boxShadow: 'none'
+} as const;
+
+export default lightTheme;

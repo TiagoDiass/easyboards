@@ -4,6 +4,8 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = () => {
+  const toggleThemeMock = jest.fn();
+
   renderWithTheme(
     <SidebarMenu
       useBoardsList={() => [
@@ -23,8 +25,13 @@ const renderComponent = () => {
           slug: 'ios-app'
         }
       ]}
+      toggleTheme={toggleThemeMock}
     />
   );
+
+  return {
+    toggleThemeMock
+  };
 };
 
 const getBoardLink = (name: string) => screen.getByRole('link', { name });
@@ -36,7 +43,7 @@ describe('Component: SidebarMenu', () => {
     expect(screen.getByRole('heading', { name: 'React Trello' })).toBeInTheDocument();
     expect(screen.getByLabelText('Your boards list')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Help' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Settings' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument();
     expect(screen.getByTitle('Collapse sidebar')).toBeInTheDocument();
 
     expect(getBoardLink('Cool project')).toBeInTheDocument();
@@ -64,6 +71,16 @@ describe('Component: SidebarMenu', () => {
       expect(screen.getByLabelText('Sidebar menu')).toBeInTheDocument();
       expect(screen.getByTitle('Collapse sidebar')).toBeInTheDocument();
       expect(screen.queryByTitle('Expand sidebar')).not.toBeInTheDocument();
+    });
+  });
+
+  it('should call toggleTheme when user clicks on Toggle Theme button', async () => {
+    const { toggleThemeMock } = renderComponent();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Toggle theme' }));
+
+    await waitFor(() => {
+      expect(toggleThemeMock).toHaveBeenCalledTimes(1);
     });
   });
 });
