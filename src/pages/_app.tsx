@@ -1,10 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from 'styles';
 import useOnAppInit from 'logic/useOnAppInit/useOnAppInit';
 import lightTheme, { darkTheme } from 'styles/theme';
+import { useTheme } from 'hooks';
 
 const themes = {
   light: lightTheme,
@@ -15,8 +16,7 @@ const themes = {
  * @component Next.js root component
  */
 export default function App({ Component, pageProps }: AppProps) {
-  const [currentTheme, setTheme] = useState<'light' | 'dark'>('light');
-  const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+  const { currentTheme, toggleTheme } = useTheme();
   const onAppInit = useOnAppInit();
 
   useEffect(() => {

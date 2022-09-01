@@ -40,7 +40,7 @@
 - [x] User can edit a column name
 - [x] The board data is persisted into the browser's localStorage so the user will not loose his/her board data
 - [x] The application starts with a simple first board so the user can start using the app without having to create his/her own board. A starter board also helps users to get to know the app when they are having their first contact with that
-- [x] User can change the application's theme from light to dark mode
+- [x] User can change the application's theme from light to dark mode (and the theme is persisted into the browser's localStorage so the application will keep the selected theme)
 - [ ] User can create multiple boards:
   - [ ] User can create a board starting from a starter template (basic Kanban template)
   - [ ] User can create a board starting with no template (that is, the board will start empty instead of with the basic Kanban columns)
