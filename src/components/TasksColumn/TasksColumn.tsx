@@ -4,7 +4,7 @@ import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { Column } from 'types';
 import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 import { Plus as PlusIcon } from '@styled-icons/feather';
-import TaskCard from 'components/TaskCard/TaskCard';
+import { TaskCard } from 'components';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 type TasksColumnProps = {
