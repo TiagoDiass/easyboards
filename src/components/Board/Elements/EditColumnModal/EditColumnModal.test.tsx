@@ -35,11 +35,11 @@ describe('Component: EditColumnModal', () => {
   });
 
   it('should call handleEditColumn when user clicks on "Edit column" button', async () => {
-    const handleAddTaskMock = jest.fn();
+    const handleEditColumnMock = jest.fn();
     renderWithTheme(
       <EditColumnModal
         isOpen
-        handleEditColumn={handleAddTaskMock}
+        handleEditColumn={handleEditColumnMock}
         currentColumnTitle='In progress'
       />
     );
@@ -53,7 +53,7 @@ describe('Component: EditColumnModal', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Edit column' }));
 
-    expect(handleAddTaskMock).toHaveBeenCalledTimes(1);
-    expect(handleAddTaskMock).toHaveBeenCalledWith('Backlog');
+    expect(handleEditColumnMock).toHaveBeenCalledTimes(1);
+    expect(handleEditColumnMock).toHaveBeenCalledWith('Backlog');
   });
 });
