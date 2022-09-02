@@ -2,6 +2,7 @@ import TasksColumn from './TasksColumn';
 import { renderWithTheme } from 'utils/test-utils';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const renderComponent = () => {
   const handleAddTaskMock = jest.fn();
@@ -10,28 +11,30 @@ const renderComponent = () => {
   const handleEditColumnMock = jest.fn();
 
   renderWithTheme(
-    <TasksColumn
-      column={{
-        id: 'fake-column-id',
-        title: 'In progress',
-        tasks: [
-          { id: 'task-1', content: 'Develop signup page' },
-          { id: 'task-2', content: 'Document how to test signup page' },
-          { id: 'task-3', content: 'Study how to use the new forms library' },
-          { id: 'task-4', content: 'Create documents for the work presentation' },
-          { id: 'task-5', content: 'Develop the logout feature' },
-          {
-            id: 'task-6',
-            content:
-              'Test a card with a really huge text because the card appearance should look good even with a big text'
-          }
-        ]
-      }}
-      handleAddTask={handleAddTaskMock}
-      handleDeleteColumn={handleDeleteColumnMock}
-      handleDeleteTask={handleDeleteTaskMock}
-      handleEditColumn={handleEditColumnMock}
-    />
+    <DragDropContext onDragEnd={() => {}}>
+      <TasksColumn
+        column={{
+          id: 'fake-column-id',
+          title: 'In progress',
+          tasks: [
+            { id: 'task-1', content: 'Develop signup page' },
+            { id: 'task-2', content: 'Document how to test signup page' },
+            { id: 'task-3', content: 'Study how to use the new forms library' },
+            { id: 'task-4', content: 'Create documents for the work presentation' },
+            { id: 'task-5', content: 'Develop the logout feature' },
+            {
+              id: 'task-6',
+              content:
+                'Test a card with a really huge text because the card appearance should look good even with a big text'
+            }
+          ]
+        }}
+        handleAddTask={handleAddTaskMock}
+        handleDeleteColumn={handleDeleteColumnMock}
+        handleDeleteTask={handleDeleteTaskMock}
+        handleEditColumn={handleEditColumnMock}
+      />
+    </DragDropContext>
   );
 
   return {
@@ -42,7 +45,7 @@ const renderComponent = () => {
   };
 };
 
-describe.skip('Component: TasksColumn', () => {
+describe('Component: TasksColumn', () => {
   it('should render correctly', () => {
     renderComponent();
 
