@@ -44,7 +44,7 @@
 - [ ] User can create multiple boards:
   - [ ] User can create a board starting from a starter template (basic Kanban template)
   - [ ] User can create a board starting with no template (that is, the board will start empty instead of with the basic Kanban columns)
-- [ ] User can change a board name
+- [x] User can change a board name
 - [ ] User can change a board background
 - [ ] User can sign in in order to save his/her boards data into a database, this way the user will be able to acess his/her boards from any browser in any computer, not only the browser that has the localStorage data set
   - [ ] Sign in with Google
