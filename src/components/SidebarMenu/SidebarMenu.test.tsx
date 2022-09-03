@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import SidebarMenu from './SidebarMenu';
 import { renderWithTheme } from 'utils/test-utils';
 import { screen, waitFor, within } from '@testing-library/react';
@@ -116,6 +117,11 @@ describe('Component: SidebarMenu', () => {
   });
 
   it('should delete a board correctly', async () => {
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      asPath: '',
+      prefetch: jest.fn(() => ({ catch: () => {} })) // without this catch, the test fails because something tries to use that catch
+    }));
+
     const { setBoardsMock } = renderComponent();
 
     const thirdBoardItem = within(getBoardLink('iOS App').parentElement!);
