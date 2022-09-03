@@ -16,7 +16,7 @@ export default function useHandleDeleteBoard({
     const newBoards = boards.filter((board) => board.id !== boardId);
 
     setBoards(newBoards);
-    localStorage.setItem(BOARDS_KEY, newBoards);
+    localStorage.setItem(BOARDS_KEY, JSON.stringify(newBoards));
     closeDeleteBoardModal();
   };
 }

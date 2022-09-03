@@ -56,7 +56,10 @@ describe('Component: SidebarMenu > Logic hook: useHandleDeleteBoard', () => {
     expect(setBoardsMock).toHaveBeenCalledWith(expectedNewBoards);
 
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
-    expect(localStorage.setItem).toHaveBeenCalledWith(BOARDS_KEY, expectedNewBoards);
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      BOARDS_KEY,
+      JSON.stringify(expectedNewBoards)
+    );
 
     expect(closeDeleteBoardModalMock).toHaveBeenCalledTimes(1);
   });
