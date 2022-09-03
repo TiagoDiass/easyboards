@@ -1,5 +1,7 @@
 import useHandleEditBoard from './useHandleEditBoard';
 import { Board } from 'types';
+import { BOARDS_KEY } from 'constants/local-storage-keys';
+import 'jest-localstorage-mock';
 
 const BOARD_MOCK: Board = {
   id: 'fake-board-id',
@@ -42,14 +44,22 @@ describe('Component: SidebarMenu > Logic hook: useHandleEditBoard', () => {
     });
 
     handleEditBoard('fake-board-id', 'My new board');
-
-    expect(setBoardsMock).toHaveBeenCalledTimes(1);
-    expect(setBoardsMock).toHaveBeenCalledWith([
+    const expectedNewBoards: Board[] = [
       {
         ...BOARD_MOCK,
         title: 'My new board'
       }
-    ]);
+    ];
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith(expectedNewBoards);
+
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      BOARDS_KEY,
+      JSON.stringify(expectedNewBoards)
+    );
+
     expect(closeEditBoardModalMock).toHaveBeenCalledTimes(1);
   });
 });
