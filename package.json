@@ -60,6 +60,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "jest": "^27.4.3",
+    "jest-localstorage-mock": "^2.4.22",
     "jest-styled-components": "^7.0.8",
     "lint-staged": "^12.1.2",
     "plop": "^3.0.5",
