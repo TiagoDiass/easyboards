@@ -13,7 +13,8 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.ts(x)?',
     '!src/**/*.stories.tsx',
-    '!src/components/Board/Board.mock.ts'
+    '!src/components/Board/Board.mock.ts',
+    '!src/constants/initial-board.ts'
   ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   moduleDirectories: ['node_modules', 'src']
