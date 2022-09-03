@@ -1,36 +1,45 @@
 import SidebarMenu from './SidebarMenu';
 import { renderWithTheme } from 'utils/test-utils';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Board } from 'types';
+
+const BOARDS_MOCK: Board[] = [
+  {
+    id: 'board-1-id',
+    title: 'Cool project',
+    slug: 'cool-project',
+    columns: []
+  },
+  {
+    id: 'board-2-id',
+    title: 'Work',
+    slug: 'work',
+    columns: []
+  },
+  {
+    id: 'board-3-id',
+    title: 'iOS App',
+    slug: 'ios-app',
+    columns: []
+  }
+];
 
 const renderComponent = () => {
   const toggleThemeMock = jest.fn();
+  const setBoardsMock = jest.fn();
 
   renderWithTheme(
     <SidebarMenu
-      useBoardsList={() => [
-        {
-          id: 'board-1-id',
-          title: 'Cool project',
-          slug: 'cool-project'
-        },
-        {
-          id: 'board-2-id',
-          title: 'Work',
-          slug: 'work'
-        },
-        {
-          id: 'board-3-id',
-          title: 'iOS App',
-          slug: 'ios-app'
-        }
-      ]}
+      useBoardsList={() => BOARDS_MOCK}
       toggleTheme={toggleThemeMock}
+      setBoards={setBoardsMock}
     />
   );
 
   return {
-    toggleThemeMock
+    toggleThemeMock,
+    setBoardsMock
   };
 };
 
@@ -82,5 +91,27 @@ describe('Component: SidebarMenu', () => {
     await waitFor(() => {
       expect(toggleThemeMock).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it('should edit a board title correctly', async () => {
+    const { setBoardsMock } = renderComponent();
+
+    const thirdBoardItem = within(getBoardLink('iOS App').parentElement!);
+
+    await userEvent.click(thirdBoardItem.getByLabelText('Open dropdown'));
+    await userEvent.click(thirdBoardItem.getByText('Edit board'));
+
+    await screen.findByLabelText('Modal with title "Edit board"');
+
+    await userEvent.clear(screen.getByRole('textbox', { name: 'Board title' }));
+    await userEvent.type(screen.getByRole('textbox', { name: 'Board title' }), 'Android App');
+    await userEvent.click(screen.getByRole('button', { name: 'Edit board' }));
+
+    const expectedBoards: Board[] = structuredClone(BOARDS_MOCK);
+
+    expectedBoards[2].title = 'Android App';
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith(expectedBoards);
   });
 });

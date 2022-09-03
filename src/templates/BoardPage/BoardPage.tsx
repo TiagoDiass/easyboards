@@ -1,7 +1,8 @@
 import { Board, Breadcrumb, SidebarMenu } from 'components';
 import * as S from './BoardPage.styles';
-import usePartialBoards from './logic/usePartialBoards';
+import useBoardsList from './logic/useBoardsList';
 import useCurrentBoard from './logic/useCurrentBoard';
+import useBoardStore from 'store/board/board.store';
 
 type BoardPageProps = {
   boardSlug: string;
@@ -13,6 +14,9 @@ type BoardPageProps = {
  */
 export default function BoardPage({ boardSlug, toggleTheme }: BoardPageProps) {
   const [board, setBoard] = useCurrentBoard({ boardSlug });
+  const setBoardsAndPartialBoards = useBoardStore(
+    (store) => store.actions.setBoardsAndPartialBoards
+  );
 
   if (!board) {
     return <h1>Sem board aqui bro</h1>;
@@ -20,7 +24,11 @@ export default function BoardPage({ boardSlug, toggleTheme }: BoardPageProps) {
 
   return (
     <S.Wrapper>
-      <SidebarMenu useBoardsList={usePartialBoards} toggleTheme={toggleTheme} />
+      <SidebarMenu
+        useBoardsList={useBoardsList}
+        toggleTheme={toggleTheme}
+        setBoards={setBoardsAndPartialBoards}
+      />
 
       <S.BoardContent>
         <S.BoardContentTopSection>

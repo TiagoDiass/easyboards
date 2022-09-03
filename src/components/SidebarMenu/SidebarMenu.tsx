@@ -16,25 +16,40 @@ import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useState } from 'react';
 import Link from 'next/link';
-import { PartialBoard } from 'types';
+import { Board } from 'types';
+import { useModalState } from 'hooks';
+import EditBoardModal from './Elements/EditBoardModal/EditBoardModal';
+import useHandleEditBoard from './logic/useHandleEditBoard/useHandleEditBoard';
 
 export type SidebarMenuProps = {
   /**
-   * Function that returns the a list of PartialBoard objects to be shown in the sidebar
+   * Function that returns a list of PartialBoard objects to be shown in the sidebar
    */
-  useBoardsList: () => PartialBoard[];
+  useBoardsList: () => Board[];
 
+  setBoards: (boards: Board[]) => void;
+
+  /**
+   * Function used to change the application's theme between light and dark themes
+   */
   toggleTheme: () => void;
 };
 
 /**
  * Component that will be used as a menu in the app
  */
-export default function SidebarMenu({ useBoardsList, toggleTheme }: SidebarMenuProps) {
+export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: SidebarMenuProps) {
   const boardsList = useBoardsList();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const expandSidebar = () => setIsSidebarExpanded(true);
   const collapseSidebar = () => setIsSidebarExpanded(false);
+  const [isEditBoardModalOpen, openEditBoardModal, closeEditBoardModal] = useModalState();
+  const [currentBoard, setCurrentBoard] = useState<Board | null>(null);
+  const handleEditBoard = useHandleEditBoard({
+    boards: boardsList,
+    closeEditBoardModal,
+    setBoards: setBoards
+  });
 
   return isSidebarExpanded ? (
     <S.Wrapper aria-label='Sidebar menu'>
@@ -70,7 +85,10 @@ export default function SidebarMenu({ useBoardsList, toggleTheme }: SidebarMenuP
                   {
                     icon: <PencilIcon />,
                     text: 'Edit board',
-                    onClick: () => console.log('EDIT TASK')
+                    onClick: () => {
+                      setCurrentBoard(boardItem);
+                      openEditBoardModal();
+                    }
                   },
                   {
                     icon: <TrashIcon />,
@@ -98,6 +116,15 @@ export default function SidebarMenu({ useBoardsList, toggleTheme }: SidebarMenuP
           Toggle theme
         </Button>
       </S.SecondaryOptions>
+
+      {isEditBoardModalOpen && (
+        <EditBoardModal
+          isOpen={isEditBoardModalOpen}
+          onClose={closeEditBoardModal}
+          handleEditBoard={(boardTitle) => handleEditBoard(currentBoard!.id, boardTitle)}
+          currentBoardTitle={currentBoard?.title}
+        />
+      )}
     </S.Wrapper>
   ) : (
     <S.CollapseButton title='Expand sidebar' isSidebarExpanded={false} onClick={expandSidebar}>
