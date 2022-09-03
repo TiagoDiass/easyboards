@@ -27,12 +27,12 @@ const BOARDS_MOCK: Board[] = [
 describe('Component: SidebarMenu > Logic hook: useHandleDeleteBoard', () => {
   it('should call setBoards and closeModal correctly', () => {
     // as this hook doesn't use any React logic, we don't need to use @testing-library/react-hooks
-    const closeDeleteBoardModalMock = jest.fn();
+    const closeDeleteBoardConfirmationModalMock = jest.fn();
     const setBoardsMock = jest.fn();
 
     const handleDeleteBoard = useHandleDeleteBoard({
       boards: BOARDS_MOCK,
-      closeDeleteBoardModal: closeDeleteBoardModalMock,
+      closeDeleteBoardConfirmationModal: closeDeleteBoardConfirmationModalMock,
       setBoards: setBoardsMock
     });
 
@@ -61,6 +61,6 @@ describe('Component: SidebarMenu > Logic hook: useHandleDeleteBoard', () => {
       JSON.stringify(expectedNewBoards)
     );
 
-    expect(closeDeleteBoardModalMock).toHaveBeenCalledTimes(1);
+    expect(closeDeleteBoardConfirmationModalMock).toHaveBeenCalledTimes(1);
   });
 });
