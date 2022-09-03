@@ -114,4 +114,35 @@ describe('Component: SidebarMenu', () => {
     expect(setBoardsMock).toHaveBeenCalledTimes(1);
     expect(setBoardsMock).toHaveBeenCalledWith(expectedBoards);
   });
+
+  it('should delete a board correctly', async () => {
+    const { setBoardsMock } = renderComponent();
+
+    const thirdBoardItem = within(getBoardLink('iOS App').parentElement!);
+
+    await userEvent.click(thirdBoardItem.getByLabelText('Open dropdown'));
+    await userEvent.click(thirdBoardItem.getByText('Delete board'));
+
+    await screen.findByLabelText('Modal with title "Delete board"');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Yes, delete board' }));
+
+    const expectedBoards: Board[] = [
+      {
+        id: 'board-1-id',
+        title: 'Cool project',
+        slug: 'cool-project',
+        columns: []
+      },
+      {
+        id: 'board-2-id',
+        title: 'Work',
+        slug: 'work',
+        columns: []
+      }
+    ];
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith(expectedBoards);
+  });
 });
