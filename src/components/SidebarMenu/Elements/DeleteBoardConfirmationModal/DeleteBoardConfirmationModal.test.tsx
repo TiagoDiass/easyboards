@@ -2,10 +2,11 @@ import DeleteBoardConfirmationModal from './DeleteBoardConfirmationModal';
 import { renderWithTheme } from 'utils/test-utils';
 import { screen, waitFor } from '@testing-library/react';
 import { Board } from 'types';
+import userEvent from '@testing-library/user-event';
 
 const BOARD_MOCK: Board = {
   id: 'fake-id',
-  slug: 'fake-slug',
+  slug: 'fake-board-slug',
   title: 'fake-board',
   columns: [
     {
@@ -38,5 +39,45 @@ describe('Component: DeleteBoardConfirmationModal', () => {
       expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Yes, delete board' })).toBeInTheDocument();
     });
+  });
+
+  it('should call onClose when user clicks on Cancel', async () => {
+    const onCloseMock = jest.fn();
+    renderWithTheme(
+      <DeleteBoardConfirmationModal
+        isOpen
+        onClose={onCloseMock}
+        handleDeleteBoard={() => {}}
+        currentBoard={BOARD_MOCK}
+      />
+    );
+
+    await userEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+
+    expect(onCloseMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call handleDeleteBoard when user fills in form correctly and click on "Yes, delete board" button', async () => {
+    const handleDeleteBoardMock = jest.fn();
+    renderWithTheme(
+      <DeleteBoardConfirmationModal
+        isOpen
+        handleDeleteBoard={handleDeleteBoardMock}
+        currentBoard={BOARD_MOCK}
+      />
+    );
+
+    expect(screen.getByRole('button', { name: 'Yes, delete board' })).toBeDisabled();
+
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Textfield for the confirmation text' }),
+      'fake-board-slug'
+    );
+
+    expect(screen.getByRole('button', { name: 'Yes, delete board' })).toBeEnabled();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Yes, delete board' }));
+
+    expect(handleDeleteBoardMock).toHaveBeenCalledTimes(1);
   });
 });

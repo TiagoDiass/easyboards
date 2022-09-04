@@ -3,6 +3,7 @@ import { Button, TextField } from 'components';
 import Modal, { ModalProps } from 'components/Modal/Modal';
 import { Board as BoardIcon } from '@styled-icons/fluentui-system-regular';
 import { Board } from 'types';
+import { FormEvent, useState } from 'react';
 
 type DeleteBoardConfirmationModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
   handleDeleteBoard: () => void;
@@ -12,12 +13,30 @@ type DeleteBoardConfirmationModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> 
 export default function DeleteBoardConfirmationModal({
   isOpen,
   onClose,
-  currentBoard
+  currentBoard,
+  handleDeleteBoard
 }: DeleteBoardConfirmationModalProps) {
+  const [confirmationText, setConfirmationText] = useState('');
+
+  const handleConfirmationTextInputChange = (value: string) => {
+    setConfirmationText(value);
+  };
+
+  const isFormValid = confirmationText === currentBoard.slug;
+
+  const handleSubmit = () => {
+    if (isFormValid) handleDeleteBoard();
+  };
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSubmit();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='xsmall' title='Delete board'>
       <Modal.Content style={{ paddingBlock: '1rem' }}>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleFormSubmit}>
           <S.ActionAbout data-testid='action-about'>
             Are you absolutely sure? This action <strong>cannot</strong> be undone.
             <br /> This will permanently delete the <strong>"{currentBoard.title}"</strong> board.
@@ -30,9 +49,9 @@ export default function DeleteBoardConfirmationModal({
           <TextField
             labelFor='boardSlug'
             aria-label='Textfield for the confirmation text'
-            // onInput={field.onChange}
-            // value={field.value}
-            // error={formState.errors.boardTitle?.message}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onInput={handleConfirmationTextInputChange as any}
+            value={confirmationText}
             icon={<BoardIcon />}
             autoComplete='off'
             autoFocus
@@ -45,7 +64,7 @@ export default function DeleteBoardConfirmationModal({
           Cancel
         </Button>
 
-        <Button color='danger' outline disabled={true} onClick={() => {}}>
+        <Button color='danger' outline disabled={!isFormValid} onClick={handleSubmit}>
           Yes, delete board
         </Button>
       </Modal.Footer>

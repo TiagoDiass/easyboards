@@ -116,7 +116,7 @@ describe('Component: SidebarMenu', () => {
     expect(setBoardsMock).toHaveBeenCalledWith(expectedBoards);
   });
 
-  it.skip('should delete a board correctly', async () => {
+  it('should delete a board correctly', async () => {
     jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
       asPath: '',
       prefetch: jest.fn(() => ({ catch: () => {} })) // without this catch, the test fails because something tries to use that catch
@@ -131,6 +131,10 @@ describe('Component: SidebarMenu', () => {
 
     await screen.findByLabelText('Modal with title "Delete board"');
 
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Textfield for the confirmation text' }),
+      'ios-app' // third board slug
+    );
     await userEvent.click(screen.getByRole('button', { name: 'Yes, delete board' }));
 
     const expectedBoards: Board[] = [
