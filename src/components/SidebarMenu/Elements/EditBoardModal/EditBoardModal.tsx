@@ -1,6 +1,6 @@
 import { Button, Modal, TextField } from 'components';
 import { ModalProps } from 'components/Modal/Modal';
-import { CardText as CardTextIcon } from 'styled-icons/bootstrap';
+import { Board as BoardIcon } from '@styled-icons/fluentui-system-regular';
 
 import { object, SchemaOf, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -61,7 +61,7 @@ export default function EditBoardModal({
                 value={field.value}
                 error={formState.errors.boardTitle?.message}
                 placeholder='My awesome board'
-                icon={<CardTextIcon />}
+                icon={<BoardIcon />}
                 autoComplete='off'
                 autoFocus
               />
