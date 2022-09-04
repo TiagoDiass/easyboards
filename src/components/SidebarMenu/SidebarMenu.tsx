@@ -12,7 +12,7 @@ import {
 import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 import { DarkTheme as ThemesIcon } from '@styled-icons/fluentui-system-regular';
 
-import { Button, ConfirmationModal } from 'components';
+import { Button } from 'components';
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -21,6 +21,7 @@ import { useModalState } from 'hooks';
 import EditBoardModal from './Elements/EditBoardModal/EditBoardModal';
 import useHandleEditBoard from './logic/useHandleEditBoard/useHandleEditBoard';
 import useHandleDeleteBoard from './logic/useHandleDeleteBoard/useHandleDeleteBoard';
+import DeleteBoardConfirmationModal from './Elements/DeleteBoardConfirmationModal/DeleteBoardConfirmationModal';
 
 export type SidebarMenuProps = {
   /**
@@ -144,20 +145,14 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
         />
       )}
 
-      <ConfirmationModal
-        title='Delete board'
-        content='Are you sure you want to delete this board?'
-        cancelButtonProps={{
-          children: "No, I'm not sure"
-        }}
-        confirmButtonProps={{
-          color: 'danger',
-          children: 'Yes, delete board',
-          onClick: () => handleDeleteBoard(currentBoard!.id)
-        }}
-        isOpen={isDeleteBoardConfirmationModalOpen}
-        onClose={closeDeleteBoardConfirmationModal}
-      />
+      {isDeleteBoardConfirmationModalOpen && (
+        <DeleteBoardConfirmationModal
+          isOpen={isDeleteBoardConfirmationModalOpen}
+          onClose={closeDeleteBoardConfirmationModal}
+          currentBoard={currentBoard!}
+          handleDeleteBoard={() => handleDeleteBoard(currentBoard!.id)}
+        />
+      )}
     </S.Wrapper>
   ) : (
     <S.CollapseButton title='Expand sidebar' isSidebarExpanded={false} onClick={expandSidebar}>

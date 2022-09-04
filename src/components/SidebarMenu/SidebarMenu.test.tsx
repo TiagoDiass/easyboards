@@ -116,7 +116,7 @@ describe('Component: SidebarMenu', () => {
     expect(setBoardsMock).toHaveBeenCalledWith(expectedBoards);
   });
 
-  it('should delete a board correctly', async () => {
+  it.skip('should delete a board correctly', async () => {
     jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
       asPath: '',
       prefetch: jest.fn(() => ({ catch: () => {} })) // without this catch, the test fails because something tries to use that catch
