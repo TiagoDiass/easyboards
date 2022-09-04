@@ -1,7 +1,6 @@
 import { Button, Modal, TextField } from 'components';
 import { ModalProps } from 'components/Modal/Modal';
-import { CardText as CardTextIcon } from 'styled-icons/bootstrap';
-
+import { LayoutColumn as ColumnIcon } from '@styled-icons/remix-fill';
 import { object, SchemaOf, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
@@ -55,7 +54,7 @@ export default function AddColumnModal({ isOpen, onClose, handleAddColumn }: Add
                 value={field.value}
                 error={formState.errors.columnTitle?.message}
                 placeholder='My awesome example column'
-                icon={<CardTextIcon />}
+                icon={<ColumnIcon />}
                 autoComplete='off'
                 autoFocus
               />
