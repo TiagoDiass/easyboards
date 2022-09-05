@@ -10,14 +10,20 @@ export default {
   argTypes: {
     board: {
       type: 'symbol'
+    },
+    setBoard: {
+      type: 'function'
     }
   },
 
   args: {
-    board: BoardMock
+    board: BoardMock,
+    setBoard: () => {}
   }
 } as ComponentMeta<typeof Board>;
 
 export const Basic: ComponentStory<typeof Board> = (args) => <Board {...args} />;
 
-export const InitialBoard: ComponentStory<typeof Board> = () => <Board board={INITIAL_BOARD} />;
+export const InitialBoard: ComponentStory<typeof Board> = (args) => (
+  <Board {...args} board={INITIAL_BOARD} />
+);

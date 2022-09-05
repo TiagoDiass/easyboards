@@ -10,6 +10,9 @@ export default {
   argTypes: {
     useBoardsList: {
       type: 'function'
+    },
+    setBoards: {
+      type: 'function'
     }
   },
   args: {
@@ -17,17 +20,20 @@ export default {
       {
         id: 'board-1-id',
         title: 'Cool project',
-        slug: 'cool-project'
+        slug: 'cool-project',
+        columns: []
       },
       {
         id: 'board-2-id',
         title: 'Work',
-        slug: 'work'
+        slug: 'work',
+        columns: []
       },
       {
         id: 'board-3-id',
         title: 'iOS App',
-        slug: 'ios-app'
+        slug: 'ios-app',
+        columns: []
       }
     ]
   }

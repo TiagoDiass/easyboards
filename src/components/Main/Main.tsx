@@ -18,7 +18,7 @@ export default function Main() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <SidebarMenu useBoardsList={useBoardsList} />
+      <SidebarMenu useBoardsList={useBoardsList} setBoards={() => {}} />
 
       <S.Wrapper>
         <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
