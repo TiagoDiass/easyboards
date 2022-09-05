@@ -3,6 +3,7 @@ import * as S from './BoardPage.styles';
 import useBoardsList from './logic/useBoardsList';
 import useCurrentBoard from './logic/useCurrentBoard';
 import useBoardStore from 'store/board/board.store';
+import Head from 'next/head';
 
 type BoardPageProps = {
   boardSlug: string;
@@ -23,31 +24,37 @@ export default function BoardPage({ boardSlug, toggleTheme }: BoardPageProps) {
   }
 
   return (
-    <S.Wrapper>
-      <SidebarMenu
-        useBoardsList={useBoardsList}
-        toggleTheme={toggleTheme}
-        setBoards={setBoardsAndPartialBoards}
-      />
+    <>
+      <Head>
+        <title>{board.title}</title>
+      </Head>
 
-      <S.BoardContent>
-        <S.BoardContentTopSection>
-          <Breadcrumb
-            items={[
-              {
-                text: 'Your boards'
-              },
-              {
-                text: board.title
-              }
-            ]}
-          />
+      <S.Wrapper>
+        <SidebarMenu
+          useBoardsList={useBoardsList}
+          toggleTheme={toggleTheme}
+          setBoards={setBoardsAndPartialBoards}
+        />
 
-          <S.BoardTitle>{board.title}</S.BoardTitle>
-        </S.BoardContentTopSection>
+        <S.BoardContent>
+          <S.BoardContentTopSection>
+            <Breadcrumb
+              items={[
+                {
+                  text: 'Your boards'
+                },
+                {
+                  text: board.title
+                }
+              ]}
+            />
 
-        <Board board={board} setBoard={setBoard} key={board.id} />
-      </S.BoardContent>
-    </S.Wrapper>
+            <S.BoardTitle>{board.title}</S.BoardTitle>
+          </S.BoardContentTopSection>
+
+          <Board board={board} setBoard={setBoard} key={board.id} />
+        </S.BoardContent>
+      </S.Wrapper>
+    </>
   );
 }
