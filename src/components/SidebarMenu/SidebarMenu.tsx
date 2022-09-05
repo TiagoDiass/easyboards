@@ -41,7 +41,7 @@ export type SidebarMenuProps = {
  * Component that will be used as a menu in the app
  */
 export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: SidebarMenuProps) {
-  const boardsList = useBoardsList();
+  const boards = useBoardsList();
   const [currentBoard, setCurrentBoard] = useState<Board | null>(null);
 
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
@@ -56,13 +56,13 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
   ] = useModalState();
 
   const handleEditBoard = useHandleEditBoard({
-    boards: boardsList,
+    boards: boards,
     closeEditBoardModal,
     setBoards: setBoards
   });
 
   const handleDeleteBoard = useHandleDeleteBoard({
-    boards: boardsList,
+    boards: boards,
     setBoards,
     closeDeleteBoardConfirmationModal
   });
@@ -87,7 +87,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
         </S.BoardsListLabel>
 
         <S.BoardsList>
-          {boardsList.map((boardItem) => (
+          {boards.map((boardItem) => (
             <S.BoardsListItem key={boardItem.id}>
               <Link href={`/boards/${boardItem.slug}`}>
                 <a>
