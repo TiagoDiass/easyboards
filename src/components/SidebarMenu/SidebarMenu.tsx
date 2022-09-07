@@ -22,6 +22,7 @@ import EditBoardModal from './Elements/EditBoardModal/EditBoardModal';
 import useHandleEditBoard from './logic/useHandleEditBoard/useHandleEditBoard';
 import useHandleDeleteBoard from './logic/useHandleDeleteBoard/useHandleDeleteBoard';
 import DeleteBoardConfirmationModal from './Elements/DeleteBoardConfirmationModal/DeleteBoardConfirmationModal';
+import AddBoardModal from './Elements/AddBoardModal/AddBoardModal';
 
 export type SidebarMenuProps = {
   /**
@@ -51,9 +52,10 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
   const [isEditBoardModalOpen, openEditBoardModal, closeEditBoardModal] = useModalState();
   const [
     isDeleteBoardConfirmationModalOpen,
-    openDeleteBoardConfirmationModalOpen,
+    openDeleteBoardConfirmationModal,
     closeDeleteBoardConfirmationModal
   ] = useModalState();
+  const [isAddBoardModalOpen, openAddBoardModal, closeAddBoardModal] = useModalState();
 
   const handleEditBoard = useHandleEditBoard({
     boards: boards,
@@ -81,7 +83,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
       <S.BoardsListWrapper aria-label='Your boards list'>
         <S.BoardsListLabel>
           your boards
-          <button className='add-board-button' title='Add new board'>
+          <button className='add-board-button' title='Add new board' onClick={openAddBoardModal}>
             <PlusIcon />
           </button>
         </S.BoardsListLabel>
@@ -111,7 +113,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
                     text: 'Delete board',
                     onClick: () => {
                       setCurrentBoard(boardItem);
-                      openDeleteBoardConfirmationModalOpen();
+                      openDeleteBoardConfirmationModal();
                     }
                   }
                 ]}
@@ -151,6 +153,14 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
           onClose={closeDeleteBoardConfirmationModal}
           currentBoard={currentBoard!}
           handleDeleteBoard={() => handleDeleteBoard(currentBoard!.id)}
+        />
+      )}
+
+      {isAddBoardModalOpen && (
+        <AddBoardModal
+          isOpen={isAddBoardModalOpen}
+          onClose={closeAddBoardModal}
+          handleAddBoard={(x) => console.log(x)}
         />
       )}
     </S.Wrapper>

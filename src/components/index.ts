@@ -1,6 +1,7 @@
 export { default as Board } from './Board/Board';
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as Button } from './Button/Button';
+export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as ConfirmationModal } from './ConfirmationModal/ConfirmationModal';
 export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
 export { default as Main } from './Main/Main';
