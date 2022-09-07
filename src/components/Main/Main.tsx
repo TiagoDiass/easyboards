@@ -11,14 +11,20 @@ import * as S from './Main.styles';
 export default function Main() {
   const [isOpen, open, close] = useModalState();
   const useBoardsList = () => {
-    const partialBoards = useBoardStore((store) => store.state.partialBoards);
+    const partialBoards = useBoardStore((store) => store.state.boards);
 
     return partialBoards;
   };
 
   return (
     <div style={{ display: 'flex' }}>
-      <SidebarMenu useBoardsList={useBoardsList} setBoards={() => {}} />
+      <SidebarMenu
+        useBoardsList={useBoardsList}
+        setBoards={() => {}}
+        toggleTheme={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
 
       <S.Wrapper>
         <S.Logo src='/img/logo.svg' alt='Atom image with "React Avançado" next to it.' />
