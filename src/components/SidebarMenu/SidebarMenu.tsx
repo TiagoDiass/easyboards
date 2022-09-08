@@ -18,12 +18,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Board } from 'types';
 import { useModalState } from 'hooks';
-import EditBoardModal from './Elements/EditBoardModal/EditBoardModal';
-import useHandleEditBoard from './logic/useHandleEditBoard/useHandleEditBoard';
-import useHandleDeleteBoard from './logic/useHandleDeleteBoard/useHandleDeleteBoard';
-import DeleteBoardConfirmationModal from './Elements/DeleteBoardConfirmationModal/DeleteBoardConfirmationModal';
-import AddBoardModal from './Elements/AddBoardModal/AddBoardModal';
-import useHandleAddBoard from './logic/useHandleAddBoard/useHandleAddBoard';
+import { EditBoardModal, DeleteBoardConfirmationModal, AddBoardModal } from './Elements';
+import { useHandleEditBoard, useHandleDeleteBoard, useHandleAddBoard } from './logic';
 
 export type SidebarMenuProps = {
   /**
