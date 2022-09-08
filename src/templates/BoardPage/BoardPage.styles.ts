@@ -1,19 +1,12 @@
 import styled, { css } from 'styled-components';
 import * as BoardStyles from 'components/Board/Board.styles';
 
-export const Wrapper = styled.div`
-  ${() => css`
-    display: flex;
-  `}
-`;
-
 export const BoardContent = styled.main`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 
   ${BoardStyles.Wrapper} {
-    /* border: 1px solid red; */
     min-height: 85vh;
   }
 `;

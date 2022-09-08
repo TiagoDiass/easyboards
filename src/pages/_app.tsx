@@ -6,6 +6,8 @@ import { GlobalStyles } from 'styles';
 import useOnAppInit from 'logic/useOnAppInit/useOnAppInit';
 import lightTheme, { darkTheme } from 'styles/theme';
 import { useTheme } from 'hooks';
+import { SidebarMenu } from 'components';
+import useBoardStore from 'store/board/board.store';
 
 const themes = {
   light: lightTheme,
@@ -17,6 +19,11 @@ const themes = {
  */
 export default function App({ Component, pageProps }: AppProps) {
   const { currentTheme, toggleTheme } = useTheme();
+  const setBoardsAndPartialBoards = useBoardStore(
+    (store) => store.actions.setBoardsAndPartialBoards
+  );
+  const boards = useBoardStore((store) => store.state.boards);
+
   const onAppInit = useOnAppInit();
 
   useEffect(() => {
@@ -27,19 +34,25 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <link rel='shortcut icon' href='/img/icon-512.png' />
-        <link rel='apple-touch-icon' href='/img/icon-512.png' />
-        <link rel='manifest' href='manifest.json' />
         <meta
           name='description'
-          content='A boilerplate to work with Next.js, Typescript and more.'
+          content='A website where you can create boards to manage your tasks'
         />
-        <title>Next.js Boilerplate</title>
+        <title>ReactTrello</title>
       </Head>
 
       <ThemeProvider theme={themes[currentTheme]}>
         <GlobalStyles />
-        <Component {...pageProps} toggleTheme={toggleTheme} />
+
+        <div style={{ display: 'flex' }}>
+          <SidebarMenu
+            useBoardsList={() => boards}
+            toggleTheme={toggleTheme}
+            setBoards={setBoardsAndPartialBoards}
+          />
+
+          <Component {...pageProps} toggleTheme={toggleTheme} />
+        </div>
       </ThemeProvider>
     </>
   );
