@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import useHandleAddBoard from './useHandleAddBoard';
 import { Board } from 'types';
 import 'jest-localstorage-mock';
@@ -30,7 +31,12 @@ const BOARDS_MOCK: Board[] = [
 
 describe('Component: Board > Logic hook: useHandleAddBoard', () => {
   it('should call setBoard and closeModal correctly', () => {
-    // as this hook doesn't use any React logic, we don't need to use @testing-library/react-hooks
+    const pushRouteMock = jest.fn();
+
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      push: pushRouteMock
+    }));
+
     const closeAddBoardModalMock = jest.fn();
     const setBoardsMock = jest.fn();
 
@@ -64,11 +70,17 @@ describe('Component: Board > Logic hook: useHandleAddBoard', () => {
       JSON.stringify(expectedNewBoards)
     );
 
+    expect(pushRouteMock).toHaveBeenCalledTimes(1);
+    expect(pushRouteMock).toHaveBeenCalledWith('/boards/my-new-board');
+
     expect(closeAddBoardModalMock).toHaveBeenCalledTimes(1);
   });
 
   it('should create a new board with a kanban template correctly', () => {
-    // as this hook doesn't use any React logic, we don't need to use @testing-library/react-hooks
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      push: jest.fn()
+    }));
+
     const closeAddBoardModalMock = jest.fn();
     const setBoardsMock = jest.fn();
 

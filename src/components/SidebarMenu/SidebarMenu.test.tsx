@@ -95,6 +95,11 @@ describe('Component: SidebarMenu', () => {
   });
 
   it('should add a board correctly', async () => {
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      push: jest.fn(),
+      prefetch: jest.fn(() => ({ catch: () => {} })) // without this catch, the test fails because something tries to use that catch
+    }));
+
     const { setBoardsMock } = renderComponent();
 
     await userEvent.click(screen.getByTitle('Add new board'));
