@@ -8,7 +8,8 @@ describe('Component: Breadcrumb', () => {
       <Breadcrumb
         items={[
           {
-            text: 'Source of everything'
+            text: 'Source of everything',
+            to: '/source-of-everything'
           },
           {
             text: 'Your boards'
@@ -20,7 +21,7 @@ describe('Component: Breadcrumb', () => {
       />
     );
 
-    expect(screen.getByText('Source of everything')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Source of everything' })).toBeInTheDocument();
     expect(screen.getByText('Your boards')).toBeInTheDocument();
     expect(screen.getByText('Board with a random name')).toBeInTheDocument();
     expect(screen.getAllByLabelText('Right arrow icon')).toHaveLength(2);

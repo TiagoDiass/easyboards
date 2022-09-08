@@ -10,8 +10,20 @@ export const Item = styled.div`
     align-items: center;
     color: ${theme.colors.primary.accent3};
 
-    span {
+    span,
+    a {
       font-size: ${theme.font.sizes.small};
+      text-decoration: none;
+    }
+
+    a {
+      color: ${theme.colors.success.default};
+      font-weight: ${theme.font.bold};
+      transition: ${theme.transitions.fast};
+
+      &:hover {
+        color: ${theme.colors.success.darker};
+      }
     }
 
     svg {

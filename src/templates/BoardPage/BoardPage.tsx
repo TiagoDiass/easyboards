@@ -28,7 +28,8 @@ export default function BoardPage({ boardSlug }: BoardPageProps) {
           <Breadcrumb
             items={[
               {
-                text: 'Your boards'
+                text: 'Your boards',
+                to: '/'
               },
               {
                 text: board.title
