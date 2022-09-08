@@ -1,3 +1,3 @@
-export const BOARDS_KEY = '@reacttrello:boards';
+export const BOARDS_KEY = '@easyboards:boards';
 
-export const CURRENT_THEME_KEY = '@reacttrello:current_theme';
+export const CURRENT_THEME_KEY = '@easyboards:current_theme';

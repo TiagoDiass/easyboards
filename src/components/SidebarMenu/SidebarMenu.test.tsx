@@ -50,7 +50,7 @@ describe('Component: SidebarMenu', () => {
   it('should render correctly', () => {
     renderComponent();
 
-    expect(screen.getByRole('heading', { name: 'React Trello' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Easy Boards' })).toBeInTheDocument();
     expect(screen.getByLabelText('Your boards list')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Help' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument();

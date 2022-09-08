@@ -8,10 +8,15 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.huge};
-    font-weight: ${theme.font.medium};
+    font-weight: ${theme.font.light};
     color: ${theme.colors.secondary.accent3};
     margin-bottom: ${(p) => p.theme.spacings.xsmall};
     white-space: nowrap;
+
+    strong {
+      font-weight: ${theme.font.medium};
+      color: ${theme.colors.success.default};
+    }
   `}
 `;
 

@@ -9,11 +9,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ReactTrello - Home</title>
+        <title>EasyBoards | Home</title>
       </Head>
 
       <S.Wrapper>
-        <S.Title>👋 Hey! Welcome to ReactTrello</S.Title>
+        <S.Title>
+          👋 Hey! Welcome to <strong>EasyBoards</strong>
+        </S.Title>
 
         <S.Description>
           With this app, you can <strong>easily</strong> manage your tasks by creating specific

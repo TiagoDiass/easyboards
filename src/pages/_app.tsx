@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name='description'
           content='A website where you can create boards to manage your tasks'
         />
-        <title>ReactTrello</title>
+        <title>EasyBoards</title>
       </Head>
 
       <ThemeProvider theme={themes[currentTheme]}>

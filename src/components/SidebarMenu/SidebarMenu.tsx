@@ -81,8 +81,8 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
       <S.Logo>
         <Link href='/'>
           <a>
-            <span className='blue'>React</span>
-            <span className='secondary'>Trello</span>
+            <span className='blue'>Easy</span>
+            <span className='secondary'>Boards</span>
           </a>
         </Link>
       </S.Logo>

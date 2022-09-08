@@ -24,7 +24,7 @@ describe('Component: Home', () => {
     renderWithTheme(<Home />);
 
     expect(
-      screen.getByRole('heading', { name: /hey! welcome to reacttrello/i })
+      screen.getByRole('heading', { name: /hey! welcome to easyboards/i })
     ).toBeInTheDocument();
 
     expect(screen.getByText('Select a board to start managing your tasks 😉')).toBeInTheDocument();
