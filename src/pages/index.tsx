@@ -1,5 +1,3 @@
-import { Main } from 'components';
-
 export default function Home() {
-  return <Main />;
+  return <h1>index</h1>;
 }

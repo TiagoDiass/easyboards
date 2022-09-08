@@ -4,7 +4,6 @@ export { default as Button } from './Button/Button';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as ConfirmationModal } from './ConfirmationModal/ConfirmationModal';
 export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
-export { default as Main } from './Main/Main';
 export { default as Modal } from './Modal/Modal';
 export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
 export { default as TaskCard } from './TaskCard/Container/DraggableTaskCard';
