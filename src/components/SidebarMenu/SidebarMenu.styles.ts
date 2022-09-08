@@ -20,6 +20,10 @@ export const Logo = styled.h2`
   ${({ theme }) => css`
     font-size: 3.6rem;
 
+    a {
+      text-decoration: none;
+    }
+
     .blue {
       color: ${theme.colors.success.default};
     }

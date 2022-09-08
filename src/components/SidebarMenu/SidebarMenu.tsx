@@ -79,8 +79,12 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
       </S.CollapseButton>
 
       <S.Logo>
-        <span className='blue'>React</span>
-        <span className='secondary'>Trello</span>
+        <Link href='/'>
+          <a>
+            <span className='blue'>React</span>
+            <span className='secondary'>Trello</span>
+          </a>
+        </Link>
       </S.Logo>
 
       <S.BoardsListWrapper aria-label='Your boards list'>
