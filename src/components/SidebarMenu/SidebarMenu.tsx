@@ -23,6 +23,7 @@ import useHandleEditBoard from './logic/useHandleEditBoard/useHandleEditBoard';
 import useHandleDeleteBoard from './logic/useHandleDeleteBoard/useHandleDeleteBoard';
 import DeleteBoardConfirmationModal from './Elements/DeleteBoardConfirmationModal/DeleteBoardConfirmationModal';
 import AddBoardModal from './Elements/AddBoardModal/AddBoardModal';
+import useHandleAddBoard from './logic/useHandleAddBoard/useHandleAddBoard';
 
 export type SidebarMenuProps = {
   /**
@@ -67,6 +68,12 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
     boards: boards,
     setBoards,
     closeDeleteBoardConfirmationModal
+  });
+
+  const handleAddBoard = useHandleAddBoard({
+    boards,
+    setBoards,
+    closeAddBoardModal
   });
 
   return isSidebarExpanded ? (
@@ -160,7 +167,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
         <AddBoardModal
           isOpen={isAddBoardModalOpen}
           onClose={closeAddBoardModal}
-          handleAddBoard={(x) => console.log(x)}
+          handleAddBoard={handleAddBoard}
         />
       )}
     </S.Wrapper>

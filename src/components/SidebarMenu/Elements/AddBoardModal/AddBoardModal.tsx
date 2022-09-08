@@ -22,7 +22,7 @@ const validationSchema: SchemaOf<AddBoardForm> = object().shape({
 });
 
 type AddBoardModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
-  handleAddBoard: (params: { boardTitle: string; shouldStartWithKanbanTemplate: boolean }) => void;
+  handleAddBoard: (params: { boardTitle: string; startWithKanbanTemplate: boolean }) => void;
 };
 
 /**
@@ -41,7 +41,7 @@ export default function AddBoardModal({ isOpen, onClose, handleAddBoard }: AddBo
   const onSubmit = handleSubmit((form) => {
     handleAddBoard({
       boardTitle: form.boardTitle,
-      shouldStartWithKanbanTemplate: !!form.startWithKanbanTemplate
+      startWithKanbanTemplate: !!form.startWithKanbanTemplate
     });
   });
 
@@ -81,6 +81,7 @@ export default function AddBoardModal({ isOpen, onClose, handleAddBoard }: AddBo
                   label='Start with a Kanban template'
                   labelFor='startWithKanbanTemplate'
                   isChecked={field.value}
+                  onCheck={field.onChange}
                 />
               )}
             />

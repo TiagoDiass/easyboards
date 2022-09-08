@@ -38,7 +38,7 @@ describe('Component: AddBoardModal', () => {
     expect(handleAddBoardMock).toHaveBeenCalledTimes(1);
     expect(handleAddBoardMock).toHaveBeenCalledWith({
       boardTitle: 'New board',
-      shouldStartWithKanbanTemplate: true
+      startWithKanbanTemplate: true
     });
   });
 });

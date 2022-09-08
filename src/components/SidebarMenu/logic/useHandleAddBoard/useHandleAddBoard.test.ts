@@ -1,5 +1,11 @@
-import { Board } from 'types';
 import useHandleAddBoard from './useHandleAddBoard';
+import { Board } from 'types';
+import 'jest-localstorage-mock';
+import { BOARDS_KEY } from 'constants/local-storage-keys';
+
+jest.mock('uuid', () => ({
+  v4: () => 'fake-uuid'
+}));
 
 const BOARDS_MOCK: Board[] = [
   {
@@ -39,16 +45,25 @@ describe('Component: Board > Logic hook: useHandleAddBoard', () => {
       startWithKanbanTemplate: false
     });
 
-    expect(setBoardsMock).toHaveBeenCalledTimes(1);
-    expect(setBoardsMock).toHaveBeenCalledWith([
+    const expectedNewBoards: Board[] = [
       ...BOARDS_MOCK,
       {
-        id: expect.any(String),
+        id: 'fake-uuid',
         title: 'My new board',
         slug: 'my-new-board',
         columns: []
       }
-    ]);
+    ];
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith(expectedNewBoards);
+
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      BOARDS_KEY,
+      JSON.stringify(expectedNewBoards)
+    );
+
     expect(closeAddBoardModalMock).toHaveBeenCalledTimes(1);
   });
 
@@ -68,32 +83,41 @@ describe('Component: Board > Logic hook: useHandleAddBoard', () => {
       startWithKanbanTemplate: true
     });
 
-    expect(setBoardsMock).toHaveBeenCalledTimes(1);
-    expect(setBoardsMock).toHaveBeenCalledWith([
+    const expectedNewBoards: Board[] = [
       ...BOARDS_MOCK,
       {
-        id: expect.any(String),
+        id: 'fake-uuid',
         title: 'My new board',
         slug: 'my-new-board',
         columns: [
           {
-            id: expect.any(String),
+            id: 'fake-uuid',
             title: 'To do ✏️',
             tasks: []
           },
           {
-            id: expect.any(String),
+            id: 'fake-uuid',
             title: 'Doing 🔨',
             tasks: []
           },
           {
-            id: expect.any(String),
+            id: 'fake-uuid',
             title: 'Done ✅',
             tasks: []
           }
         ]
       }
-    ] as Board[]);
+    ];
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith(expectedNewBoards);
+
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      BOARDS_KEY,
+      JSON.stringify(expectedNewBoards)
+    );
+
     expect(closeAddBoardModalMock).toHaveBeenCalledTimes(1);
   });
 });

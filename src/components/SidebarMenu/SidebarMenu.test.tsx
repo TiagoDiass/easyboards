@@ -94,6 +94,43 @@ describe('Component: SidebarMenu', () => {
     });
   });
 
+  it('should add a board correctly', async () => {
+    const { setBoardsMock } = renderComponent();
+
+    await userEvent.click(screen.getByTitle('Add new board'));
+
+    await screen.findByLabelText('Modal with title "Add board"');
+
+    await userEvent.type(screen.getByRole('textbox', { name: 'Board title' }), 'My new board');
+    await userEvent.click(screen.getByRole('button', { name: 'Add board' }));
+
+    const expectedNewBoard: Board = {
+      id: expect.any(String),
+      title: 'My new board',
+      slug: 'my-new-board',
+      columns: [
+        {
+          id: expect.any(String),
+          title: 'To do ✏️',
+          tasks: []
+        },
+        {
+          id: expect.any(String),
+          title: 'Doing 🔨',
+          tasks: []
+        },
+        {
+          id: expect.any(String),
+          title: 'Done ✅',
+          tasks: []
+        }
+      ]
+    };
+
+    expect(setBoardsMock).toHaveBeenCalledTimes(1);
+    expect(setBoardsMock).toHaveBeenCalledWith([...BOARDS_MOCK, expectedNewBoard]);
+  });
+
   it('should edit a board title correctly', async () => {
     const { setBoardsMock } = renderComponent();
 
