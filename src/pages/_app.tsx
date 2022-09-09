@@ -38,6 +38,8 @@ export default function App({ Component, pageProps }: AppProps) {
           name='description'
           content='A website where you can create boards to manage your tasks'
         />
+        <link rel='shortcut icon' href='/img/kanban-icon.png' />
+        <link rel='apple-touch-icon' href='/img/kanban-icon.png' />
         <title>EasyBoards</title>
       </Head>
 
