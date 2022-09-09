@@ -4,9 +4,20 @@ import Link from 'next/link';
 import useBoardStore from 'store/board/board.store';
 import { PlusCircleFill as PlusIcon } from '@styled-icons/bootstrap';
 import * as S from './Home.styles';
+import { useModalState } from 'hooks';
+import useHandleAddBoard from 'logic/useHandleAddBoard/useHandleAddBoard';
+import AddBoardModal from 'components/Modals/AddBoardModal/AddBoardModal';
 
 export default function Home() {
-  const boards = useBoardStore((store) => store.state.partialBoards);
+  const boards = useBoardStore((store) => store.state.boards);
+  const setBoards = useBoardStore((store) => store.actions.setBoardsAndPartialBoards);
+  const [isAddBoardModalOpen, openAddBoardModal, closeAddBoardModal] = useModalState();
+
+  const handleAddBoard = useHandleAddBoard({
+    boards,
+    setBoards,
+    closeAddBoardModal
+  });
 
   return (
     <>
@@ -44,12 +55,20 @@ export default function Home() {
           <S.CreateABoardWrapper>
             <span className='no-boards-text'>It seems you have no boards yet 😕</span>
 
-            <Button color='success' size='medium' icon={<PlusIcon />}>
+            <Button color='success' size='medium' icon={<PlusIcon />} onClick={openAddBoardModal}>
               Create a new board
             </Button>
           </S.CreateABoardWrapper>
         )}
       </S.Wrapper>
+
+      {isAddBoardModalOpen && (
+        <AddBoardModal
+          isOpen={isAddBoardModalOpen}
+          onClose={closeAddBoardModal}
+          handleAddBoard={handleAddBoard}
+        />
+      )}
     </>
   );
 }
