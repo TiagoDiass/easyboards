@@ -1,7 +1,5 @@
 <div align='center'>
-  <img src='./public/img/icon-192.png' width='80' />
-  
-  <h1 align='center' >
+  <h1>
     React Trello Clone
   </h1>
  </div>
