@@ -14,6 +14,12 @@
 
 ## <i>This project is still under development so I haven't created a detailed README yet</i>
 
+<h2 align="center">
+  <a href="https://easy-boards.vercel.app/" target="_blank">
+    <img alt="Demo on Vercel" src="https://raw.githubusercontent.com/TiagoDiass/devjobs/main/screenshots/demo-on-vercel.png" />
+  </a>
+</h2>
+
 <!-- <h2 id="techonologies" name="technologies">
   :rocket: Used Technologies
 </h2>
