@@ -68,3 +68,20 @@ export const SelectBoardWrapper = styled.div`
     }
   `}
 `;
+
+export const CreateABoardWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    row-gap: ${theme.spacings.xxsmall};
+
+    .no-boards-text {
+      font-size: ${theme.font.sizes.medium};
+      color: ${theme.colors.secondary.accent2};
+    }
+
+    button {
+      max-width: 50%;
+    }
+  `}
+`;

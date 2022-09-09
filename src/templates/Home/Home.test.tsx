@@ -32,4 +32,22 @@ describe('Component: Home', () => {
     expect(screen.getByRole('link', { name: 'First board' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Second board' })).toBeInTheDocument();
   });
+
+  it('should render correctly when there are no boards', () => {
+    const result = renderHook(() => useBoardStore()).result;
+
+    result.current.state.partialBoards = [];
+
+    renderWithTheme(<Home />);
+
+    expect(
+      screen.getByRole('heading', { name: /hey! welcome to easyboards/i })
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByText('Select a board to start managing your tasks 😉')
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('It seems you have no boards yet 😕')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Create a new board' })).toBeInTheDocument();
+  });
 });
