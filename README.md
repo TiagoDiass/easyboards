@@ -5,13 +5,20 @@
 <p align="center">
   <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Main%20technologies&message=React%2FNext.js%2FTypeScript&style=for-the-badge&color=0761D1&labelColor=151515">
   
-  <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Author&message=Tiago%20Dias&style=for-the-badge&color=0761D1&labelColor=151515">
+  <!-- <a href='https://github.com/TiagoDiass' target='_blank'>
+    <img alt="Project author" src="https://img.shields.io/static/v1?label=Author&message=@TiagoDiass&style=for-the-badge&color=0761D1&labelColor=151515">
+  </a> -->
 </p>
+
+<h4 align="center">
+  A front-end app similar to Trello developed by <a href='https://github.com/TiagoDiass'>@TiagoDiass</a> where people can manage their tasks using drag'n drop in boards
+</h4>
 
 <p align="center">
   <a href="#final-result">Final result</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Used technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#tests">Tests</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#how-to-run">How to run</a>
 </p>
