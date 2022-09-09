@@ -11,7 +11,7 @@
 </p>
 
 <h4 align="center">
-  A front-end app similar to Trello developed by <a href='https://github.com/TiagoDiass'>@TiagoDiass</a> where people can manage their tasks using drag'n drop in boards
+  A front-end app similar to Trello developed by <a href='https://github.com/TiagoDiass' target='_blank'>@TiagoDiass</a> where people can manage their tasks using drag'n drop in boards
 </h4>
 
 <p align="center">
