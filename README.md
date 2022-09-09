@@ -8,32 +8,32 @@
   <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Author&message=Tiago%20Dias&style=for-the-badge&color=0761D1&labelColor=151515">
 </p>
 
-<h2 align="center">
-  <a href="https://easy-boards.vercel.app/" target="_blank">
-    <img alt="Demo on Vercel" src="https://raw.githubusercontent.com/TiagoDiass/devjobs/main/screenshots/demo-on-vercel.png" />
-  </a>
-</h2>
-
 <p align="center">
   <a href="#final-result">Final result</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Used technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#how-to-run">How to run</a>
 </p>
 
 <div align='center'>
   <img src="./screenshots/board-screenshot.png" alt="A board called iOS App, with three columns and some tasks." />
  </div>
+ 
+ <h2 align="center">
+  <a href="https://easy-boards.vercel.app/" target="_blank">
+    <img alt="Demo on Vercel" src="https://raw.githubusercontent.com/TiagoDiass/devjobs/main/screenshots/demo-on-vercel.png" />
+  </a>
+</h2>
 
 <h2 id="final-result" name="final-result">
-  :clipboard: Final result
+  ✅ Final result
 </h2>
 
 ### [Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
 
-<!-- <h2 id="techonologies" name="technologies">
-  :rocket: Used Technologies
+<h2 id="techonologies" name="technologies">
+  🖥 Used Technologies
 </h2>
 
 - [Next.js](https://nextjs.org/)- Next.js is a framework built on top of React.
@@ -41,7 +41,7 @@
 - [Styled Components](https://styled-components.com/) - Styled components is a CSS-in-JS library.
 - [React Testing Library](https://testing-library.com/) - React Testing Library is a library that allows us to create unit and integration tests of React components.
 - [Storybook](https://storybook.js.org/) - Storybook is an open source tool for building UI components and pages in isolation. It streamlines UI development, testing, and documentation.
-- [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - With ESLint and Prettier, we can improve our code quality by linting and auto formating it. -->
+- [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - With ESLint and Prettier, we can improve our code quality by linting and auto formating it.
 
 <h2 id="features" name="features">
   :clipboard: Features
@@ -70,5 +70,41 @@
 - [ ] User can change his/her profile data (name, title, picture)
 
 #### Do you have an idea of feature? Get in touch with me and we can talk about a contribution to the project!
+
+<h2 id="deploy" name="deploy">
+  :rocket: Deploy
+</h2>
+
+I have deployed this application on [Vercel](https://vercel.com/). It's configured with a continuous deployment with this Github repository, that is, everytime the codebase from the `main` branch of this repository gets updated, Vercel will trigger a build of the project and will put it in production.
+[Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
+
+<h2 id="how-to-run" name="how-to-run">
+  :arrow_forward: How to run
+</h2>
+
+### First steps
+
+If you want to run the application in your computer, follow these steps;
+First of all, you'll need to clone the repository and install the dependencies. Assuming you have [Yarn](https://yarnpkg.com/) installed in your computer, follow the steps bellow:
+
+```
+# Clone the repo
+$ git clone https://github.com/TiagoDiass/easyboards.git
+
+# Enter the repo's folder
+$ cd easyboards
+
+# Install the dependencies
+$ yarn install
+
+# Start the application
+$ yarn dev
+```
+
+After following these steps, the terminal will show you in which port it's running, it's on the port 3000 usually, so, you'll just need to enter in your browser and
+type `localhost:3000`, then you'll be able to check the app running. When you want to stop it, go to the terminal that you used to start the app, and type <kbd>CTRL</kbd>+<kbd>C</kbd>,
+this way you'll stop the app
+
+---
 
 ## :wave: [Get in touch!](https://www.linkedin.com/in/tiagodiass)
