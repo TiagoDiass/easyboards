@@ -68,6 +68,13 @@ export const BoardsListWrapper = styled.nav`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+
+  &:hover {
+    .add-board-button {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `;
 
 export const BoardsListLabel = styled.div`
@@ -103,13 +110,6 @@ export const BoardsListLabel = styled.div`
       &:hover {
         background-color: ${theme.colors.primary.accent2};
         color: ${theme.colors.secondary.accent1};
-      }
-    }
-
-    &:hover {
-      .add-board-button {
-        opacity: 1;
-        visibility: visible;
       }
     }
   `}
