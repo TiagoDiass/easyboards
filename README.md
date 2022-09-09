@@ -1,24 +1,36 @@
 <div align='center'>
-  <h1>
-    React Trello Clone
-  </h1>
+  <img src="./screenshots/banner.jpeg" alt="EasyBoards. A Trello clone developed with React, Next.js, Typescript and more." />
  </div>
 
-<h4 align="center">
-  A Trello clone developed with React, Next.js, Typescript, Storybook and <i>more.</i>
-</h4>
-
 <p align="center">
-  <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Main%20technologies&message=React%2FNext.js%2FTypeScript&style=for-the-badge&color=f062c0&labelColor=06092b">
+  <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Main%20technologies&message=React%2FNext.js%2FTypeScript&style=for-the-badge&color=0761D1&labelColor=151515">
+  
+  <img alt="Repo's top languages" src="https://img.shields.io/static/v1?label=Author&message=Tiago%20Dias&style=for-the-badge&color=0761D1&labelColor=151515">
 </p>
-
-## <i>This project is still under development so I haven't created a detailed README yet</i>
 
 <h2 align="center">
   <a href="https://easy-boards.vercel.app/" target="_blank">
     <img alt="Demo on Vercel" src="https://raw.githubusercontent.com/TiagoDiass/devjobs/main/screenshots/demo-on-vercel.png" />
   </a>
 </h2>
+
+<p align="center">
+  <a href="#final-result">Final result</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#technologies">Used technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#how-to-run">How to run</a>
+</p>
+
+<div align='center'>
+  <img src="./screenshots/board-screenshot.png" alt="A board called iOS App, with three columns and some tasks." />
+ </div>
+
+<h2 id="final-result" name="final-result">
+  :clipboard: Final result
+</h2>
+
+### [Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
 
 <!-- <h2 id="techonologies" name="technologies">
   :rocket: Used Technologies
