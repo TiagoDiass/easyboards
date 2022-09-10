@@ -78,6 +78,19 @@
 
 #### Do you have an idea of feature? Get in touch with me and we can talk about a contribution to the project!
 
+<h2 id="tests" name="tests">
+  🧪 Tests
+</h2>
+
+<h3 align="center">Almost 100% of code coverage in tests ✅</h3>
+<p align="center">
+  <img width="750" src="screenshots/coverage.png" />
+</p>
+
+<div align="center">
+  <img src="./screenshots/tests.png" />
+</div>
+
 <h2 id="deploy" name="deploy">
   :rocket: Deploy
 </h2>
@@ -103,13 +116,36 @@ $ cd easyboards
 
 # Install the dependencies
 $ yarn install
+```
 
-# Start the application
+### Application
+To run the application, just follow the steps below (assuming you have followed the first steps above)
+```
+# Start the app
 $ yarn dev
 ```
 
 After following these steps, the terminal will show you in which port it's running, it's on the port 3000 usually, so, you'll just need to enter in your browser and
 type `localhost:3000`, then you'll be able to check the app running. When you want to stop it, go to the terminal that you used to start the app, and type <kbd>CTRL</kbd>+<kbd>C</kbd>,
+this way you'll stop the app
+
+### Tests
+To run the application tests, follow the steps below (assuming you have followed the first steps above)
+```
+# Run the tests
+$ yarn test
+
+# If you want to run the tests in order to see the code coverage, run:
+$ yarn test:coverage
+```
+### Storybook
+Storybook is a live documentation of all components that were developed to use in this app. To start the Storybook, just follow the steps below (assuming you have followed the first steps above)
+```
+# Start the Storybook app
+$ yarn storybook
+```
+After starting the Storybook, the terminal will show you in which port it's running, it's on the port 6006 usually, so, you'll just need to enter in your browser and
+type `localhost:6006`, then you'll be able to check the storybook app running. When you want to stop it, go to the terminal that you used to start the app, and type <kbd>CTRL</kbd>+<kbd>C</kbd>,
 this way you'll stop the app
 
 ---
