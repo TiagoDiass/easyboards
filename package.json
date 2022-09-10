@@ -9,6 +9,7 @@
     "prepare": "husky install",
     "test": "jest",
     "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook -s ./public",
