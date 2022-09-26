@@ -70,6 +70,7 @@
 - [x] User can change a board name
 - [x] User can delete a board
 - [ ] Custom 404 page to tell user that he/she tried to access a board that doesn't exist
+- [ ] Multilanguage (English and Portuguese)
 - [ ] User can change a board background
 - [ ] User can sign in in order to save his/her boards data into a database, this way the user will be able to acess his/her boards from any browser in any computer, not only the browser that has the localStorage data set
   - [ ] Sign in with Google

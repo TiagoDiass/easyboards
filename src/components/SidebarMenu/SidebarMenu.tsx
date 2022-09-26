@@ -18,7 +18,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Board } from 'types';
 import { useModalState } from 'hooks';
-import { EditBoardModal, DeleteBoardConfirmationModal } from './Elements';
+import { EditBoardModal, DeleteBoardConfirmationModal, HelpModal } from './Elements';
 import { useHandleEditBoard, useHandleDeleteBoard } from './logic';
 import AddBoardModal from 'components/Modals/AddBoardModal/AddBoardModal';
 import useHandleAddBoard from 'logic/useHandleAddBoard/useHandleAddBoard';
@@ -55,6 +55,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
     closeDeleteBoardConfirmationModal
   ] = useModalState();
   const [isAddBoardModalOpen, openAddBoardModal, closeAddBoardModal] = useModalState();
+  const [isHelpModalOpen, openHelpModal, closeHelpModal] = useModalState();
 
   const handleEditBoard = useHandleEditBoard({
     boards: boards,
@@ -134,7 +135,7 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
       </S.BoardsListWrapper>
 
       <S.SecondaryOptions>
-        <Button fullWidth icon={<QuestionCircleIcon />} minimal>
+        <Button fullWidth icon={<QuestionCircleIcon />} minimal onClick={openHelpModal}>
           Help
         </Button>
 
@@ -172,6 +173,8 @@ export default function SidebarMenu({ useBoardsList, toggleTheme, setBoards }: S
           handleAddBoard={handleAddBoard}
         />
       )}
+
+      {isHelpModalOpen && <HelpModal isOpen={isHelpModalOpen} onClose={closeHelpModal} />}
     </S.Wrapper>
   ) : (
     <S.CollapseButton title='Expand sidebar' isSidebarExpanded={false} onClick={expandSidebar}>
