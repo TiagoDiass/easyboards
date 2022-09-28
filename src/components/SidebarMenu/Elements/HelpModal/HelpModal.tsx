@@ -10,7 +10,7 @@ export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
         <S.Heading>About this app.</S.Heading>
 
         <S.Text>
-          This is app where you can <strong>easily</strong> manage your tasks by creating specific
+          This is an app where you can <strong>easily</strong> manage your tasks by creating specific
           boards to specific contexts, separating them into columns and task cards.
         </S.Text>
 
