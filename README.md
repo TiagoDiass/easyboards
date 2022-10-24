@@ -28,7 +28,7 @@
  </div>
  
  <h2 align="center">
-  <a href="https://easy-boards.vercel.app/" target="_blank">
+  <a href="https://easyboards.vercel.app/" target="_blank">
     <img alt="Demo on Vercel" src="https://raw.githubusercontent.com/TiagoDiass/devjobs/main/screenshots/demo-on-vercel.png" />
   </a>
 </h2>
@@ -37,7 +37,7 @@
   ✅ Final result
 </h2>
 
-### [Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
+### [Click here to check the application running on Vercel](https://easyboards.vercel.app/)
 
 <h2 id="techonologies" name="technologies">
   🖥 Used Technologies
@@ -97,7 +97,7 @@
 </h2>
 
 I have deployed this application on [Vercel](https://vercel.com/). It's configured with a continuous deployment with this Github repository, that is, everytime the codebase from the `main` branch of this repository gets updated, Vercel will trigger a build of the project and will put it in production.
-[Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
+[Click here to check the application running on Vercel](https://easyboards.vercel.app/)
 
 ### 📚 Storybook
 
@@ -130,7 +130,9 @@ $ yarn install
 ```
 
 ### Application
+
 To run the application, just follow the steps below (assuming you have followed the first steps above)
+
 ```
 # Start the app
 $ yarn dev
@@ -141,7 +143,9 @@ type `localhost:3000`, then you'll be able to check the app running. When you wa
 this way you'll stop the app
 
 ### Tests
+
 To run the application tests, follow the steps below (assuming you have followed the first steps above)
+
 ```
 # Run the tests
 $ yarn test
@@ -149,12 +153,16 @@ $ yarn test
 # If you want to run the tests in order to see the code coverage, run:
 $ yarn test:coverage
 ```
+
 ### Storybook
+
 Storybook is a live documentation of all components that were developed to use in this app. To start the Storybook, just follow the steps below (assuming you have followed the first steps above)
+
 ```
 # Start the Storybook app
 $ yarn storybook
 ```
+
 After starting the Storybook, the terminal will show you in which port it's running, it's on the port 6006 usually, so, you'll just need to enter in your browser and
 type `localhost:6006`, then you'll be able to check the storybook app running. When you want to stop it, go to the terminal that you used to start the app, and type <kbd>CTRL</kbd>+<kbd>C</kbd>,
 this way you'll stop the app
