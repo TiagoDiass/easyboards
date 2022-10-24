@@ -99,6 +99,16 @@
 I have deployed this application on [Vercel](https://vercel.com/). It's configured with a continuous deployment with this Github repository, that is, everytime the codebase from the `main` branch of this repository gets updated, Vercel will trigger a build of the project and will put it in production.
 [Click here to check the application running on Vercel](https://easy-boards.vercel.app/)
 
+### 📚 Storybook
+
+Storybook is a live documentation of the application components. It helps developers that are getting to know the codebase, designers that want to validate the components implemented by the developers, developer that want to know how to use any component of the app and so on. I have deployed the Storybook of this app on Vercel with a continuous deployment just like the application itself.
+
+### [Click here to check the application's storybook running on Vercel](https://easyboards-storybook.vercel.app/)
+
+<div align="center">
+  <img src="./screenshots/storybook-screenshot.png" />
+</div>
+
 <h2 id="how-to-run" name="how-to-run">
   :arrow_forward: How to run
 </h2>
