@@ -12,7 +12,8 @@ import {
   useHandleDeleteTask,
   useHandleDeleteColumn,
   useHandleEditColumn,
-  useHandleAddColumn
+  useHandleAddColumn,
+  useHandleDeleteAllTasks
 } from './logic';
 
 type BoardProps = {
@@ -35,6 +36,11 @@ export default function Board({ board, setBoard }: BoardProps) {
     isDeleteColumnConfirmationModalOpen,
     openDeleteColumnConfirmationModal,
     closeDeleteColumnConfirmationModal
+  ] = useModalState();
+  const [
+    isDeleteAllTasksConfirmationModalOpen,
+    openDeleteAllTasksConfirmationModal,
+    closeDeleteAllTasksConfirmationModal
   ] = useModalState();
   const [isEditColumnModalOpen, openEditColumnModal, closeEditColumnModal] = useModalState();
 
@@ -89,6 +95,13 @@ export default function Board({ board, setBoard }: BoardProps) {
     closeAddColumnModal
   });
 
+  const handleDeleteAllTasks = useHandleDeleteAllTasks({
+    board,
+    currentColumn,
+    setBoard,
+    closeDeleteAllTasksConfirmationModal
+  });
+
   return (
     <S.Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -116,6 +129,10 @@ export default function Board({ board, setBoard }: BoardProps) {
                   handleDeleteColumn={() => {
                     setCurrentColumn(column);
                     openDeleteColumnConfirmationModal();
+                  }}
+                  handleDeleteAllTasks={() => {
+                    setCurrentColumn(column);
+                    openDeleteAllTasksConfirmationModal();
                   }}
                 />
               ))}
@@ -189,6 +206,21 @@ export default function Board({ board, setBoard }: BoardProps) {
         }}
         isOpen={isDeleteColumnConfirmationModalOpen}
         onClose={closeDeleteColumnConfirmationModal}
+      />
+
+      <ConfirmationModal
+        title='Delete all tasks'
+        content='Are you sure you want to delete all tasks from this column?'
+        cancelButtonProps={{
+          children: "No, I'm not sure"
+        }}
+        confirmButtonProps={{
+          color: 'danger',
+          children: 'Yes, delete all tasks',
+          onClick: handleDeleteAllTasks
+        }}
+        isOpen={isDeleteAllTasksConfirmationModalOpen}
+        onClose={closeDeleteAllTasksConfirmationModal}
       />
     </S.Wrapper>
   );

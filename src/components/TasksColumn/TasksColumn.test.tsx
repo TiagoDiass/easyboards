@@ -9,6 +9,7 @@ const renderComponent = () => {
   const handleDeleteColumnMock = jest.fn();
   const handleDeleteTaskMock = jest.fn();
   const handleEditColumnMock = jest.fn();
+  const handleDeleteAllTasksMock = jest.fn();
 
   renderWithTheme(
     <DragDropContext onDragEnd={() => {}}>
@@ -33,6 +34,7 @@ const renderComponent = () => {
         handleDeleteColumn={handleDeleteColumnMock}
         handleDeleteTask={handleDeleteTaskMock}
         handleEditColumn={handleEditColumnMock}
+        handleDeleteAllTasks={handleDeleteAllTasksMock}
       />
     </DragDropContext>
   );
@@ -41,7 +43,8 @@ const renderComponent = () => {
     handleAddTaskMock,
     handleDeleteColumnMock,
     handleDeleteTaskMock,
-    handleEditColumnMock
+    handleEditColumnMock,
+    handleDeleteAllTasksMock
   };
 };
 
@@ -84,5 +87,15 @@ describe('Component: TasksColumn', () => {
     await userEvent.click(screen.getByText('Edit column'));
 
     expect(handleEditColumnMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call handleDeleteAllTasks when user clicks on "Delete all tasks" dropdown option', async () => {
+    const { handleDeleteAllTasksMock } = renderComponent();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Open dropdown' }));
+
+    await userEvent.click(screen.getByText('Delete all tasks'));
+
+    expect(handleDeleteAllTasksMock).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,6 +4,7 @@ import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
 import { Column } from 'types';
 import { Pencil as PencilIcon, Trash as TrashIcon } from '@styled-icons/evil';
 import { Plus as PlusIcon } from '@styled-icons/feather';
+import { Broom as ClearAllIcon } from '@styled-icons/fluentui-system-filled';
 import { TaskCard } from 'components';
 import { DraggableProvided, Droppable } from 'react-beautiful-dnd';
 
@@ -13,6 +14,7 @@ export type TasksColumnProps = {
   handleDeleteTask: (taskIndex: number) => void;
   handleEditColumn: () => void;
   handleDeleteColumn: () => void;
+  handleDeleteAllTasks: () => void;
   provided?: DraggableProvided;
 };
 
@@ -25,6 +27,7 @@ export default function TasksColumn({
   handleDeleteTask,
   handleEditColumn,
   handleDeleteColumn,
+  handleDeleteAllTasks,
   provided
 }: TasksColumnProps) {
   return (
@@ -53,6 +56,11 @@ export default function TasksColumn({
               icon: <TrashIcon />,
               text: 'Delete column',
               onClick: handleDeleteColumn
+            },
+            {
+              icon: <ClearAllIcon />,
+              text: 'Delete all tasks',
+              onClick: handleDeleteAllTasks
             }
           ]}
           ariaLabel='Column related actions'

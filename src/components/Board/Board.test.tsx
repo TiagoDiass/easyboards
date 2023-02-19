@@ -207,4 +207,34 @@ describe('Component: Board', () => {
       columns: [BoardMock.columns[0]]
     });
   });
+
+  it('should delete all tasks from a column correctly', async () => {
+    const setBoardMock = jest.fn();
+
+    renderWithTheme(<Board board={BoardMock} setBoard={setBoardMock} />);
+
+    const firstColumn = within(screen.getAllByLabelText('Tasks column')[0]);
+
+    expect(firstColumn.getByRole('heading', { name: 'To do' })).toBeInTheDocument();
+    expect(firstColumn.getByLabelText('Tasks of the "To do" column').children).toHaveLength(2);
+
+    await userEvent.click(firstColumn.getByRole('button', { name: 'Open dropdown' }));
+    await userEvent.click(firstColumn.getByText('Delete all tasks'));
+
+    await screen.findByLabelText('Modal with title "Delete all tasks"');
+    await userEvent.click(screen.getByRole('button', { name: 'Yes, delete all tasks' }));
+
+    expect(setBoardMock).toHaveBeenCalledTimes(1);
+    expect(setBoardMock).toHaveBeenCalledWith({
+      ...BoardMock,
+      columns: [
+        {
+          id: 'todo-column-id',
+          title: 'To do',
+          tasks: []
+        },
+        BoardMock.columns[1]
+      ]
+    });
+  });
 });
