@@ -58,6 +58,7 @@
 - [x] User can reorder the columns by dragging and dropping them
 - [x] User can create tasks
 - [x] User can delete tasks
+- [x] User can delete all tasks of a column (shortcut to save user's time)
 - [x] User can create columns
 - [x] User can delete columns
 - [x] User can edit a column name
