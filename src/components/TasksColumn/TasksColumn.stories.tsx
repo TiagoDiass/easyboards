@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import TasksColumn from './TasksColumn';
 
 export default {
@@ -19,6 +20,10 @@ export default {
 
     handleDeleteColumn: {
       action: 'delete column requested'
+    },
+
+    handleDeleteAllTasks: {
+      action: 'delete all tasks from a specific column requested'
     },
 
     column: {
@@ -48,6 +53,8 @@ export default {
 
 export const Basic: ComponentStory<typeof TasksColumn> = (args) => (
   <div style={{ padding: 6, backgroundColor: '#eaeaea', width: 'min-content' }}>
-    <TasksColumn {...args} />
+    <DragDropContext onDragEnd={() => {}}>
+      <TasksColumn {...args} />
+    </DragDropContext>
   </div>
 );
