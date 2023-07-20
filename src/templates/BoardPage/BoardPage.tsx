@@ -14,7 +14,7 @@ export default function BoardPage({ boardSlug }: BoardPageProps) {
   const [board, setBoard] = useCurrentBoard({ boardSlug });
 
   if (!board) {
-    return <h1>Sem board aqui bro</h1>;
+    return null; // TODO: implement a 404 page specific to boards
   }
 
   return (
